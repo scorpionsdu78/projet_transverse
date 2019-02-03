@@ -134,5 +134,18 @@
 <dataTypeSize>2 BYTE</dataTypeSize>
 <ownDataTypeParameters>2 BYTE,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="debut_de_location" id="5091E3A2-3760-D157-3F33-5259B41A2961">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 15:39:19 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 </Entity>
