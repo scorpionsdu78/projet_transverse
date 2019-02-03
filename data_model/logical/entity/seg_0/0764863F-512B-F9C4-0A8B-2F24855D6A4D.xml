@@ -1,0 +1,60 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="0764863F-512B-F9C4-0A8B-2F24855D6A4D" name="tag">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 14:58:53 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>tg</shortName>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="8F9806A9-D36A-1B3F-CA38-5DDB9AD9E800">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 14:59:19 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>6A46E4D1-0E71-0DDA-D8FC-A5F9591EAFBB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="tagName" id="B86B3425-327E-0EBE-F188-06DB60E6992A">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 14:59:41 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>31 CHAR</dataTypeSize>
+<ownDataTypeParameters>31 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="oeuvreID" id="E8D9F800-D3CD-6700-75A9-8656C792F0B8">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 15:00:29 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>6A46E4D1-0E71-0DDA-D8FC-A5F9591EAFBB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

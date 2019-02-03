@@ -1,0 +1,116 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="FAF702F5-02D6-26FE-1007-CF22EF374325" name="user">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-01-28 14:09:51 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>usrd</shortName>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="0C0FA513-86C8-F179-CBE3-22CA55737519">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-01-28 14:12:45 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>6A46E4D1-0E71-0DDA-D8FC-A5F9591EAFBB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="userName" id="A0D527E0-B95A-4CB2-AEF3-48A9282FC0DD">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-01-28 14:13:04 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>0D00979E-9515-72BC-CC93-5A336D367CEF</domain>
+<defaultValue>40</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="mot_de_passe" id="392D33ED-742C-2309-9ABA-08544675D649">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-01-28 14:13:39 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>4DEB6BEA-6ACC-EF14-3153-3C3F0FECBA7E</domain>
+<defaultValue>32</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="email" id="4B967E72-F0C5-C529-4FF8-643C9C96028E">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 14:05:35 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>01BC3479-C7F1-6F22-DBA6-E3E6A8662D2A</domain>
+<defaultValue>64</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="instagram" id="9A04F9FD-DD06-940F-09A2-4DBDD36FE15A">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 14:06:00 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>32 CHAR</dataTypeSize>
+<ownDataTypeParameters>32 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="avatar" id="6A178B3A-245F-34B7-4023-73EE1818F711">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 14:06:44 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>128 CHAR</dataTypeSize>
+<ownDataTypeParameters>128 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="description" id="D0093F6E-FCC9-2443-041F-155E8757AABC">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 14:08:12 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>
