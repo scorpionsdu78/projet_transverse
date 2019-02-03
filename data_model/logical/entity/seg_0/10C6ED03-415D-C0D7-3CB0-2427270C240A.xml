@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="10C6ED03-415D-C0D7-3CB0-2427270C240A" name="transction">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="10C6ED03-415D-C0D7-3CB0-2427270C240A" name="commande">
 <createdBy>François BONI</createdBy>
 <createdTime>2019-01-28 14:12:13 UTC</createdTime>
 <ownerDesignName>data_model</ownerDesignName>
@@ -14,5 +14,125 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<shortName>trsc</shortName>
+<shortName>cmd</shortName>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="984B8021-EBCD-2293-48F2-D49FAB5BC7EB">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 15:05:57 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>6A46E4D1-0E71-0DDA-D8FC-A5F9591EAFBB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="IDVendeur" id="5D6EFCF7-03C6-75E7-D85A-3C10CBB0F49D">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 15:06:31 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>6A46E4D1-0E71-0DDA-D8FC-A5F9591EAFBB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="IDAcheteur" id="7E916FBA-1406-B879-6E7D-AADA9BDE6335">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 15:09:36 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>6A46E4D1-0E71-0DDA-D8FC-A5F9591EAFBB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="IDoeuvre" id="0791984E-5F37-375D-24F8-4E88DE22A432">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 15:11:23 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>6A46E4D1-0E71-0DDA-D8FC-A5F9591EAFBB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="etat" id="D936D6B4-CC31-485A-F7F4-6B94ABD476CE">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 15:12:15 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="date" id="ABFE66F6-AF25-9846-B620-6982CF125A1B">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 15:12:30 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="duree" id="2A6D0F64-15FD-3788-1D90-BDC513DA0E33">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 15:13:49 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="localisation" id="4334D002-8829-77EE-1B9C-11E02EDE6BB4">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 15:14:05 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>6A46E4D1-0E71-0DDA-D8FC-A5F9591EAFBB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="masquage" id="9A46EC50-D91B-FB03-F663-32E9DD21FC89">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 15:15:08 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>2 BYTE</dataTypeSize>
+<ownDataTypeParameters>2 BYTE,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
 </Entity>

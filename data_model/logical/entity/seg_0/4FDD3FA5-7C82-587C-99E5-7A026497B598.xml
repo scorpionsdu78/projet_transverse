@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1B85E889-D634-0711-A140-D7E424D9E1E0" name="adress">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4FDD3FA5-7C82-587C-99E5-7A026497B598" name="oeuvre">
 <createdBy>François BONI</createdBy>
-<createdTime>2019-02-03 13:59:58 UTC</createdTime>
+<createdTime>2019-02-03 14:38:27 UTC</createdTime>
 <ownerDesignName>data_model</ownerDesignName>
 <engineerTo>
 <item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
@@ -14,12 +14,11 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<shortName>add</shortName>
-<synonym>add</synonym>
+<shortName>evr</shortName>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="ID" id="11A14C2C-BEEC-6E49-240F-21457FB0456D">
+<Attribute name="ID" id="B2FA3345-EF42-282C-262B-C8F9AD89F786">
 <createdBy>François BONI</createdBy>
-<createdTime>2019-02-03 14:26:01 UTC</createdTime>
+<createdTime>2019-02-03 14:40:17 UTC</createdTime>
 <ownerDesignName>data_model</ownerDesignName>
 <engineerTo>
 <item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
@@ -30,9 +29,23 @@
 <domain>6A46E4D1-0E71-0DDA-D8FC-A5F9591EAFBB</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="userID" id="E43E3D60-6FBE-7EBB-E2A6-A6A54DA90CB2">
+<Attribute name="titre_de_l_oeuvre" id="06DBFCE0-F26E-15C4-3257-D8F9103CEA62">
 <createdBy>François BONI</createdBy>
-<createdTime>2019-02-03 14:26:07 UTC</createdTime>
+<createdTime>2019-02-03 14:41:02 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>128 CHAR</dataTypeSize>
+<ownDataTypeParameters>128 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="createur" id="1EDBCEEF-950C-A663-3296-5C4D7D88C708">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 14:51:09 UTC</createdTime>
 <ownerDesignName>data_model</ownerDesignName>
 <engineerTo>
 <item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
@@ -43,72 +56,43 @@
 <domain>6A46E4D1-0E71-0DDA-D8FC-A5F9591EAFBB</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="pays" id="4A2CD9C6-D071-2E56-0838-B9108FC89BE7">
+<Attribute name="prix_de_location" id="510D29E6-AAF2-1E75-F495-DE7FE3024DED">
 <createdBy>François BONI</createdBy>
-<createdTime>2019-02-03 14:26:16 UTC</createdTime>
+<createdTime>2019-02-03 14:51:28 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="proprietaire_actuel" id="9A980528-EF45-84CD-DFA6-01790D9242AE">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 14:54:09 UTC</createdTime>
 <ownerDesignName>data_model</ownerDesignName>
 <engineerTo>
 <item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>44110C0B-3B3A-C56D-729F-1944DC1C5E10</domain>
-<defaultValue>2</defaultValue>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>6A46E4D1-0E71-0DDA-D8FC-A5F9591EAFBB</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="code_postal" id="DDF0DD7D-E08A-2AC3-7910-57B529733B06">
+<Attribute name="localisation" id="456C62AA-8CB0-7207-3A15-8AEB6D4EFE39">
 <createdBy>François BONI</createdBy>
-<createdTime>2019-02-03 14:27:37 UTC</createdTime>
+<createdTime>2019-02-03 14:54:43 UTC</createdTime>
 <ownerDesignName>data_model</ownerDesignName>
 <engineerTo>
 <item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>D318A4AA-7DE8-D990-8AC7-9927AE5DE0DA</domain>
-<defaultValue>10</defaultValue>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="rue" id="FFE50ACB-1C83-B5BD-8B4C-795F380C852B">
-<createdBy>François BONI</createdBy>
-<createdTime>2019-02-03 14:28:43 UTC</createdTime>
-<ownerDesignName>data_model</ownerDesignName>
-<engineerTo>
-<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT040</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="numero" id="7D89C94C-D5F9-0E68-DB1B-89F794CDA52C">
-<createdBy>François BONI</createdBy>
-<createdTime>2019-02-03 14:36:27 UTC</createdTime>
-<ownerDesignName>data_model</ownerDesignName>
-<engineerTo>
-<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>10 CHAR</dataTypeSize>
-<ownDataTypeParameters>10 CHAR,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="indication_complementaire" id="C7C451C3-5D29-06EA-D041-82D7375D744A">
-<createdBy>François BONI</createdBy>
-<createdTime>2019-02-03 14:37:38 UTC</createdTime>
-<ownerDesignName>data_model</ownerDesignName>
-<engineerTo>
-<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT040</logicalDatatype>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>6A46E4D1-0E71-0DDA-D8FC-A5F9591EAFBB</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
