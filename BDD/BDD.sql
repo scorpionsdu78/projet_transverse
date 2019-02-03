@@ -29,3 +29,18 @@ CREATE TABLE `oani`.`Adresse` (
 	`Indications Complémentaires` TINYTEXT NULL COMMENT 'Tout autres informations sur l’adresse (Numéro de l’étage, Numéro d’appartement, …)',
 	PRIMARY KEY (`ID`)
 ) ENGINE = InnoDB COMMENT = 'Adresses des utilisateurs';
+
+
+CREATE TABLE `oani`.`Commande` (
+	`ID` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'ID de la commande',
+	`Vendeur` INT(11) NOT NULL COMMENT 'ID utilisateur du vendeur',
+	`Acheteur` INT(11) NOT NULL COMMENT 'ID utilisateur de l\'acheteur',
+	`Œuvre` INT(11) NOT NULL COMMENT 'ID de l\'oeuvre',
+	`Etat` VARCHAR(32) NOT NULL COMMENT 'Etat de la commande (en cours, réservée, archivée,...)',
+	`Date de commande` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Date au moment où la commande a été passée',
+	`Date` TIMESTAMP NOT NULL COMMENT 'Date du début de la location',
+	`Date de fin` TIMESTAMP NOT NULL COMMENT 'Date de la fin de la location',
+	`Localisation` INT(11) NOT NULL COMMENT 'La localisation de l\'oeuvre pendant la location',
+	`Masquage` BOOLEAN NOT NULL DEFAULT FALSE COMMENT 'Si on souhaite cacher la localisation',
+	PRIMARY KEY (`ID`)
+) ENGINE = InnoDB COMMENT = 'Description des commandes de location';
