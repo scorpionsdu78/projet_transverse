@@ -95,31 +95,5 @@
 <domain>6A46E4D1-0E71-0DDA-D8FC-A5F9591EAFBB</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="dimX" id="88341B32-C7DB-5223-5AA0-3F74DE670D5D">
-<createdBy>François BONI</createdBy>
-<createdTime>2019-02-03 15:29:40 UTC</createdTime>
-<ownerDesignName>data_model</ownerDesignName>
-<engineerTo>
-<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="dimY" id="DAEC12FE-AAFD-1D07-0E8D-17869B9FE7E6">
-<createdBy>François BONI</createdBy>
-<createdTime>2019-02-03 15:29:40 UTC</createdTime>
-<ownerDesignName>data_model</ownerDesignName>
-<engineerTo>
-<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 </attributes>
 </Entity>
