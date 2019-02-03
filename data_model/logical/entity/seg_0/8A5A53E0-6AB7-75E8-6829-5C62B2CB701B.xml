@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="8A5A53E0-6AB7-75E8-6829-5C62B2CB701B" name="seller">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="8A5A53E0-6AB7-75E8-6829-5C62B2CB701B" name="artiste">
 <createdBy>François BONI</createdBy>
 <createdTime>2019-01-28 14:11:35 UTC</createdTime>
 <ownerDesignName>data_model</ownerDesignName>
@@ -14,5 +14,47 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<shortName>slr</shortName>
+<shortName>arts</shortName>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="userID" id="58C64C15-E449-B6B5-E2E8-7ED45F137266">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 14:21:00 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>6A46E4D1-0E71-0DDA-D8FC-A5F9591EAFBB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pseudo" id="5A4C1D45-5541-515F-BFD3-235C6C428167">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 14:21:23 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>37 CHAR</dataTypeSize>
+<ownDataTypeParameters>37 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID" id="261D2A29-C832-FA20-554F-FF4799C22239">
+<createdBy>François BONI</createdBy>
+<createdTime>2019-02-03 14:24:31 UTC</createdTime>
+<ownerDesignName>data_model</ownerDesignName>
+<engineerTo>
+<item key="8596A867-14F4-3EC9-C38D-338F0368E16C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>6A46E4D1-0E71-0DDA-D8FC-A5F9591EAFBB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
 </Entity>

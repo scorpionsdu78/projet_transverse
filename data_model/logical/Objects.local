@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <oracle.dbtools.crest.model.design.logical.LogicalDesign>
+   <object objectType="Entity" objectID="1B85E889-D634-0711-A140-D7E424D9E1E0" name="adress" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.logical.Entity" propertyParentId="E6E429A7-E51C-31E6-7CA5-F00EA6DCC992" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Entity" objectID="8A5A53E0-6AB7-75E8-6829-5C62B2CB701B" name="artiste" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.logical.Entity" propertyParentId="E6E429A7-E51C-31E6-7CA5-F00EA6DCC992" propertySourceId="" propertyTargetId=""/>
    <object objectType="Entity" objectID="10C6ED03-415D-C0D7-3CB0-2427270C240A" name="transction" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.logical.Entity" propertyParentId="E6E429A7-E51C-31E6-7CA5-F00EA6DCC992" propertySourceId="" propertyTargetId=""/>
-   <object objectType="Entity" objectID="48B3F431-5533-A029-FF99-76ADC80EC412" name="product" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.logical.Entity" propertyParentId="E6E429A7-E51C-31E6-7CA5-F00EA6DCC992" propertySourceId="" propertyTargetId=""/>
-   <object objectType="Entity" objectID="8A5A53E0-6AB7-75E8-6829-5C62B2CB701B" name="seller" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.logical.Entity" propertyParentId="E6E429A7-E51C-31E6-7CA5-F00EA6DCC992" propertySourceId="" propertyTargetId=""/>
    <object objectType="Entity" objectID="FAF702F5-02D6-26FE-1007-CF22EF374325" name="user" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.logical.Entity" propertyParentId="E6E429A7-E51C-31E6-7CA5-F00EA6DCC992" propertySourceId="" propertyTargetId=""/>
 </oracle.dbtools.crest.model.design.logical.LogicalDesign>
