@@ -20,15 +20,18 @@ CREATE TABLE `oani`.`Artiste` (
 	`Utilisateur` INT(11) NOT NULL COMMENT 'ID de son compte utilisateur',
 	`Pseudo` VARCHAR(32) NOT NULL COMMENT 'Pseudo de l\'artiste',
 	PRIMARY KEY (`ID`),
-	FOREIGN KEY (`Utilisateur`) REFERENCES `Utilisateur`(`ID`)
+	FOREIGN KEY (`Utilisateur`) REFERENCES `Utilisateur`(`ID`),
+	UNIQUE (`ID`,`Utilisateur`)
 )ENGINE = InnoDB COMMENT = 'Compte artiste';
 
 
 CREATE TABLE `oani`.`Adresse` (
 	`ID` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'ID de l\'adresse',
-	`Utilisateur` INT(11) NOT NULL COMMENT 'ID de l\'utilisateur',
-	`Pays` VARCHAR(32) NOT NULL , `Code Postal` VARCHAR(16) NOT NULL,
-	`Rue` TINYTEXT NULL , `Numéro de rue` VARCHAR(16) NULL,
+	`Utilisateur` INT(11) NULL COMMENT 'ID de l\'utilisateur',
+	`Pays` VARCHAR(32) NOT NULL,
+	`Code Postal` VARCHAR(16) NOT NULL,
+	`Rue` TINYTEXT NULL,
+	`Numéro de rue` VARCHAR(16) NULL,
 	`Indications Complémentaires` TINYTEXT NULL COMMENT 'Tout autres informations sur l’adresse (Numéro de l’étage, Numéro d’appartement, …)',
 	`Masquage` BOOLEAN NOT NULL DEFAULT FALSE COMMENT 'Si on souhaite cacher l\'adresse',
 	PRIMARY KEY (`ID`),
@@ -65,7 +68,8 @@ CREATE TABLE `oani`.`Commande` (
 	FOREIGN KEY (`Vendeur`) REFERENCES `Utilisateur`(`ID`),
 	FOREIGN KEY (`Acheteur`) REFERENCES `Utilisateur`(`ID`),
 	FOREIGN KEY (`Œuvre`) REFERENCES `Œuvre`(`ID`),
-	FOREIGN KEY (`Localisation`) REFERENCES `Adresse`(`ID`)
+	FOREIGN KEY (`Localisation`) REFERENCES `Adresse`(`ID`),
+	UNIQUE (`Œuvre`,`Date de commande`,`Date de fin`)
 ) ENGINE = InnoDB COMMENT = 'Description des commandes de location';
 
 
@@ -74,7 +78,8 @@ CREATE TABLE `oani`.`Photo` (
 	`URL` VARCHAR(128) NOT NULL COMMENT 'URL vers la photo sur le serveur',
 	`Œuvre` INT(11) NOT NULL COMMENT 'ID Œuvre de la photo',
 	PRIMARY KEY (`ID`),
-	FOREIGN KEY (`Œuvre`) REFERENCES `Œuvre`(`ID`)
+	FOREIGN KEY (`Œuvre`) REFERENCES `Œuvre`(`ID`),
+	UNIQUE (`URL`)
 ) ENGINE = InnoDB COMMENT = 'Photos des œuvres';
 
 
@@ -83,7 +88,8 @@ CREATE TABLE `oani`.`Tag` (
 	`Tag` VARCHAR(128) NOT NULL COMMENT 'Tag relié à l\’œuvre',
 	`Œuvre` INT(11) NOT NULL COMMENT 'ID Œuvre du tag',
 	PRIMARY KEY (`ID`),
-	FOREIGN KEY (`Œuvre`) REFERENCES `Œuvre`(`ID`)
+	FOREIGN KEY (`Œuvre`) REFERENCES `Œuvre`(`ID`),
+	UNIQUE (`Œuvre`,`Tag`)
 ) ENGINE = InnoDB COMMENT = 'Tags des œuvres';
 
 
@@ -92,7 +98,8 @@ CREATE TABLE `oani`.`Tag Couleur` (
 	`Tag` VARCHAR(128) NOT NULL COMMENT 'Code couleur HTML relié à l\’œuvre',
 	`Œuvre` INT(11) NOT NULL COMMENT 'ID Œuvre du tag couleur',
 	PRIMARY KEY (`ID`),
-	FOREIGN KEY (`Œuvre`) REFERENCES `Œuvre`(`ID`)
+	FOREIGN KEY (`Œuvre`) REFERENCES `Œuvre`(`ID`),
+	UNIQUE (`Œuvre`,`Tag`)
 ) ENGINE = InnoDB COMMENT = 'Tags couleur des œuvres';
 
 
