@@ -1,0 +1,141 @@
+{
+    "info": {
+      "title": "API REST - OANI : Documentation",
+      "version": "1.0.0",
+      "license": {
+        "name": "ISC"
+      },
+      "description": "API REST pout gérer le site OANI"
+    },
+    "basePath" : "/api/v1",
+    "host" : "localhost:8080",
+    "tags" : [
+        {
+            "name" : "members",
+            "description" : "Méthodes permettant de gérer les utilisatuers"
+        }
+    ],
+    "paths": {
+      "/members/{id}": {
+        "get": {
+          "tags" : ["members"],
+          "summary": "members/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ]
+        },
+        "put": {
+          "tags" : ["members"],
+          "summary": "members/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ]
+        },
+        "delete": {
+          "tags" : ["members"],
+          "summary": "members/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ]
+        }
+      },
+      "/members": {
+        "get": {
+          "tags" : ["members"],
+          "summary": "members",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "max",
+              "in": "query",
+              "required": false
+            }],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "example": "success"
+                  },
+                  "result": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name"
+                      ]
+                    },
+                    "example": [
+                      {
+                        "id": 1,
+                        "name": "John"
+                      },
+                      {
+                        "id": 2,
+                        "name": "Julie"
+                      },
+                      {
+                        "id": 3,
+                        "name": "Jack"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags" : ["members"],
+          "summary": "members",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "name",
+              "in": "body",
+              "required": true
+            }]
+        }
+      }
+    },
+    "swagger": "2.0"
+  }

@@ -1,0 +1,19 @@
+{
+    "rootAPI" : "/api/v1/",
+    "port" : 8080,
+    "db" : {
+        "host"     : "localhost",
+        "user"     : "root",
+        "password" : "",
+        "database" : "nodejs"
+    },
+    "errors" : {
+        "wrongValueId" : "Wrong id value !",
+        "wrongValueMax" : "Wrong max value !",
+        "wrongTypeId" : "Wrong id type !",
+        "wrongTypeMax" : "Wrong max type !",
+        "noValueName" : "No name value !",
+        "noResultId" : "No member for this id !",
+        "noUniqueName" : "Name already taken !"
+    }
+}
