@@ -1,0 +1,10 @@
+{
+    "rootAPI" : "/api-oani/v1/",
+    "port" : 8080,
+    "db" : {
+        "host"     : "localhost",
+        "user"     : "root",
+        "password" : "",
+        "database" : "oani"
+    }
+}
