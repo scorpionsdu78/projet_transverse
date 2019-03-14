@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body class="bg-dark">
+
+    <div class="d-flex bg-primary" style="height: 100vh;">
+      <div class="btn-group-vertical bg-dark" role="group" aria-label="Vecrtical group with buttons" style="border-right: 3px solid black; height: 100%;">
+        <span class="mt-5"></span>
+        <div class="btn-group mr-2" role="group" aria-label="Utilisateur group">
+          <button type="button" class="btn btn-secondary btn-lg col-8">Utilisateur</button>
+          <button type="button" class="btn btn-secondary btn-lg col-4">+</button>
+        </div>
+        <div class="btn-group mr-2" role="group" aria-label="Artiste group">
+          <button type="button" class="btn btn-secondary btn-lg col-8">Artiste</button>
+          <button type="button" class="btn btn-secondary btn-lg col-4">+</button>
+        </div>
+        <div class="btn-group mr-2" role="group" aria-label="Oeuvre group">
+          <button type="button" class="btn btn-secondary btn-lg col-8">Oeuvre</button>
+          <button type="button" class="btn btn-secondary btn-lg col-4">+</button>
+        </div>
+        <span class="mt-5"></span>
+        <div class="btn-group" role="group" aria-label="Commande group">
+          <button type="button" class="btn btn-secondary btn-lg">Commande</button>
+        </div>
+        <div class="btn-group" role="group" aria-label="Message group">
+          <button type="button" class="btn btn-secondary btn-lg">Message <span class="badge badge-light">4</span> </button>
+        </div>
+        <span class="mt-5"></span>
+      </div>
+      <div class="container-fluid bg-light pt-5" style="height: 100%; overflow: auto;">
+        <div class="container-fluid d-flex justify-content-between">
+          <h1>Utilisateur</h1>
+          <div><a href="" class="btn btn-primary btn-sm align-bottom mt-4">+</a></div>
+        </div>
+        <table class="table table-striped table-bordered table-hover">
+          <thead>
+            <tr>
+              {% for index, value in members[0] %}
+                <th scope="col">{{index}}</th>
+              {% endfor %}
+              <th><!-- Bouton modifier --></th>
+              <th><!-- Bouton supprimer --></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for member in members %}
+              <tr style="cursor: pointer;" onclick="document.location='members/get/{{member.id}}'">
+                {% for index, value in member %}
+                  <th scope="col">{{value}}</th>
+                {% endfor %}
+                <th class="col-1">
+                  <a href="members/edit/{{member.id}}" class="btn btn-primary">Modifier</a>
+                </th>
+                <th class="col-1">
+                  <form action="members/delete" method="POST">
+                    <input type="hidden" name="id" value="{{member.id}}">
+                    <button type="submit" class="btn btn-primary">Supprimer</button>
+                  </form>
+                </th>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
