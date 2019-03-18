@@ -101,7 +101,7 @@ mysql.createConnection(config.db)
 
             .put( async (req, res) => {
 
-                const result = await photo.update(req.params.id, req.body.name)
+                const result = await photo.update(req.params.id, req.body.ordre)
                 res.json( checkAndChange(result) )
 
             })

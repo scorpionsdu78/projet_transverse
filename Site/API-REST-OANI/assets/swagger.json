@@ -35,17 +35,17 @@
           ],
           "responses": {
             "200": {
-                "description": "OK",
-                "example": 
-                {
-                    "status": "success",
-                    "result": {
-                      "ID": 18,
-                      "URL": "1552482425565",
-                      "Œuvre": 1,
-                      "ordre": 10
-                    }
-                  }
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": {
+                  "ID": 18,
+                  "URL": "1552482425565",
+                  "Œuvre": 1,
+                  "ordre": 10
+                }
+              }
             },
             "400": {
                 "description": "Erreur",
@@ -59,7 +59,39 @@
         },
         "put": {
           "tags" : ["Photo"],
-          "summary": "/Photo/{id}"
+          "summary": "Modifie l'ordre d'une photo par son id",
+          "operationId": "UpdatePhoto",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": 
+          [
+            {
+              "name": "ordre",
+              "in": "formData",
+              "type" : "number",
+              "description" : "ordre de la photo pour l'oeuvre",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": true
+              }
+            },
+            "400": {
+              "description": "Erreur",
+              "example": 
+              {
+                "status": "error",
+                "message": "Pas de valeur pour ordre !"
+              }
+            }
+          }
         },
         "delete": {
           "tags" : ["Photo"],
@@ -89,67 +121,68 @@
           ],
           "responses": {
             "200": {
-                "description": "OK",
-                "example": 
-                {
-                  "status": "success",
-                  "result": [
-                      {
-                          "ID": 7,
-                          "URL": "jack",
-                          "Œuvre": 1,
-                          "ordre": 0
-                      },
-                      {
-                          "ID": 6,
-                          "URL": "4654354534",
-                          "Œuvre": 1,
-                          "ordre": 1
-                      },
-                      {
-                          "ID": 17,
-                          "URL": "jack22",
-                          "Œuvre": 1,
-                          "ordre": 2
-                      },
-                      {
-                          "ID": 10,
-                          "URL": "46545645",
-                          "Œuvre": 1,
-                          "ordre": 5
-                      },
-                      {
-                          "ID": 13,
-                          "URL": "1552480125798",
-                          "Œuvre": 1,
-                          "ordre": 6
-                      },
-                      {
-                          "ID": 14,
-                          "URL": "1552480171666",
-                          "Œuvre": 1,
-                          "ordre": 7
-                      },
-                      {
-                          "ID": 15,
-                          "URL": "1552481577868",
-                          "Œuvre": 1,
-                          "ordre": 8
-                      },
-                      {
-                          "ID": 16,
-                          "URL": "jack2",
-                          "Œuvre": 1,
-                          "ordre": 9
-                      },
-                      {
-                          "ID": 18,
-                          "URL": "1552482425565",
-                          "Œuvre": 1,
-                          "ordre": 10
-                      }
-                  ]
-                }
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": 
+                [
+                  {
+                      "ID": 7,
+                      "URL": "jack",
+                      "Œuvre": 1,
+                      "ordre": 0
+                  },
+                  {
+                      "ID": 6,
+                      "URL": "4654354534",
+                      "Œuvre": 1,
+                      "ordre": 1
+                  },
+                  {
+                      "ID": 17,
+                      "URL": "jack22",
+                      "Œuvre": 1,
+                      "ordre": 2
+                  },
+                  {
+                      "ID": 10,
+                      "URL": "46545645",
+                      "Œuvre": 1,
+                      "ordre": 5
+                  },
+                  {
+                      "ID": 13,
+                      "URL": "1552480125798",
+                      "Œuvre": 1,
+                      "ordre": 6
+                  },
+                  {
+                      "ID": 14,
+                      "URL": "1552480171666",
+                      "Œuvre": 1,
+                      "ordre": 7
+                  },
+                  {
+                      "ID": 15,
+                      "URL": "1552481577868",
+                      "Œuvre": 1,
+                      "ordre": 8
+                  },
+                  {
+                      "ID": 16,
+                      "URL": "jack2",
+                      "Œuvre": 1,
+                      "ordre": 9
+                  },
+                  {
+                      "ID": 18,
+                      "URL": "1552482425565",
+                      "Œuvre": 1,
+                      "ordre": 10
+                  }
+                ]
+              }
             },
             "400": {
                 "description": "Erreur",
@@ -198,20 +231,20 @@
               "example": {
                 "status": "success",
                 "result": {
-                    "ID": 31,
-                    "URL": "1552513483315",
-                    "Œuvre": 2,
-                    "ordre": 12
+                  "ID": 31,
+                  "URL": "1552513483315",
+                  "Œuvre": 2,
+                  "ordre": 12
                 }
               }
             },
             "400": {
               "description": "Erreur",
               "example": 
-                {
-                  "status": "error",
-                  "message": "Aucun résultat pour cet id !"
-                }
+              {
+                "status": "error",
+                "message": "Aucun résultat pour cet id !"
+              }
             }
           }
         }

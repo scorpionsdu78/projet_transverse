@@ -12,7 +12,7 @@ const morgan = require("morgan")("dev")
 const app = express()
 const port = 8081
 const fetch = axios.create({
-    baseURL : "http://localhost:8080/api/v1"
+    baseURL : "http://localhost:8080/api-oani/v1"
 })
 const TestesRouter = express.Router()
 
@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended : true }))
 
 //Routes :
 app.get("/", (req, res) => {
-    res.redirect("/testes")
+    res.redirect("/testes/photos")
 })
 
 
@@ -37,9 +37,22 @@ TestesRouter.route("/")
 
     .get((req, res) => {
 
-        apiCall("/members", "get", {}, res, (response) => {
+        apiCall("/photo", "get", {}, res, (response) => {
             res.render("testes/panel_admin.twig", {
-                members : response
+                photos : response
+            })
+        })
+
+    })
+
+
+TestesRouter.route("/get/:id")
+
+    .get((req, res) => {
+
+        apiCall("/photo/" + req.params.id, "get", {}, res, (response) => {
+            res.render("testes/photo.twig", {
+                photo : response
             })
         })
 
@@ -49,7 +62,7 @@ TestesRouter.route("/")
 
 
 //Création de nos routes :
-app.use(`/testes`, TestesRouter)
+app.use(`/testes/photos`, TestesRouter)
 
 
 //Lancement de l'app
@@ -59,7 +72,7 @@ app.listen(port, () => console.log(`Server started on port : ${port}`))
 
 //Functions :
 function renderError(res, errMes){
-    res.render("error.twig", {
+    res.render("testes/error.twig", {
         errorMessage : errMes
     })
 }

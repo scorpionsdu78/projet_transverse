@@ -8,6 +8,7 @@ const config = {
         //Ordre
         wrongValueOrdre : "Mauvaise valeur pour ordre !",
         wrongTypeOrdre : "Mauvais type pour ordre !",
+        noValueOrdre : "Pas de valeur pour ordre !",
         noUniqueOrdre : "Valeur pour ordre déjà existante !",
         //Name
         noUniqueName : "Valeur pour name déjà existante !"
@@ -54,7 +55,7 @@ class Photo {
 
             if(id_oeuvre){
 
-                checkId_oeuvre(id_oeuvre, this.db)
+                checkExistingId(id_oeuvre, "Œuvre", this.db)
                     .then((result) => {
                         id_oeuvre = result
 
@@ -84,12 +85,12 @@ class Photo {
 
         return new Promise( (next) => {
             //GESTION DE id_oeuvre
-            checkId_oeuvre(id_oeuvre, this.db)
+            checkExistingId(id_oeuvre, `œuvre`, this.db)
                 .then( (result) => {
                     id_oeuvre = result
 
                     //GESTION DE ordre
-                    return checkOrdre(id_oeuvre, ordre, this.db)
+                    return checkAndChangeOrdre(id_oeuvre, ordre, this.db)
                 })
                 .then( (result) => {
                     ordre = result
@@ -114,42 +115,36 @@ class Photo {
     }
 
 
-    update(id, name){
+    update(id, ordre){
 
         return new Promise( (next) => {
-            if(parseInt(id) != id)
-                next( new Error(config.errors.wrongTypeId) )
+            checkExistingId(id, "photo", this.db)
+                .then( (result) => {
+                    id = result;
 
+                    return checkOrdre(ordre)
+                })
+                .then( (result) => {
+                    ordre = result
 
-            else if(!name || name.trim() == "")
-                next( new Error(config.errors.noValueName) )
-                
-            
-            else{
-                name = name.trim()
+                    return this.db.query('SELECT `Œuvre` FROM photo WHERE (id = ?)', [id])
+                })
+                .then( (result) => {
+                    let id_oeuvre = result[0]
 
-                this.db.query('SELECT id FROM members WHERE (id = ?)', [parseInt(id)])
-                    .then( (result) => {
-                        if(result[0] == undefined)
-                            next( new Error(config.errors.noResultId) )
+                    return this.db.query('SELECT ordre FROM photo WHERE ( (`Œuvre` = ?) AND (ordre = ?) AND (id != ?) )', [id_oeuvre, ordre, id])
+                })
+                .then( (result) => {
+                    if(result[0] != undefined)
+                        next( new Error(config.errors.noUniqueOrdre) )
 
-                        
-                        else
+                    
+                    else
 
-                            return this.db.query('SELECT name FROM members WHERE ( (name = ?) AND (id != ?))', [name, parseInt(id)])
-                    })
-                    .then( (result) => {
-                        if(result[0] != undefined)
-                            next( new Error(config.errors.noUniqueName) )
-
-
-                        else
-
-                            return this.db.query('UPDATE members SET name = ? WHERE (id = ?)', [name, parseInt(id)])
-                    })
-                    .then( () => next(true) )
-                    .catch( (err) => next(err) )
-            }
+                        return this.db.query('UPDATE photo SET ordre = ? WHERE (id = ?)', [ordre, id])
+                })
+                .then( () => next(true) )
+                .catch( (err) => next(err) )
 
         })
     }
@@ -215,22 +210,22 @@ function checkId(id) {
 }
 
 
-function checkId_oeuvre(id_oeuvre, db) {
+function checkExistingId(id, table, db) {
 
     return new Promise( (resolve, reject) => {
 
-        checkId(id_oeuvre)
+        checkId(id)
             .then( (result) => {
-                id_oeuvre = result;
+                id = result;
 
-                return db.query('SELECT id FROM `œuvre` WHERE (id = ?)', [id_oeuvre])
+                return db.query('SELECT id FROM ' + table  + ' WHERE (id = ?)', [id])
             })
             .then((result) => {
                 if(result[0] == undefined)
                     reject(new Error(config.errors.noResultId))
 
                 else
-                    resolve(id_oeuvre)
+                    resolve(id)
             })
             .catch( (err) => reject(err) )
 
@@ -239,34 +234,46 @@ function checkId_oeuvre(id_oeuvre, db) {
 }
 
 
-function checkOrdre(id_oeuvre, ordre, db) {
+function checkOrdre(ordre){
+    return new Promise( (resolve, reject) =>{
+
+        if(!ordre)
+            reject( new Error(config.errors.noValueOrdre) )
+
+
+        else if(parseInt(ordre) != ordre)
+            reject( new Error(config.errors.wrongTypeOrdre) )
+
+
+        else if(ordre <= 0)
+            reject( new Error(config.errors.wrongValueOrdre) )
+
+        
+        resolve(parseInt(ordre));
+    })
+}
+
+
+function checkAndChangeOrdre(id_oeuvre, ordre, db) {
     return new Promise( (resolve, reject) => {
 
         if(ordre != undefined){
             //un ordre non nul
+            checkOrdre(ordre)
+            .then( (result) => {
+                ordre = result
+    
+                return db.query('SELECT ordre FROM photo WHERE (ordre = ?)', [ordre])
+            })
+            .then( (result) => {
+                if(result[0] != undefined)
+                    reject( new Error(config.errors.noUniqueOrdre) )
 
-            if(parseInt(ordre) != ordre)
-                reject( new Error(config.errors.wrongTypeOrdre) )
-
-
-            else if(ordre <= 0)
-                reject( new Error(config.errors.wrongValueOrdre) )
-
+                else
+                    resolve(ordre)
+            })
+            .catch( (err) => reject(err) )
             
-            else{
-                ordre = parseInt(ordre);
-
-                db.query('SELECT ordre FROM photo WHERE (ordre = ?)', [ordre])
-                    .then( (result) => {
-                        if(result[0] != undefined)
-                            reject( new Error(config.errors.noUniqueOrdre) )
-
-                        else
-                            resolve(ordre)
-                    })
-                    .catch( (err) => reject(err) )
-                
-            }
         }
 
 
