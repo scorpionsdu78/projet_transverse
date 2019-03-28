@@ -59,6 +59,38 @@ TestesRouter.route("/get/:id")
     })
 
 
+TestesRouter.route("/edit/:id")
+
+    .get( (req, res) => {
+
+        apiCall("/photo/" + req.params.id, "get", {}, res, (response) => {
+            res.render("testes/photo_edit.twig", {
+                photo : response
+            })
+        })
+
+    })
+
+    .post( (req, res) => {
+
+        apiCall("/photo/" + req.params.id, "put", {ordre : req.body.ordre}, res, () => {
+            res.redirect("/testes/photos")
+        })
+
+    })
+
+
+TestesRouter.route("/delete")
+
+    .post((req, res) => {
+
+        apiCall("/photo/" + req.body.id, "delete", {}, res, () => {
+            res.redirect("/testes/photos")
+        })
+
+    })
+
+
 
 
 //Création de nos routes :

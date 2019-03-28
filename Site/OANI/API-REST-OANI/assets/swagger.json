@@ -95,10 +95,49 @@
         },
         "delete": {
           "tags" : ["Photo"],
-          "summary": "/Photo/{id}",
+          "summary": "Supprime une photo par son id et renvoie la requête GET /photo",
+          "operationId": "DeletePhoto",
           "consumes": [
             "application/json"
-          ]
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": 
+                [
+                  {
+                    "ID": 1,
+                    "URL": "1552571963485",
+                    "Œuvre": 1,
+                    "ordre": 1
+                  },
+                  {
+                    "ID": 2,
+                    "URL": "1552571965490",
+                    "Œuvre": 1,
+                    "ordre": 2
+                  },
+                  {
+                    "ID": 3,
+                    "URL": "1552571967560",
+                    "Œuvre": 1,
+                    "ordre": 3
+                  }
+                ]
+              }
+            },
+            "400": {
+              "description": "Erreur",
+              "example":
+              {
+                "status": "error",
+                "message": "Aucun résultat pour cet id !"
+              }
+            }
+          }
         }
       },
       "/Photo": {

@@ -1,0 +1,31 @@
+{% include 'testes/panel_admin_template_top.twig' %}
+          <!-- Début du code -->
+          <a href="/"><h1 class="mb-5 text-center">Photo {{photo.ID}}</h1></a>
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                {% for index, value in photo %}
+                  <th scope="col">{{index}}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {% for value in photo %}
+                  <th scope="col">{{value}}</th>
+                {% endfor %}
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="form-inline">
+            <a href="/testes/photos/edit/{{photo.ID}}" class="btn btn-primary mr-5">Modifier</a>
+
+            <form class="mr-5" action="/testes/photos/delete" method="POST">
+              <input type="hidden" name="id" value="{{photo.ID}}">
+              <button type="submit" class="btn btn-primary">Supprimer</button>
+            </form>
+          </div>
+        
+          <!-- Fin du code -->
+{% include 'testes/panel_admin_template_bot.twig' %}

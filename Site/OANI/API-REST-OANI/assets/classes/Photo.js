@@ -127,11 +127,11 @@ class Photo {
                 .then( (result) => {
                     ordre = result
 
+                    console.log(`id : ${id}`)
                     return this.db.query('SELECT `Œuvre` FROM photo WHERE (id = ?)', [id])
                 })
                 .then( (result) => {
-                    let id_oeuvre = result[0]
-
+                    let id_oeuvre = result[0][`Œuvre`]
                     return this.db.query('SELECT ordre FROM photo WHERE ( (`Œuvre` = ?) AND (ordre = ?) AND (id != ?) )', [id_oeuvre, ordre, id])
                 })
                 .then( (result) => {
@@ -160,7 +160,7 @@ class Photo {
     
             else{
 
-                this.db.query('SELECT id FROM members WHERE (id = ?)', [id])
+                this.db.query('SELECT id FROM photo WHERE (id = ?)', [id])
                     .then( (result) =>{
                         if (result[0] == undefined)
                            next( new Error(config.errors.noResultId) )
@@ -168,10 +168,10 @@ class Photo {
                         
                         else
 
-                            return this.db.query('DELETE FROM members WHERE (id = ?)', [id])    
+                            return this.db.query('DELETE FROM photo WHERE (id = ?)', [id])    
                     })
                     .then( () => {
-                        return this.db.query('SELECT * FROM members')
+                        return this.db.query('SELECT * FROM photo ORDER BY `Œuvre`, ordre')
                     })
                     .then( (result) =>{
                         next(result)
