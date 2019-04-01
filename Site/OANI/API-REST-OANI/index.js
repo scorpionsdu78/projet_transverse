@@ -11,6 +11,8 @@ const morgan = require("morgan")("dev")
 
 const Utilisateur = require("./assets/classes/Utilisateur")
 const Photo = require("./assets/classes/Photo")
+const Tag = require("./assets/classes/Tag")
+const Tag_couleur = require("./assets/classes/Tag_couleur")
 
 
 const {checkAndChange} = require("./assets/functions")
@@ -108,7 +110,7 @@ mysql.createConnection(config.db)
             
             .delete( async (req, res) => {
 
-                const result = await photo.delete(req.params.id, req.body.name)
+                const result = await photo.delete(req.params.id)
                 res.json( checkAndChange(result) )
                 
             })
@@ -134,9 +136,93 @@ mysql.createConnection(config.db)
 
 
 
+        //Tag :
+        let TagRouter = express.Router()
+        const tag = new Tag(db)
+
+
+        TagRouter.route(`/:id`)
+
+            .get( async (req, res) => {
+
+                const result = await tag.getByID(req.params.id)             
+                res.json( checkAndChange(result) )
+                
+            })
+            
+            .delete( async (req, res) => {
+
+                const result = await tag.delete(req.params.id)
+                res.json( checkAndChange(result) )
+                
+            })
+
+
+
+        TagRouter.route(`/`)
+
+            .get( async (req, res) => {
+
+                const result = await tag.getAll(req.query.oeuvre)
+                res.json(checkAndChange(result))
+                    
+            })
+            
+            .post( async (req, res) => {
+
+                const result = await tag.add(req.body.tag, req.body.id_oeuvre)
+                res.json(checkAndChange(result))
+
+            })
+
+            
+        //Tag couleur :
+        let TagCouleurRouter = express.Router()
+        const tag_couleur = new Tag_couleur(db)
+
+
+        TagCouleurRouter.route(`/:id`)
+
+            .get( async (req, res) => {
+
+                const result = await tag_couleur.getByID(req.params.id)             
+                res.json( checkAndChange(result) )
+                
+            })
+            
+            .delete( async (req, res) => {
+
+                const result = await tag_couleur.delete(req.params.id)
+                res.json( checkAndChange(result) )
+                
+            })
+
+
+
+        TagCouleurRouter.route(`/`)
+
+            .get( async (req, res) => {
+
+                const result = await tag_couleur.getAll(req.query.oeuvre)
+                res.json(checkAndChange(result))
+                    
+            })
+            
+            .post( async (req, res) => {
+
+                const result = await tag_couleur.add(req.body.tag, req.body.id_oeuvre)
+                res.json(checkAndChange(result))
+
+            })
+
+
+
+
         //Initialisation des Routers
         //app.use(config.rootAPI + `Utilisateur`, UserRouter)
         app.use(config.rootAPI + `Photo`, PhotoRouter)
+        app.use(config.rootAPI + `Tag`, TagRouter)
+        app.use(config.rootAPI + `Tag-couleur`, TagCouleurRouter)
 
 
 
