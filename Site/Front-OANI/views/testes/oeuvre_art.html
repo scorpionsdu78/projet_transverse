@@ -39,13 +39,53 @@
         
 		<!-- Debut du code -->
 		
-		<div class="input-group flex-nowrap">
-			<div class="input-group-prepend">
-				<span class="input-group-text" id="addon-wrapping">@</span>
+		<form>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<input type="text" class="form-control" id="inputName" placeholder="nom de l'oeuvre">
+				</div>
+				<div class="form-group col-md-6">
+					<select id="inputArtist" class="form-control">
+						<option selected>Choose...</option>
+						<option>...</option>
+					</select>
+				</div>
 			</div>
-			<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
-		</div>
 		
+			<div class="form-row">
+				<div class="form-group">
+					<input type="text" class="form-control" id="inputPrice" placeholder="Prix">
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="col-7">
+					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="description"></textarea>
+				</div>
+				
+				<div class="form-row px-3 py-1 ml-1 mt-0  ">
+					<input type="text" class="form-control" id="inputName" placeholder="tag">
+
+					<input type="text" class="form-control" id="inputName" placeholder="tag couleur">
+
+				</div>
+				
+			</div>
+			
+			<div class="form-row py-3 ">
+			
+				<div class="form-group col-7 ">
+					<input type="text" class="form-control" id="inputPrice" placeholder="addresse">
+				
+				</div>
+				
+				<div class="form-group px-4">
+					<input type="text" class="form-control" id="inputPrice" placeholder="numero">
+				</div>
+				
+			</div>
+		
+		</form>
 		<!-- Fin du code -->
 		
       </div>
