@@ -32,6 +32,10 @@ app.get("/", (req, res) => {
     res.redirect("/testes/photos")
 })
 
+app.get("/testes/%C5%93uvre", (req, res) => {
+    res.render("testes/œuvre.twig")
+})
+
 
 TestesRouter.route("/")
 
