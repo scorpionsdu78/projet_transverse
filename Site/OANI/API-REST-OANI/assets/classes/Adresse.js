@@ -117,7 +117,7 @@ class Adresse {
                     
                     return this.db.query('DELETE FROM `adresse` WHERE (id = ?)', [id])    
                 })
-                .then( (result) => {
+                .then( () => {
                     next(`adresse ${id} deleted !`)
                 })
                 .catch( (err) => next(err) )

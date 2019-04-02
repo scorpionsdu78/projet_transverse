@@ -10,6 +10,7 @@ const expressOasGenerator = require('express-oas-generator');
 const morgan = require("morgan")("dev")
 
 const Utilisateur = require("./assets/classes/Utilisateur")
+const Adresse = require("./assets/classes/Adresse")
 const Photo = require("./assets/classes/Photo")
 const Tag = require("./assets/classes/Tag")
 const Tag_couleur = require("./assets/classes/Tag_couleur")
@@ -84,6 +85,39 @@ mysql.createConnection(config.db)
                 res.json(checkAndChange(result))
 
             })*/
+
+
+        //Utilisateur :
+        let AdresseRouter = express.Router()
+        const adresse = new Adresse(db)
+
+
+        AdresseRouter.route(`/:id`)
+
+            .get( async (req, res) => {
+
+                const result = await adresse.getByID(req.params.id)             
+                res.json( checkAndChange(result) )
+                
+            })
+            
+            .delete( async (req, res) => {
+
+                const result = await adresse.delete(req.params.id, req.body.name)
+                res.json( checkAndChange(result) )
+                
+            })
+
+
+
+        AdresseRouter.route(`/`)
+            
+            .post( async (req, res) => {
+
+                const result = await adresse.add(req.body.pays, req.body.code_postal, req.body.rue, req.body.numero, req.body.indications, req.body.masquage)
+                res.json(checkAndChange(result))
+
+            })
 
 
 
@@ -220,6 +254,7 @@ mysql.createConnection(config.db)
 
         //Initialisation des Routers
         //app.use(config.rootAPI + `Utilisateur`, UserRouter)
+        app.use(config.rootAPI + `Adresse`, AdresseRouter)
         app.use(config.rootAPI + `Photo`, PhotoRouter)
         app.use(config.rootAPI + `Tag`, TagRouter)
         app.use(config.rootAPI + `Tag-couleur`, TagCouleurRouter)

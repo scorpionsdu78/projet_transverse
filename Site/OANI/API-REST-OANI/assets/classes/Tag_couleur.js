@@ -77,7 +77,6 @@ class Tag_couleur {
 
 
     add(tag, id_oeuvre){
-        //Attention, ne gère pas si il y a des espaces dans le noms (à faire) => transform
 
         return new Promise( (next) => {
             //GESTION DE id_oeuvre
@@ -108,31 +107,19 @@ class Tag_couleur {
 
         return new Promise( (next) => {
             
-            if(parseInt(id) != id)
-                next( new Error(config.errors.wrongTypeId) )
+            checkExistingId(id, "`tag couleur`", this.db)
+                .then( (result) =>{
+                id = result
 
-    
-            else{
-
-                this.db.query('SELECT id FROM `tag couleur` WHERE (id = ?)', [id])
-                    .then( (result) =>{
-                        if (result[0] == undefined)
-                           next( new Error(config.errors.noResultId) )
-            
-                        
-                        else
-
-                            return this.db.query('DELETE FROM `tag couleur` WHERE (id = ?)', [id])    
-                    })
-                    .then( () => {
-                        return this.db.query('SELECT * FROM `tag couleur` ORDER BY `Œuvre`')
-                    })
-                    .then( (result) =>{
-                        next(result)
-                    })
-                    .catch( (err) => next(err) )
-
-            }
+                return this.db.query('DELETE FROM `tag couleur` WHERE (id = ?)', [id])    
+                })
+                .then( () => {
+                    return this.db.query('SELECT * FROM `tag couleur` ORDER BY `Œuvre`')
+                })
+                .then( (result) =>{
+                    next(result)
+                })
+                .catch( (err) => next(err) )
     
         })
     }

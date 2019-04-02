@@ -154,31 +154,19 @@ class Photo {
 
         return new Promise( (next) => {
             
-            if(parseInt(id) != id)
-                next( new Error(config.errors.wrongTypeId) )
-
-    
-            else{
-
-                this.db.query('SELECT id FROM photo WHERE (id = ?)', [id])
-                    .then( (result) =>{
-                        if (result[0] == undefined)
-                           next( new Error(config.errors.noResultId) )
-            
-                        
-                        else
-
-                            return this.db.query('DELETE FROM photo WHERE (id = ?)', [id])    
-                    })
-                    .then( () => {
-                        return this.db.query('SELECT * FROM photo ORDER BY `Œuvre`, ordre')
-                    })
-                    .then( (result) =>{
-                        next(result)
-                    })
-                    .catch( (err) => next(err) )
-
-            }
+            checkExistingId(id, "photo", this.db)
+                .then( (result) => {
+                    id = result
+                    
+                    return this.db.query('DELETE FROM photo WHERE (id = ?)', [id])    
+                })
+                .then( () => {
+                    return this.db.query('SELECT * FROM photo ORDER BY `Œuvre`, ordre')
+                })
+                .then( (result) =>{
+                    next(result)
+                })
+                .catch( (err) => next(err) )
     
         })
     }
