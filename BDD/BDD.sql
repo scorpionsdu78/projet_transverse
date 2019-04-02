@@ -73,7 +73,8 @@ CREATE TABLE `oani`.`Commande` (
 	FOREIGN KEY (`Acheteur`) REFERENCES `Utilisateur`(`ID`),
 	FOREIGN KEY (`Œuvre`) REFERENCES `Œuvre`(`ID`),
 	FOREIGN KEY (`Localisation`) REFERENCES `Adresse`(`ID`),
-	UNIQUE (`Œuvre`,`Date de commande`,`Date de fin`)
+	UNIQUE (`Œuvre`,`Date de commande`),
+	UNIQUE (`Œuvre`,`Date de fin`)
 ) ENGINE = InnoDB COMMENT = 'Description des commandes de location';
 
 
@@ -81,9 +82,11 @@ CREATE TABLE `oani`.`Photo` (
 	`ID` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'ID de la photo',
 	`URL` VARCHAR(128) NOT NULL COMMENT 'URL vers la photo sur le serveur',
 	`Œuvre` INT(11) NOT NULL COMMENT 'ID Œuvre de la photo',
+	`ordre` INT(11) NOT NULL COMMENT 'ordre d\'apparition de la photo pour l\'oeuvre',
 	PRIMARY KEY (`ID`),
 	FOREIGN KEY (`Œuvre`) REFERENCES `Œuvre`(`ID`),
-	UNIQUE (`URL`)
+	UNIQUE (`URL`),
+	UNIQUE (`Œuvre`,`ordre`)
 ) ENGINE = InnoDB COMMENT = 'Photos des œuvres';
 
 

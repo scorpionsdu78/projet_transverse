@@ -1,13 +1,17 @@
 const config = {
     errors : {
+        noValue : "Pas de valeur",
+        //Num
+        wrongValueNum : "Mauvaise valeur pour un numéro attendu !",
+        wrongTypeNum : "Mauvais type pour un numéro attendu !",
+        //Bool
+        wrongValueBool : "Mauvaise valeur pour un boolean attendu !",
+        wrongTypeBool : "Mauvais type pour un boolean attendu !",
         //ID
         wrongValueId : "Mauvaise valeur pour id !",
         wrongTypeId : "Mauvais type pour id !",
         noResultId : "Aucun résultat pour cet id !",
         noValueId : "Pas de valeur pour id !",
-        //Tag
-        noValueTag : "Pas de valeur pour tag !",
-        noUniqueTag : "Valeur pour tag déjà existante !"
     }
 }
 
@@ -30,14 +34,19 @@ class Adresse {
                 .then( (result) => {
                     id = result
 
-                    return this.db.query("SELECT * FROM `tag couleur` WHERE (id = ?)", [id])
+                    return this.db.query("SELECT * FROM `adresse` WHERE (id = ?)", [id])
                 })
                 .then( (result) => {
                     if(result[0] == undefined)
                         next( new Error(config.errors.noResultId) )
 
-                    else
-                        next(result[0])
+                    else{
+                        if(result[0].Masquage == 1)
+                            next("Adresse masquée")
+                        
+                        else
+                            next(result[0])
+                    }
                 })
                 .catch( (err) => next(err) )
 
@@ -45,59 +54,53 @@ class Adresse {
     }
 
 
-    getAll(id_oeuvre){
+    add(pays, code_postal, rue, numero, indications, masquage){
 
         return new Promise( (next) => {
-
-            if(id_oeuvre){
-
-                checkExistingId(id_oeuvre, "Œuvre", this.db)
-                    .then((result) => {
-                        id_oeuvre = result
-
-                        return this.db.query('SELECT * FROM `tag couleur` WHERE (`Œuvre` = ?) ORDER BY ordre', [id_oeuvre])
-                    })
-                    .then( (result) => next(result) )
-                    .catch( (err) => next(err) )
-
-            }
-
-
-            else{
-
-                this.db.query('SELECT * FROM `tag couleur` ORDER BY `Œuvre`')
-                    .then( (result) => next(result) )
-                    .catch( (err) => next(err) )
-
-            }
+            if( (!pays) || (pays.trim() == "") || (!rue) || (rue.trim() == ""))
+                next( new Error(config.errors.noValue) )
             
-        })
+            
+            else {
+                checkNumber(code_postal)
+                    .then( (result) => {
+                        code_postal = result
 
-    }
+                        return checkNumber(numero)
+                    })
+                    .then( (result) => {
+                        numero = result
 
+                        return checkMasquage(masquage)
+                    })
+                    .then( (result) => {
+                        masquage = result
 
-    add(tag, id_oeuvre){
-        //Attention, ne gère pas si il y a des espaces dans le noms (à faire) => transform
+                        if(!indications)
+                            indications = "";
+                        else
+                            indications = indications.trim()
 
-        return new Promise( (next) => {
-            //GESTION DE id_oeuvre
-            checkExistingId(id_oeuvre, `œuvre`, this.db)
-                .then( (result) => {
-                    id_oeuvre = result
+                        return this.db.query("INSERT INTO `adresse` VALUES (null, ?, ?, ?, ?, ?, ?)", [pays, code_postal, rue, numero, indications, masquage])
+                    })
+                    .then( (result) => {
 
-                    return checkTag(tag, id_oeuvre, this.db)
-                })
-                .then( (result) => {
-                    tag = result
-
-                    return this.db.query('INSERT INTO `tag couleur`(tag, `Œuvre`) VALUES(?, ?)', [tag, id_oeuvre])
-
-                })
-                .then( () => {
-                    return this.db.query('SELECT * FROM `tag couleur` WHERE (tag = ?)', [tag])
-                })
-                .then( (result) => next(result[0]) )
-                .catch( (err) => next(err) )
+                        return this.db.query("SELECT * FROM `adresse` WHERE (ID = ?)", [result.insertId])
+                    })
+                    .then( (result) => {
+                        if(result[0] == undefined)
+                            next( new Error(config.errors.noResultId) )
+    
+                        else{
+                            if(result[0].Masquage == 1)
+                                next("Adresse masquée")
+                            
+                            else
+                                next(result[0])
+                        }
+                    })
+                    .catch( (err) => next(err) )
+            }
 
         })
 
@@ -108,31 +111,16 @@ class Adresse {
 
         return new Promise( (next) => {
             
-            if(parseInt(id) != id)
-                next( new Error(config.errors.wrongTypeId) )
-
-    
-            else{
-
-                this.db.query('SELECT id FROM `tag couleur` WHERE (id = ?)', [id])
-                    .then( (result) =>{
-                        if (result[0] == undefined)
-                           next( new Error(config.errors.noResultId) )
-            
-                        
-                        else
-
-                            return this.db.query('DELETE FROM `tag couleur` WHERE (id = ?)', [id])    
-                    })
-                    .then( () => {
-                        return this.db.query('SELECT * FROM `tag couleur` ORDER BY `Œuvre`')
-                    })
-                    .then( (result) =>{
-                        next(result)
-                    })
-                    .catch( (err) => next(err) )
-
-            }
+            checkExistingId(id, "adresse", this.db)
+                .then( (result) => {
+                    id = result        
+                    
+                    return this.db.query('DELETE FROM `adresse` WHERE (id = ?)', [id])    
+                })
+                .then( (result) => {
+                    next(`adresse ${id} deleted !`)
+                })
+                .catch( (err) => next(err) )
     
         })
     }
@@ -158,6 +146,50 @@ function checkId(id) {
             reject( new Error(config.errors.wrongValueId) )
     
         resolve(parseInt(id))
+
+    })
+
+}
+
+
+function checkNumber(num) {
+
+    return new Promise( (resolve, reject) => {
+
+        if(!num)
+            reject( new Error(config.errors.noValue) )
+    
+    
+        else if(parseInt(num) != num)
+            reject( new Error(config.errors.wrongTypeNum) )
+    
+    
+        else if(num <= 0)
+            reject( new Error(config.errors.wrongValueNum) )
+    
+        resolve(parseInt(num))
+
+    })
+
+}
+
+
+function checkMasquage(bool){
+
+    return new Promise( (resolve, reject) => {
+
+        if(!bool)
+            reject( new Error(config.errors.noValue) )
+    
+    
+        else if(parseInt(bool) != bool)
+            reject( new Error(config.errors.wrongTypeBool) )
+    
+    
+        else if( (bool < 0) || (bool > 1) ) 
+            reject( new Error(config.errors.wrongValueBool) )
+    
+        resolve(parseInt(bool))
 
     })
 
