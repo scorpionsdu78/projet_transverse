@@ -37,7 +37,7 @@ CREATE TABLE `oani`.`Adresse` (
 ) ENGINE = InnoDB COMMENT = 'Adresses générale';
 
 
-CREATE TABLE `oani`.`Adresse d\'utilisateur` (
+CREATE TABLE `oani`.`Adresse d'utilisateur` (
 	`ID` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'ID de l\'adresse d\'utilisateur',
 	`Utilisateur` INT(11) NOT NULL COMMENT 'ID de l\'utilisateur',
 	`Adresse` INT(11) NOT NULL COMMENT 'ID de l\'adresse',
