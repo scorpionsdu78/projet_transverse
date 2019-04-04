@@ -1,4 +1,4 @@
-const {config, checkId, checkExistingId} = require("./functions")
+const {config, checkNumber, checkExistingId} = require("./functions")
 
 
 
@@ -36,7 +36,7 @@ class Adresse_utilisateur{
     getByID_admin(id){
         return new Promise((next) => {
 
-            checkId(id)
+            checkNumber(id, "id")
                 .then( (result) => {
                     id = result
 
@@ -44,7 +44,7 @@ class Adresse_utilisateur{
                 })
                 .then( (result) => {
                     if(result[0] == undefined)
-                        next( new Error(config.errors.noResultId) )
+                        next( new Error(config.errors.noResult + "id" + " !") )
                         
                     else 
                         next(result[0])
@@ -143,7 +143,7 @@ class Adresse_utilisateur{
                 })
                 .then( (result) => {
                     if(result[0] == undefined)
-                        next( new Error(config.errors.noResultId) )
+                        next( new Error(config.errors.noResult + "id" + " !") )
 
                     else  
                         next(result[0])

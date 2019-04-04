@@ -1,4 +1,4 @@
-const {config, checkId, checkExistingId, checkTag} = require("./functions")
+const {config, checkNumber, checkExistingId, checkTag} = require("./functions")
 
 
 
@@ -15,7 +15,7 @@ class Tag {
     getByID(id){
         return new Promise((next) => {
 
-            checkId(id)
+            checkNumber(id, "id")
                 .then( (result) => {
                     id = result
 

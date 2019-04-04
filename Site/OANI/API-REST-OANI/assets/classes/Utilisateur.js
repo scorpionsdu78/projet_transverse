@@ -1,4 +1,4 @@
-let config;
+const {config, checkNumber, checkText} = require("./functions")
 
 
 
@@ -13,29 +13,25 @@ class Utilisateur {
 
 
     getByID(id){
-        return new Promise((next) => {
-            if(parseInt(id) != id)
-                next( new Error(config.errors.wrongTypeId) )
+
+        return new Promise( (next) => {
+            
+            checkNumber(id, "id")
+                .then( (result) => {
+                    id = result
 
 
-            else if(id <= 0)
-                next( new Error(config.errors.wrongValueId) )
+                    return this.db.query("SELECT ID, `Nom d'utilisateur`, `Adresse mail`, Instagram, Avatar, Description FROM Utilisateur WHERE (id = ?)", [id])
+                })
+                .then( (result) => {
+                    if(result[0] == undefined)
+                    next( new Error(config.errors.noResult + "id" + " !") )
 
-
-            else{
-                this.db.query("SELECT * FROM Utilisateur WHERE (id = ?)", [parseInt(id)])
-                    .then( (result) => {
-                        if(result[0] == undefined)
-                            next( new Error(config.errors.noResultId) )
-
-                        else
-                            next(result[0])
-                    })
-
-                    .catch( (err) => next(err) )
-            }
-
-        })
+                    else
+                        next(result[0])
+                })
+                .catch( (err) => next(err) )
+            })
     }
 
 
@@ -43,7 +39,7 @@ class Utilisateur {
 
         return new Promise( (next) => {
 
-            this.db.query(`SELECT * FROM Utilisateur`)
+            this.db.query("SELECT ID, `Nom d'utilisateur`, `Adresse mail`, Instagram, Avatar, Description FROM Utilisateur")
                 .then( (result) => next(result) )
                 .catch( (err) => next(err) )
             
@@ -52,31 +48,40 @@ class Utilisateur {
     }
 
 
-    add(id_oeuvre, name){
+    add(nom_utilisateur, mot_de_passe, adresse_mail, instagram, avatar, description){
 
         return new Promise( (next) => {
-                
-            if(!name || name.trim() == "")
-                name = new Date().getTime()
 
+            checkText(nom_utilisateur, "nom d'utilisateur")
+                .then( (result) => {
+                    nom_utilisateur = result
 
-            else{
-                name = name.trim()
+                    return checkText(mot_de_passe, "mot de passe")
+                })
+                .then( (result) => {
+                    mot_de_passe = result
 
-                this.db.query('SELECT url FROM Utilisateur WHERE url = ?', [name])
-                    .then( (result) => {
-                        if(result[0] != undefined)
-                            next( new Error(config.errors.noUniqueName) )
-                    })
-                    .catch( (err) => next(err) )
-            }
+                    return checkText(adresse_mail, "adresse mail")
+                })
+                .then( (result) => {
+                    adresse_mail = result
 
-            this.db.query('INSERT INTO Utilisateur(url, `Œuvre`) VALUES(?, ?)', [name, id_oeuvre])
-                    .then( () => {
-                        return this.db.query('SELECT * FROM Utilisateur WHERE url = ?', [name])
-                    })
-                    .then( (result) => next(result[0]) )
-                    .catch( (err) => next(err) )
+                    return this.db("INSERT INTO utilisateur(`Nom d'utilisateur`, `Mot de passe`, `Adresse mail`, Instagram, Avatar, Description) VALUES(?, ?, ?, ?, ?, ?)")
+                })
+                .then( (result) => {
+                    const id = result.insertId
+
+                    return this.db("SELECT ID, `Nom d'utilisateur`, `Adresse mail`, Instagram, Avatar, Description FROM utilisateur WHERE (id = ?)", [id])
+                })
+                .then( (result) => {
+                    if(result[0] == undefined)
+                        next( new Error(config.errors.noResult + "id" + " !") )
+
+                    else
+                        next(result[0])
+                })
+                .catch( (err) => next(err) )
+
         })
 
     }
@@ -86,7 +91,7 @@ class Utilisateur {
 
         return new Promise( (next) => {
             if(parseInt(id) != id)
-                next( new Error(config.errors.wrongTypeId) )
+                next( new Error(config.errors.wrongType) )
 
 
             else if(!name || name.trim() == "")
@@ -161,9 +166,4 @@ class Utilisateur {
 
 
 
-module.exports = (_config) => {
-    config = _config
-
-
-    return Utilisateur
-}
+module.exports = Utilisateur

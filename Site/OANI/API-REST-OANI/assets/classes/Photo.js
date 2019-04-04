@@ -1,4 +1,4 @@
-const {config, checkId, checkExistingId, checkOrdre, checkAndChangeOrdre, checkName} = require("./functions")
+const {config, checkNumber, checkExistingId, checkAndChangeOrdre} = require("./functions")
 
 
 
@@ -14,7 +14,7 @@ class Photo {
     getByID(id){
         return new Promise((next) => {
 
-            checkId(id)
+            checkNumber(id, "id")
                 .then( (result) => {
                     id = result
 
@@ -22,7 +22,7 @@ class Photo {
                 })
                 .then( (result) => {
                     if(result[0] == undefined)
-                        next( new Error(config.errors.noResultId) )
+                        next( new Error(config.errors.noResult + "id" + " !") )
 
                     else
                         next(result[0])
@@ -80,7 +80,26 @@ class Photo {
                     ordre = result
 
                     //GESTION DE name
-                    return checkName(name, this.db)
+                    return new Promise( (resolve, reject) => {
+                        if(!name || name.trim() == "")
+                            resolve(new Date().getTime())
+    
+    
+                        else{
+                            name = name.trim()
+            
+                            db.query('SELECT url FROM photo WHERE url = ?', [name])
+                                .then( (result) => {
+                                    if(result[0] != undefined)
+                                        reject( new Error(config.errors.noUnique + "name" + " !") )
+            
+                                    else
+                                        resolve(name)
+                                })
+                                .catch( (err) => reject(err) )
+                        }
+
+                    })
                 })
                 .then( (result) => {
                     name = result
@@ -106,7 +125,7 @@ class Photo {
                 .then( (result) => {
                     id = result;
 
-                    return checkOrdre(ordre)
+                    return checkNumber(ordre, "ordre")
                 })
                 .then( (result) => {
                     ordre = result
@@ -120,7 +139,7 @@ class Photo {
                 })
                 .then( (result) => {
                     if(result[0] != undefined)
-                        next( new Error(config.errors.noUniqueOrdre) )
+                        next( new Error(config.errors.noUnique + "ordre" + " !") )
 
                     
                     else

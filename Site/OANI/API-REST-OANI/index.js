@@ -42,50 +42,50 @@ mysql.createConnection(config.db)
 
 
         //Utilisateur :
-        /*let UserRouter = express.Router()
-        const user = new Utilisateur(db)
+        let UtilisateurRouter = express.Router()
+        const utilisateur = new Utilisateur(db)
 
 
-        UserRouter.route(`/:id`)
+        UtilisateurRouter.route(`/:id`)
 
             .get( async (req, res) => {
 
-                const result = await user.getByID(req.params.id)             
+                const result = await utilisateur.getByID(req.params.id)             
                 res.json( checkAndChange(result) )
                 
             })
 
             .put( async (req, res) => {
 
-                const result = await user.update(req.params.id, req.body.name)
+                const result = await utilisateur.update(req.params.id, req.body.name)
                 res.json( checkAndChange(result) )
 
             })
             
             .delete( async (req, res) => {
 
-                const result = await user.delete(req.params.id, req.body.name)
+                const result = await utilisateur.delete(req.params.id, req.body.name)
                 res.json( checkAndChange(result) )
                 
             })
 
 
 
-        UserRouter.route(`/`)
+        UtilisateurRouter.route(`/`)
 
             .get( async (req, res) => {
 
-                const result = await user.getAll(req.query.max)
+                const result = await utilisateur.getAll(req.query.max)
                 res.json(checkAndChange(result))
                     
             })
             
             .post( async (req, res) => {
 
-                const result = await user.add(req.body.name)
+                const result = await utilisateur.add(req.body.name)
                 res.json(checkAndChange(result))
 
-            })*/
+            })
 
 
         //Adresse d'utilisateur :
@@ -118,13 +118,6 @@ mysql.createConnection(config.db)
             .get( async (req, res) => {
 
                 const result = await adresse_utilisateur.getByID(req.params.id)             
-                res.json( checkAndChange(result) )
-                
-            })
-            
-            .delete( async (req, res) => {
-
-                const result = await adresse_utilisateur.delete(req.params.id, req.body.name)
                 res.json( checkAndChange(result) )
                 
             })
@@ -347,7 +340,7 @@ mysql.createConnection(config.db)
 
 
         //Initialisation des Routers
-        //app.use(config.rootAPI + `Utilisateur`, UserRouter)
+        app.use(config.rootAPI + `Utilisateur`, UtilisateurRouter)
         app.use(config.rootAPI + `Adresse-utilisateur`, AdresseUtilisateurRouter)
         app.use(config.rootAPI + `Adresse`, AdresseRouter)
         app.use(config.rootAPI + `Photo`, PhotoRouter)

@@ -1,4 +1,4 @@
-const {config, checkId, checkExistingId, checkNumber, checkMasquage} = require("./functions")
+const {config, checkNumber, checkExistingId, checkBoolean} = require("./functions")
 
 
 
@@ -33,7 +33,7 @@ class Adresse {
     getByID_admin(id){
         return new Promise((next) => {
 
-            checkId(id)
+            checkNumber(id, "id")
                 .then( (result) => {
                     id = result
 
@@ -41,7 +41,7 @@ class Adresse {
                 })
                 .then( (result) => {
                     if(result[0] == undefined)
-                        next( new Error(config.errors.noResultId) )
+                        next( new Error(config.errors.noResult + "id" + " !") )
 
                     else
                         next(result[0])
@@ -78,42 +78,49 @@ class Adresse {
             if( (!pays) || (pays.trim() == "") || (!rue) || (rue.trim() == ""))
                 next( new Error(config.errors.noValue) )
             
-            
-            else {
-                checkNumber(code_postal)
-                    .then( (result) => {
-                        code_postal = result
+            checkText(pays, "pays")
+                .then( (result) => {
+                    pays = result
 
-                        return checkNumber(numero)
-                    })
-                    .then( (result) => {
-                        numero = result
+                    return checkText(rue, "rue")
+                })
+                .then( (result) => {
+                    rue = result
 
-                        return checkMasquage(masquage)
-                    })
-                    .then( (result) => {
-                        masquage = result
+                    return checkNumber(code_postal, "code postal")
+                })
+                .then( (result) => {
+                    code_postal = result
 
-                        if(!indications)
-                            indications = "";
-                        else
-                            indications = indications.trim()
+                    return checkNumber(numero, "numero")
+                })
+                .then( (result) => {
+                    numero = result
 
-                        return this.db.query("INSERT INTO `adresse` VALUES (null, ?, ?, ?, ?, ?, ?)", [pays, code_postal, rue, numero, indications, masquage])
-                    })
-                    .then( (result) => {
+                    return checkBoolean(masquage, "masquage")
+                })
+                .then( (result) => {
+                    masquage = result
 
-                        return this.db.query("SELECT * FROM `adresse` WHERE (ID = ?)", [result.insertId])
-                    })
-                    .then( (result) => {
-                        if(result[0] == undefined)
-                            next( new Error(config.errors.noResultId) )
-    
-                        else
-                            next(result[0])
-                    })
-                    .catch( (err) => next(err) )
-            }
+                    if(!indications)
+                        indications = "";
+                    else
+                        indications = indications.trim()
+
+                    return this.db.query("INSERT INTO `adresse` VALUES (null, ?, ?, ?, ?, ?, ?)", [pays, code_postal, rue, numero, indications, masquage])
+                })
+                .then( (result) => {
+
+                    return this.db.query("SELECT * FROM `adresse` WHERE (ID = ?)", [result.insertId])
+                })
+                .then( (result) => {
+                    if(result[0] == undefined)
+                        next( new Error(config.errors.noResultId) )
+
+                    else
+                        next(result[0])
+                })
+                .catch( (err) => next(err) )
 
         })
 
