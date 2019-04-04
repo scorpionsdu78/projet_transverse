@@ -42,7 +42,7 @@ class Adresse {
 
                     else{
                         if(result[0].Masquage == 1)
-                            next("Adresse masquée")
+                            next({"Masquage": "1"})
                         
                         else
                             next(result[0])
@@ -93,7 +93,7 @@ class Adresse {
     
                         else{
                             if(result[0].Masquage == 1)
-                                next("Adresse masquée")
+                                next({"Masquage": "1"})
                             
                             else
                                 next(result[0])
@@ -218,31 +218,6 @@ function checkExistingId(id, table, db) {
     })
 
 }
-
-
-function checkTag(tag, id_oeuvre, db){
-    return new Promise( (resolve, reject) => {
-        
-        if(!tag || tag.trim() == "")
-            reject( new Error(config.errors.noValueTag) )
-
-
-        else{
-            tag = tag.trim()
-
-            db.query('SELECT tag FROM `tag couleur` WHERE ( (tag = ?) AND (`Œuvre` = ?) )', [tag, id_oeuvre])
-                .then( (result) => {
-                    if(result[0] != undefined)
-                        reject( new Error(config.errors.noUniqueTag) )
-
-                    else
-                        resolve(tag)
-                })
-                .catch( (err) => reject(err) )
-        }
-
-    })
-};
 
 
 

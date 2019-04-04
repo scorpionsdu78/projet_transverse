@@ -10,6 +10,7 @@ const expressOasGenerator = require('express-oas-generator');
 const morgan = require("morgan")("dev")
 
 const Utilisateur = require("./assets/classes/Utilisateur")
+const Adresse_utilisateur = require("./assets/classes/Adresse_utilisateur")
 const Adresse = require("./assets/classes/Adresse")
 const Photo = require("./assets/classes/Photo")
 const Tag = require("./assets/classes/Tag")
@@ -87,7 +88,79 @@ mysql.createConnection(config.db)
             })*/
 
 
-        //Utilisateur :
+        //Adresse d'utilisateur :
+        let AdresseUtilisateurRouter = express.Router()
+        const adresse_utilisateur = new Adresse_utilisateur(db)
+
+
+        AdresseUtilisateurRouter.route(`/`)
+        
+        .post( async (req, res) => {
+
+            const result = await adresse_utilisateur.add(req.body.id_utilisateur, req.body.id_adresse)
+            res.json(checkAndChange(result))
+
+        })
+
+
+        AdresseUtilisateurRouter.route(`/admin`)
+        
+        .post( async (req, res) => {
+
+            const result = await adresse_utilisateur.add_admin(req.body.id_utilisateur, req.body.id_adresse)
+            res.json(checkAndChange(result))
+
+        })
+
+
+        AdresseUtilisateurRouter.route(`/:id`)
+
+            .get( async (req, res) => {
+
+                const result = await adresse_utilisateur.getByID(req.params.id)             
+                res.json( checkAndChange(result) )
+                
+            })
+            
+            .delete( async (req, res) => {
+
+                const result = await adresse_utilisateur.delete(req.params.id, req.body.name)
+                res.json( checkAndChange(result) )
+                
+            })
+
+
+        AdresseUtilisateurRouter.route(`/admin/:id`)
+
+            .get( async (req, res) => {
+
+                const result = await adresse_utilisateur.getByID_admin(req.params.id)             
+                res.json( checkAndChange(result) )
+                
+            })
+
+
+        AdresseUtilisateurRouter.route(`/utilisateur/:id`)
+
+            .get( async (req, res) => {
+
+                const result = await adresse_utilisateur.getByUtilisateur(req.params.id)
+                res.json(checkAndChange(result))
+
+            })
+
+
+        AdresseUtilisateurRouter.route(`/admin/utilisateur/:id`)
+
+            .get( async (req, res) => {
+
+                const result = await adresse_utilisateur.getByUtilisateur_admin(req.params.id)
+                res.json(checkAndChange(result))
+
+            })
+
+
+        //Adresse :
         let AdresseRouter = express.Router()
         const adresse = new Adresse(db)
 
@@ -254,6 +327,7 @@ mysql.createConnection(config.db)
 
         //Initialisation des Routers
         //app.use(config.rootAPI + `Utilisateur`, UserRouter)
+        app.use(config.rootAPI + `Adresse-utilisateur`, AdresseUtilisateurRouter)
         app.use(config.rootAPI + `Adresse`, AdresseRouter)
         app.use(config.rootAPI + `Photo`, PhotoRouter)
         app.use(config.rootAPI + `Tag`, TagRouter)

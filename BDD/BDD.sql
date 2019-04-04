@@ -43,7 +43,9 @@ CREATE TABLE `oani`.`Adresse d'utilisateur` (
 	`Adresse` INT(11) NOT NULL COMMENT 'ID de l\'adresse',
 	PRIMARY KEY (`ID`),
 	FOREIGN KEY (`Utilisateur`) REFERENCES `Utilisateur`(`ID`),
-	FOREIGN KEY (`Adresse`) REFERENCES `Adresse`(`ID`)
+	FOREIGN KEY (`Adresse`) REFERENCES `Adresse`(`ID`),
+	UNIQUE (`Adresse`),
+	UNIQUE (`Utilisateur`,`Adresse`)
 ) ENGINE = InnoDB COMMENT = 'Adresses des utilisateurs';
 
 
