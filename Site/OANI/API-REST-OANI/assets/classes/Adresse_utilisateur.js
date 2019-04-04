@@ -1,23 +1,4 @@
-const Adresse = require("./Adresse")
-
-
-const config = {
-    errors : {
-        noValue : "Pas de valeur",
-        //Num
-        wrongValueNum : "Mauvaise valeur pour un numéro attendu !",
-        wrongTypeNum : "Mauvais type pour un numéro attendu !",
-        //Bool
-        wrongValueBool : "Mauvaise valeur pour un boolean attendu !",
-        wrongTypeBool : "Mauvais type pour un boolean attendu !",
-        //ID
-        wrongValueId : "Mauvaise valeur pour id !",
-        wrongTypeId : "Mauvais type pour id !",
-        noResultId : "Aucun résultat pour cet id !",
-        noValueId : "Pas de valeur pour id !",
-    }
-}
-
+const {config, checkId, checkExistingId} = require("./functions")
 
 
 
@@ -201,56 +182,6 @@ class Adresse_utilisateur{
     
         })
     }
-
-}
-
-
-
-function checkId(id) {
-
-    return new Promise( (resolve, reject) => {
-
-        if(!id)
-            reject( new Error(config.errors.noValueId) )
-    
-    
-        else if(parseInt(id) != id)
-            reject( new Error(config.errors.wrongTypeId) )
-    
-    
-        else if(id <= 0)
-            reject( new Error(config.errors.wrongValueId) )
-    
-        resolve(parseInt(id))
-
-    })
-
-}
-
-
-function checkExistingId(id, table, db) {
-    console.log("test1.1")
-
-    return new Promise( (resolve, reject) => {
-
-        checkId(id)
-            .then( (result) => {
-                console.log("test1.2")
-                id = result;
-
-                return db.query('SELECT id FROM `' + table  + '` WHERE (id = ?)', [id])
-            })
-            .then((result) => {
-                console.log("test1.3")
-                if(result[0] == undefined)
-                    reject(new Error(config.errors.noResultId))
-
-                else
-                    resolve(id)
-            })
-            .catch( (err) => reject(err) )
-
-    })
 
 }
 

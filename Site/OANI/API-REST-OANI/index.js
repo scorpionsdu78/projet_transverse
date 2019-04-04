@@ -182,12 +182,33 @@ mysql.createConnection(config.db)
             })
 
 
+        AdresseRouter.route(`/admin/:id`)
+
+            .get( async (req, res) => {
+
+                const result = await adresse.getByID_admin(req.params.id)             
+                res.json( checkAndChange(result) )
+                
+            })
+
+
 
         AdresseRouter.route(`/`)
             
             .post( async (req, res) => {
 
                 const result = await adresse.add(req.body.pays, req.body.code_postal, req.body.rue, req.body.numero, req.body.indications, req.body.masquage)
+                res.json(checkAndChange(result))
+
+            })
+
+
+
+        AdresseRouter.route(`/admin/`)
+            
+            .post( async (req, res) => {
+
+                const result = await adresse.add_admin(req.body.pays, req.body.code_postal, req.body.rue, req.body.numero, req.body.indications, req.body.masquage)
                 res.json(checkAndChange(result))
 
             })

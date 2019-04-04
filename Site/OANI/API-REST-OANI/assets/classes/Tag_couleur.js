@@ -1,15 +1,4 @@
-const config = {
-    errors : {
-        //ID
-        wrongValueId : "Mauvaise valeur pour id !",
-        wrongTypeId : "Mauvais type pour id !",
-        noResultId : "Aucun résultat pour cet id !",
-        noValueId : "Pas de valeur pour id !",
-        //Tag
-        noValueTag : "Pas de valeur pour tag !",
-        noUniqueTag : "Valeur pour tag déjà existante !"
-    }
-}
+const {config, checkId, checkExistingId, checkTag} = require("./functions")
 
 
 
@@ -125,79 +114,6 @@ class Tag_couleur {
     }
 
 }
-
-
-
-
-function checkId(id) {
-
-    return new Promise( (resolve, reject) => {
-
-        if(!id)
-            reject( new Error(config.errors.noValueId) )
-    
-    
-        else if(parseInt(id) != id)
-            reject( new Error(config.errors.wrongTypeId) )
-    
-    
-        else if(id <= 0)
-            reject( new Error(config.errors.wrongValueId) )
-    
-        resolve(parseInt(id))
-
-    })
-
-}
-
-
-function checkExistingId(id, table, db) {
-
-    return new Promise( (resolve, reject) => {
-
-        checkId(id)
-            .then( (result) => {
-                id = result;
-
-                return db.query('SELECT id FROM ' + table  + ' WHERE (id = ?)', [id])
-            })
-            .then((result) => {
-                if(result[0] == undefined)
-                    reject(new Error(config.errors.noResultId))
-
-                else
-                    resolve(id)
-            })
-            .catch( (err) => reject(err) )
-
-    })
-
-}
-
-
-function checkTag(tag, id_oeuvre, db){
-    return new Promise( (resolve, reject) => {
-        
-        if(!tag || tag.trim() == "")
-            reject( new Error(config.errors.noValueTag) )
-
-
-        else{
-            tag = tag.trim()
-
-            db.query('SELECT tag FROM `tag couleur` WHERE ( (tag = ?) AND (`Œuvre` = ?) )', [tag, id_oeuvre])
-                .then( (result) => {
-                    if(result[0] != undefined)
-                        reject( new Error(config.errors.noUniqueTag) )
-
-                    else
-                        resolve(tag)
-                })
-                .catch( (err) => reject(err) )
-        }
-
-    })
-};
 
 
 
