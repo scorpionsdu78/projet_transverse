@@ -57,7 +57,7 @@ mysql.createConnection(config.db)
 
             .put( async (req, res) => {
 
-                const result = await utilisateur.update(req.params.id, req.body.name)
+                const result = await utilisateur.update(req.params.id, req.body.mot_de_passe, req.body.new_mot_de_passe, req.body.adresse_mail, req.body.instagram, req.body.avatar, req.body.description)
                 res.json( checkAndChange(result) )
 
             })
@@ -65,6 +65,16 @@ mysql.createConnection(config.db)
             .delete( async (req, res) => {
 
                 const result = await utilisateur.delete(req.params.id, req.body.name)
+                res.json( checkAndChange(result) )
+                
+            })
+
+
+        UtilisateurRouter.route(`/admin/:id`)
+
+            .get( async (req, res) => {
+
+                const result = await utilisateur.getByID_admin(req.params.id)             
                 res.json( checkAndChange(result) )
                 
             })
@@ -82,7 +92,7 @@ mysql.createConnection(config.db)
             
             .post( async (req, res) => {
 
-                const result = await utilisateur.add(req.body.name)
+                const result = await utilisateur.add(req.body.nom_utilisateur, req.body.mot_de_passe, req.body.adresse_mail, req.body.instagram, req.body.avatar, req.body.description)
                 res.json(checkAndChange(result))
 
             })
