@@ -22,7 +22,8 @@ const TestesRouter = express.Router()
 //Middlewares :
 app.use(morgan)
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended : true }))
+app.use(bodyParser.urlencoded({ extended : true }))    
+app.use(express.static("public"));
 
 
 
