@@ -16,8 +16,10 @@ class Adresse_utilisateur{
 
             this.getByID_admin(id)
                 .then( (result) => {
+                    if(result instanceof Error)
+                        next(result)
                     
-                    if(result.Masquage == 1)
+                    else if(result.Masquage == 1)
                         result = {
                             "ID": result.ID,
                             "Utilisateur": result.Utilisateur,
@@ -62,6 +64,8 @@ class Adresse_utilisateur{
 
             this.getByUtilisateur_admin(id_utilisateur)
                 .then( (result) => {
+                    if(result instanceof Error)
+                        next(result)
         
                     for(let i = 0; i < result.length; i++){
                         
@@ -106,7 +110,11 @@ class Adresse_utilisateur{
 
             this.add_admin(id_utilisateur, id_adresse)
                 .then( (result) => {
-                    if(result.Masquage == 1)
+                    if(result instanceof Error)
+                        next(result)
+
+
+                    else if(result.Masquage == 1)
                         result = {
                             "ID": result.ID,
                             "Utilisateur": result.Utilisateur,
@@ -161,7 +169,6 @@ class Adresse_utilisateur{
             
             checkExistingId(id, `adresse d'utilisateur`, this.db)
                 .then( (result) => {
-                    console.log("test1")
                     id = result   
                     
                     return this.db.query("SELECT adresse FROM `adresse d'utilisateur` WHERE (id = ?)", [id])

@@ -21,7 +21,7 @@ CREATE TABLE `oani`.`Artiste` (
 	`Pseudo` VARCHAR(32) NOT NULL COMMENT 'Pseudo de l\'artiste',
 	PRIMARY KEY (`ID`),
 	FOREIGN KEY (`Utilisateur`) REFERENCES `Utilisateur`(`ID`),
-	UNIQUE (`ID`,`Utilisateur`)
+	UNIQUE (`Utilisateur`)
 )ENGINE = InnoDB COMMENT = 'Compte artiste';
 
 

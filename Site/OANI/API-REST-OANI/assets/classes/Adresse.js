@@ -1,4 +1,4 @@
-const {config, checkNumber, checkExistingId, checkBoolean} = require("./functions")
+const {config, checkNumber, checkText, checkExistingId, checkBoolean} = require("./functions")
 
 
 
@@ -17,7 +17,11 @@ class Adresse {
 
             this.getByID_admin(id)
                 .then( (result) => {
-                    if(result.Masquage == 1)
+                    if(result instanceof Error)
+                        next(result)
+
+                    
+                    else if(result.Masquage == 1)
                         next({"Masquage": "1"})
                     
 
@@ -58,7 +62,11 @@ class Adresse {
             
             this.add_admin(pays, code_postal, rue, numero, indications, masquage)
                 .then( (result) => {
-                    if(result.Masquage == 1)
+                    if(result instanceof Error)
+                        next(result)
+
+
+                    else if(result.Masquage == 1)
                         next({"Masquage": "1"})
                     
 
