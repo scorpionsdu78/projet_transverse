@@ -56,8 +56,14 @@ class Utilisateur {
                     else{
                         utilisateur = result[0]
 
-                        return this.db.query("SELECT a.Pays, a.`Code Postal`, a.Rue, a.`Numéro de rue`, a.`Indications Complémentaires`, a.Masquage FROM utilisateur u INNER JOIN `adresse d'utilisateur` au ON u.id = au.utilisateur INNER JOIN adresse a ON au.adresse = a.id WHERE (u.id = ?)", [id])
+                        return this.db.query("SELECT a.Pseudo FROM utilisateur u INNER JOIN `artiste` a ON u.id = a.utilisateur WHERE (u.id = ?)", [id])
                     }
+                })
+                .then( (result) => {
+                    if(result[0] != undefined)
+                        utilisateur.Pseudo = result[0].Pseudo
+
+                    return this.db.query("SELECT a.Pays, a.`Code Postal`, a.Rue, a.`Numéro de rue`, a.`Indications Complémentaires`, a.Masquage FROM utilisateur u INNER JOIN `adresse d'utilisateur` au ON u.id = au.utilisateur INNER JOIN adresse a ON au.adresse = a.id WHERE (u.id = ?)", [id])
                 })
                 .then( (result) => {
 
@@ -73,8 +79,73 @@ class Utilisateur {
     getAll(){
 
         return new Promise( (next) => {
+            
+            this.getAll_admin()
+                .then( (result) => {
+                    if(result instanceof Error)
+                        next(result)
+                    
+                    for(let i = 0; i < result.length; i++){
+                        
+                        for(let j = 0; j < result[i].Adresses.length; j++){
+                            
+                            if(result[i].Adresses[j].Masquage == 1)
+                                result[i].Adresses[j] = {
+                                    "Masquage": 1
+                                }
+        
+                        }
+    
+                    }
+
+                    next(result)
+                })
+                .catch( (err) => next(err) )
+        })
+
+    }
+
+
+    getAll_admin(){
+
+        return new Promise( (next) => {
+            let utilisateurs
 
             this.db.query("SELECT ID, `Nom d'utilisateur`, `Adresse mail`, Instagram, Avatar, Description FROM Utilisateur")
+                .then( (result) => {
+                    console.log("test1")
+                    console.log(result)
+                    utilisateurs = result
+
+                    return new Promise( (resolve, reject) => {
+                        console.log("test2")
+
+                        let i = 0
+                        utilisateurs.forEach( async (utilisateur) => {
+                            console.log("test2.2")
+
+                            await this.db.query("SELECT a.Pseudo FROM utilisateur u INNER JOIN `artiste` a ON u.id = a.utilisateur WHERE (u.id = ?)", [utilisateur.ID])
+                                .then( (result) => {
+                                    console.log("test2.3")
+                                    if(result[0] != undefined)
+                                        utilisateur.Pseudo = result[0].Pseudo
+                
+                                    return this.db.query("SELECT a.Pays, a.`Code Postal`, a.Rue, a.`Numéro de rue`, a.`Indications Complémentaires`, a.Masquage FROM utilisateur u INNER JOIN `adresse d'utilisateur` au ON u.id = au.utilisateur INNER JOIN adresse a ON au.adresse = a.id WHERE (u.id = ?)", [utilisateur.ID])
+                                })
+                                .then( (result) => {
+                                    console.log("test2.4")
+                
+                                    utilisateur.Adresses = result
+                                    
+                                    if(++i == utilisateurs.length)
+                                        resolve(utilisateurs)
+                                })
+                                .catch( (err) => reject(err) )
+
+                        })
+
+                    })
+                })
                 .then( (result) => next(result) )
                 .catch( (err) => next(err) )
             
@@ -254,85 +325,60 @@ class Utilisateur {
     delete(id){
 
         return new Promise( (next) => {
-            console.log("test1")
             let id_adresses_utilisateur = 0
-            let id_adresse = 0
             
             checkExistingId(id, `utilisateur`, this.db)
                 .then( (result) => {
-                    console.log("test2")
                     id = result  
                     
                     return this.db.query("SELECT id FROM `adresse d'utilisateur` WHERE (utilisateur = ?)", [id])
                 })
                 .then( (result) => {
-                    console.log("test3 " + JSON.stringify(result))
                     id_adresses_utilisateur = result
 
                     return new Promise( (resolve, reject) => {
-                        console.log("test3.1")
 
                         if(result[0] != undefined){
-                            console.log("test3.2")
-                            let lock = 0
-                            let func_async = ( async () => {
-                                for(let i = 0; i < id_adresses_utilisateur.length; i++){
-                                    lock = 1
-                                    console.log("test3.3 " + i)
-                                    console.log(id_adresses_utilisateur[i].id)
-                                    await this.db.query("SELECT adresse FROM `adresse d'utilisateur` WHERE (id = ?)", [id_adresses_utilisateur[i].id])
-                                        .then( (result) => {
-                                            console.log("test3.4")
-                                            id_adresse = result[0].adresse
-    
-                                            return this.db.query("DELETE FROM `adresse d'utilisateur` WHERE (id = ?)", [id_adresses_utilisateur[i].id])  
-                                        })
-                                        .then( () => {
-                                            console.log("test3.5")
-                                            return this.db.query("DELETE FROM `adresse` WHERE (id = ?)", [id_adresse])   
-                                        })
-                                        .then( () => {
-                                            lock = 0
-                                            console.log("test3.6")
-                                            if(i == id_adresses_utilisateur.length - 1){
-                                                console.log("test3.7")
-                                                resolve()
-                                            }
-                                        })
-                                        .catch( (err) => reject(err) )
-    
+                                
+                            let i = 0
+                            id_adresses_utilisateur.forEach( async (item) => { 
+                                let id_adresse = 0
+                                
+                                await this.db.query("SELECT adresse FROM `adresse d'utilisateur` WHERE (id = ?)", [item.id])
+                                    .then( (result) => {
+                                        id_adresse = result[0].adresse
                                         
-                                    console.log("test3.nub")
-                                    while(lock){}
-                                }
+                                        return this.db.query("DELETE FROM `adresse d'utilisateur` WHERE (id = ?)", [item.id])  
+                                    })
+                                    .then( () => {
+                                        return this.db.query("DELETE FROM `adresse` WHERE (id = ?)", [id_adresse])   
+                                    })
+                                    .then( () => {
+                                        if(++i == id_adresses_utilisateur.length)
+                                            resolve()
+                                    })
+                                    .catch( (err) => reject(err) )
+                                
                             })
-                            func_async()
                         }
                         
                         else{
-                            console.log("test3.0")
                             resolve()
                         }
 
                     })
                 })
                 .then( () => {
-                    console.log("test4")
                     return this.db.query("SELECT id FROM `artiste` WHERE (utilisateur = ?)", [id])
                 })
                 .then( (result) => {
-                    console.log("test5")
                     if(result[0] != undefined)
                         return this.db.query("DELETE FROM `artiste` WHERE (id = ?)", [result[0].id])
                 })
                 .then( () => {
-                    console.log("test6")
                     return this.db.query("DELETE FROM `utilisateur` WHERE (id = ?)", [id])
                 })
-                .then( () => {
-                    console.log("test7")
-                    next(`utilisateur ${id} deleted !`)
-                })
+                .then( () => next(`utilisateur ${id} deleted !`) )
                 .catch( (err) => next(err) )
     
         })

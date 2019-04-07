@@ -70,7 +70,7 @@ mysql.createConnection(config.db)
             })
 
 
-        UtilisateurRouter.route(`/admin/:id`)
+        UtilisateurRouter.route(`/admin/id/:id`)
 
             .get( async (req, res) => {
 
@@ -96,6 +96,16 @@ mysql.createConnection(config.db)
                 res.json(checkAndChange(result))
 
             })
+
+
+            UtilisateurRouter.route(`/admin/all`)
+    
+                .get( async (req, res) => {
+    
+                    const result = await utilisateur.getAll_admin()             
+                    res.json( checkAndChange(result) )
+                    
+                })
 
 
         //Adresse d'utilisateur :
@@ -207,7 +217,7 @@ mysql.createConnection(config.db)
 
 
 
-        AdresseRouter.route(`/admin/`)
+        AdresseRouter.route(`/admin`)
             
             .post( async (req, res) => {
 
