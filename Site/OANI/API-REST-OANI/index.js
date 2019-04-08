@@ -64,7 +64,7 @@ mysql.createConnection(config.db)
             
             .delete( async (req, res) => {
 
-                const result = await utilisateur.delete(req.params.id, req.body.name)
+                const result = await utilisateur.delete(req.params.id)
                 res.json( checkAndChange(result) )
                 
             })
@@ -85,7 +85,7 @@ mysql.createConnection(config.db)
 
             .get( async (req, res) => {
 
-                const result = await utilisateur.getAll(req.query.max)
+                const result = await utilisateur.getAll()
                 res.json(checkAndChange(result))
                     
             })

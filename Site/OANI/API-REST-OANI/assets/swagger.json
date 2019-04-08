@@ -2,9 +2,6 @@
     "info": {
       "title": "API-REST-OANI",
       "version": "1.0.0",
-      "license": {
-        "name": "ISC"
-      },
       "description": "API REST pour gérer le site OANI"
     },
     "tags" : [
@@ -44,6 +41,505 @@
     "host": "localhost:8080",
     "basePath": "/api-oani/v1",
     "paths": {
+      "/Utilisateur/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type" : "number",
+            "description" : "id d'un utilisateur",
+            "required": true
+          }
+        ],
+        "get": {
+          "tags" : ["Utilisateur"],
+          "summary": "Retourne un utilisateur par son id et ses adresses associées sauf si elles sont masquées",
+          "operationId": "getUtilisateurById",
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": {
+                    "ID": 15,
+                    "Nom d'utilisateur": "user2",
+                    "Adresse mail": "user2_mail",
+                    "Instagram": null,
+                    "Avatar": null,
+                    "Description": null,
+                    "Adresses": [
+                        {
+                            "Pays": "France",
+                            "Code Postal": "78160",
+                            "Rue": "Montval",
+                            "Numéro de rue": "36",
+                            "Indications Complémentaires": "",
+                            "Masquage": 0
+                        },
+                        {
+                            "Masquage": 1
+                        },
+                        {
+                            "Pays": "France",
+                            "Code Postal": "78160",
+                            "Rue": "Montval",
+                            "Numéro de rue": "36",
+                            "Indications Complémentaires": "",
+                            "Masquage": 0
+                        }
+                    ]
+                }
+              }
+            },
+            "400": {
+                "description": "Erreur",
+                "example": 
+                {
+                    "status": "error",
+                    "message": "Aucun résultat pour id !"
+                }
+            }
+          }
+        },
+        "put": {
+          "tags" : ["Utilisateur"],
+          "summary": "Modifie le mot de passe, l'adresse mail, instagram, l'avatar et la description d'un utilisateur par son id",
+          "operationId": "UpdateUtilisateur",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": 
+          [
+            {
+              "name": "mot_de_passe",
+              "in": "formData",
+              "type" : "string",
+              "description" : "actuel mot de passe de l'utilisateur",
+              "required": false
+            },
+            {
+              "name": "new_mot_de_passe",
+              "in": "formData",
+              "type" : "string",
+              "description" : "nouveau mot de passe de l'utilisateur",
+              "required": false
+            },
+            {
+              "name": "adresse_mail",
+              "in": "formData",
+              "type" : "string",
+              "description" : "adresse mail de l'utilisateur",
+              "required": false
+            },
+            {
+              "name": "instagram",
+              "in": "formData",
+              "type" : "string",
+              "description" : "instagram de l'utilisateur",
+              "required": false
+            },
+            {
+              "name": "avatar",
+              "in": "formData",
+              "type" : "string",
+              "description" : "URL de l'avatar de l'utilisateur",
+              "required": false
+            },
+            {
+              "name": "description",
+              "in": "formData",
+              "type" : "string",
+              "description" : "description de l'utilisateur",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": true
+              }
+            },
+            "400": {
+              "description": "Erreur",
+              "example": 
+              {
+                "status": "error",
+                "message": "Mot de passe incorrect !"
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags" : ["Utilisateur"],
+          "summary": "Supprime un utilisateur par son id",
+          "operationId": "DeleteUtilisateur",
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": "utilisateur 15 deleted !"
+              }
+            },
+            "400": {
+              "description": "Erreur",
+              "example":
+              {
+                "status": "error",
+                "message": "Aucun résultat pour utilisateur !"
+              }
+            }
+          }
+        }
+      },
+      "/Utilisateur/admin/id/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type" : "number",
+            "description" : "id d'une adresse d'utilisateur",
+            "required": true
+          }
+        ],
+        "get": {
+          "tags" : ["Utilisateur"],
+          "summary": "Retourne un utilisateur par son id et ses adresses associées même si elles sont masquées",
+          "operationId": "getUtilisateurById_admin",
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example":
+              {
+                "status": "success",
+                "result": {
+                    "ID": 15,
+                    "Nom d'utilisateur": "user2",
+                    "Adresse mail": "user2_mail",
+                    "Instagram": null,
+                    "Avatar": null,
+                    "Description": null,
+                    "Adresses": [
+                        {
+                            "Pays": "France",
+                            "Code Postal": "78160",
+                            "Rue": "Montval",
+                            "Numéro de rue": "36",
+                            "Indications Complémentaires": "",
+                            "Masquage": 0
+                        },
+                        {
+                            "Pays": "France",
+                            "Code Postal": "78160",
+                            "Rue": "Montval",
+                            "Numéro de rue": "36",
+                            "Indications Complémentaires": "",
+                            "Masquage": 1
+                        },
+                        {
+                            "Pays": "France",
+                            "Code Postal": "78160",
+                            "Rue": "Montval",
+                            "Numéro de rue": "36",
+                            "Indications Complémentaires": "",
+                            "Masquage": 0
+                        }
+                    ]
+                }
+              }
+            },
+            "400": {
+                "description": "Erreur",
+                "example": 
+                {
+                    "status": "error",
+                    "message": "Aucun résultat pour id !"
+                }
+            }
+          }
+        }
+      },
+      "/Utilisateur": {
+        "get": {
+          "tags" : ["Utilisateur"],
+          "summary": "Retourne tout les utilisateurs et leurs adresses associées sauf si elles sont masquées",
+          "operationId": "getAllUtilisateur",
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": [
+                    {
+                        "ID": 15,
+                        "Nom d'utilisateur": "user2",
+                        "Adresse mail": "user2_mail",
+                        "Instagram": null,
+                        "Avatar": null,
+                        "Description": null,
+                        "Adresses": [
+                            {
+                                "Pays": "France",
+                                "Code Postal": "78160",
+                                "Rue": "Montval",
+                                "Numéro de rue": "36",
+                                "Indications Complémentaires": "",
+                                "Masquage": 0
+                            },
+                            {
+                                "Masquage": 1
+                            },
+                            {
+                                "Pays": "France",
+                                "Code Postal": "78160",
+                                "Rue": "Montval",
+                                "Numéro de rue": "36",
+                                "Indications Complémentaires": "",
+                                "Masquage": 0
+                            }
+                        ]
+                    },
+                    {
+                        "ID": 16,
+                        "Nom d'utilisateur": "user1",
+                        "Adresse mail": "user1_mail",
+                        "Instagram": "user1_instagram",
+                        "Avatar": "user1_avatar",
+                        "Description": "user1_description",
+                        "Pseudo": "user1_pseudo",
+                        "Adresses": [
+                            {
+                                "Masquage": 1
+                            },
+                            {
+                                "Pays": "France",
+                                "Code Postal": "78160",
+                                "Rue": "Montval",
+                                "Numéro de rue": "36",
+                                "Indications Complémentaires": "",
+                                "Masquage": 0
+                            }
+                        ]
+                    },
+                    {
+                        "ID": 17,
+                        "Nom d'utilisateur": "user3",
+                        "Adresse mail": "user3_mail",
+                        "Instagram": "user3_instagram",
+                        "Avatar": "user3_avatar",
+                        "Description": "user3_description",
+                        "Adresses": []
+                    }
+                ]
+              }
+            },
+            "400": {
+                "description": "Erreur",
+                "example": 
+                {
+                  "status": "error",
+                  "message": "connect ECONNREFUSED 127.0.0.1:3306"
+                }
+            }
+          }
+        },
+        "post": {
+          "tags" : ["Utilisateur"],
+          "summary": "Ajoute un nouveau utilisateur et le retourne avec ses adresses associées sauf si elles sont masquées",
+          "operationId": "addUtilisateur",
+          "consumes": [
+            "text/plain"
+          ],
+          "parameters": 
+          [
+            {
+              "name": "nom_utilisateur",
+              "in": "formData",
+              "type" : "string",
+              "description" : "nom d'utilisateur de l'utilisateur",
+              "required": true
+            },
+            {
+              "name": "mot_de_passe",
+              "in": "formData",
+              "type" : "string",
+              "description" : "mot de passe de l'utilisateur",
+              "required": true
+            },
+            {
+              "name": "adresse_mail",
+              "in": "formData",
+              "type" : "string",
+              "description" : "adresse mail de l'utilisateur",
+              "required": true
+            },
+            {
+              "name": "instagram",
+              "in": "formData",
+              "type" : "string",
+              "description" : "instagram de l'utilisateur",
+              "required": false
+            },
+            {
+              "name": "avatar",
+              "in": "formData",
+              "type" : "string",
+              "description" : "URL de l'avatar de l'utilisateur",
+              "required": false
+            },
+            {
+              "name": "description",
+              "in": "formData",
+              "type" : "string",
+              "description" : "description de l'utilisateur",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": {
+                    "ID": 41,
+                    "Pays": "France",
+                    "Code Postal": "78160",
+                    "Rue": "Montval",
+                    "Numéro de rue": "36",
+                    "Indications Complémentaires": "",
+                    "Masquage": 0
+                }
+              }
+            },
+            "400": {
+              "description": "Erreur",
+              "example": 
+              {
+                "status": "error",
+                "message": "Pas de valeur pour utilisateur !"
+              }
+            }
+          }
+        }
+      },
+      "/Utilisateur/admin/all": {
+        "get": {
+          "tags" : ["Utilisateur"],
+          "summary": "Retourne tout les utilisateurs et leurs adresses associées même si elles sont masquées",
+          "operationId": "getAllUtilisateur_admin",
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": [
+                    {
+                        "ID": 15,
+                        "Nom d'utilisateur": "user2",
+                        "Adresse mail": "user2_mail",
+                        "Instagram": null,
+                        "Avatar": null,
+                        "Description": null,
+                        "Adresses": [
+                            {
+                                "Pays": "France",
+                                "Code Postal": "78160",
+                                "Rue": "Montval",
+                                "Numéro de rue": "36",
+                                "Indications Complémentaires": "",
+                                "Masquage": 0
+                            },
+                            {
+                                "Pays": "France",
+                                "Code Postal": "78160",
+                                "Rue": "Montval",
+                                "Numéro de rue": "36",
+                                "Indications Complémentaires": "",
+                                "Masquage": 1
+                            },
+                            {
+                                "Pays": "France",
+                                "Code Postal": "78160",
+                                "Rue": "Montval",
+                                "Numéro de rue": "36",
+                                "Indications Complémentaires": "",
+                                "Masquage": 0
+                            }
+                        ]
+                    },
+                    {
+                        "ID": 16,
+                        "Nom d'utilisateur": "user1",
+                        "Adresse mail": "user1_mail",
+                        "Instagram": "user1_instagram",
+                        "Avatar": "user1_avatar",
+                        "Description": "user1_description",
+                        "Pseudo": "user1_pseudo",
+                        "Adresses": [
+                            {
+                                "Pays": "France",
+                                "Code Postal": "78160",
+                                "Rue": "Montval",
+                                "Numéro de rue": "36",
+                                "Indications Complémentaires": "",
+                                "Masquage": 1
+                            },
+                            {
+                                "Pays": "France",
+                                "Code Postal": "78160",
+                                "Rue": "Montval",
+                                "Numéro de rue": "36",
+                                "Indications Complémentaires": "",
+                                "Masquage": 0
+                            }
+                        ]
+                    },
+                    {
+                        "ID": 17,
+                        "Nom d'utilisateur": "user3",
+                        "Adresse mail": "user3_mail",
+                        "Instagram": "user3_instagram",
+                        "Avatar": "user3_avatar",
+                        "Description": "user3_description",
+                        "Adresses": []
+                    }
+                ]
+              }
+            },
+            "400": {
+                "description": "Erreur",
+                "example": 
+                {
+                  "status": "error",
+                  "message": "connect ECONNREFUSED 127.0.0.1:3306"
+                }
+            }
+          }
+        }
+      },
       "/Adresse-Utilisateur/{id}": {
         "parameters": [
           {
@@ -84,7 +580,7 @@
                 "example": 
                 {
                     "status": "error",
-                    "message": "Aucun résultat pour cet id !"
+                    "message": "Aucun résultat pour id !"
                 }
             }
           }
@@ -884,8 +1380,8 @@
                 "description": "Erreur",
                 "example": 
                 {
-                    "status": "error",
-                    "message": "Aucun résultat pour cet id !"
+                  "status": "error",
+                  "message": "connect ECONNREFUSED 127.0.0.1:3306"
                 }
             }
           }
