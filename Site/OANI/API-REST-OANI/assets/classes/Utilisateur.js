@@ -113,27 +113,21 @@ class Utilisateur {
 
             this.db.query("SELECT ID, `Nom d'utilisateur`, `Adresse mail`, Instagram, Avatar, Description FROM Utilisateur")
                 .then( (result) => {
-                    console.log("test1")
-                    console.log(result)
                     utilisateurs = result
 
                     return new Promise( (resolve, reject) => {
-                        console.log("test2")
 
                         let i = 0
                         utilisateurs.forEach( async (utilisateur) => {
-                            console.log("test2.2")
 
                             await this.db.query("SELECT a.Pseudo FROM utilisateur u INNER JOIN `artiste` a ON u.id = a.utilisateur WHERE (u.id = ?)", [utilisateur.ID])
                                 .then( (result) => {
-                                    console.log("test2.3")
                                     if(result[0] != undefined)
                                         utilisateur.Pseudo = result[0].Pseudo
                 
                                     return this.db.query("SELECT a.Pays, a.`Code Postal`, a.Rue, a.`Numéro de rue`, a.`Indications Complémentaires`, a.Masquage FROM utilisateur u INNER JOIN `adresse d'utilisateur` au ON u.id = au.utilisateur INNER JOIN adresse a ON au.adresse = a.id WHERE (u.id = ?)", [utilisateur.ID])
                                 })
                                 .then( (result) => {
-                                    console.log("test2.4")
                 
                                     utilisateur.Adresses = result
                                     

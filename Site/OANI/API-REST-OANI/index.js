@@ -98,14 +98,14 @@ mysql.createConnection(config.db)
             })
 
 
-            UtilisateurRouter.route(`/admin/all`)
-    
-                .get( async (req, res) => {
-    
-                    const result = await utilisateur.getAll_admin()             
-                    res.json( checkAndChange(result) )
-                    
-                })
+        UtilisateurRouter.route(`/admin/all`)
+
+            .get( async (req, res) => {
+
+                const result = await utilisateur.getAll_admin()             
+                res.json( checkAndChange(result) )
+                
+            })
 
 
         //Adresse d'utilisateur :
@@ -115,22 +115,22 @@ mysql.createConnection(config.db)
 
         AdresseUtilisateurRouter.route(`/`)
         
-        .post( async (req, res) => {
+            .post( async (req, res) => {
 
-            const result = await adresse_utilisateur.add(req.body.id_utilisateur, req.body.id_adresse)
-            res.json(checkAndChange(result))
+                const result = await adresse_utilisateur.add(req.body.id_utilisateur, req.body.id_adresse)
+                res.json(checkAndChange(result))
 
-        })
+            })
 
 
         AdresseUtilisateurRouter.route(`/admin`)
         
-        .post( async (req, res) => {
+            .post( async (req, res) => {
 
-            const result = await adresse_utilisateur.add_admin(req.body.id_utilisateur, req.body.id_adresse)
-            res.json(checkAndChange(result))
+                const result = await adresse_utilisateur.add_admin(req.body.id_utilisateur, req.body.id_adresse)
+                res.json(checkAndChange(result))
 
-        })
+            })
 
 
         AdresseUtilisateurRouter.route(`/:id`)
@@ -138,6 +138,13 @@ mysql.createConnection(config.db)
             .get( async (req, res) => {
 
                 const result = await adresse_utilisateur.getByID(req.params.id)             
+                res.json( checkAndChange(result) )
+                
+            })
+
+            .delete( async (req, res) => {
+
+                const result = await adresse_utilisateur.delete(req.params.id)             
                 res.json( checkAndChange(result) )
                 
             })
@@ -189,7 +196,7 @@ mysql.createConnection(config.db)
             
             .delete( async (req, res) => {
 
-                const result = await adresse.delete(req.params.id, req.body.name)
+                const result = await adresse.delete(req.params.id)
                 res.json( checkAndChange(result) )
                 
             })

@@ -83,8 +83,6 @@ class Adresse {
     add_admin(pays, code_postal, rue, numero, indications, masquage){
 
         return new Promise( (next) => {
-            if( (!pays) || (pays.trim() == "") || (!rue) || (rue.trim() == ""))
-                next( new Error(config.errors.noValue) )
             
             checkText(pays, "pays")
                 .then( (result) => {

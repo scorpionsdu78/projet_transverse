@@ -9,13 +9,670 @@
     },
     "tags" : [
         {
+            "name" : "Utilisateur",
+            "description" : "Méthodes permettant de gérer les utilisateurs"
+        },
+        {
+            "name" : "Artiste",
+            "description" : "Méthodes permettant de gérer les artistes"
+        },
+        {
+            "name" : "Oeuvre",
+            "description" : "Méthodes permettant de gérer les oeuvres"
+        },
+        {
+            "name" : "Adresse d'utilisateur",
+            "description" : "Méthodes permettant de gérer les adresses d'utilisateur"
+        },
+        {
+            "name" : "Adresse",
+            "description" : "Méthodes permettant de gérer les adresses"
+        },
+        {
             "name" : "Photo",
             "description" : "Méthodes permettant de gérer les photos d'oeuvres"
+        },
+        {
+            "name" : "Tag",
+            "description" : "Méthodes permettant de gérer les tags d'oeuvres"
+        },
+        {
+            "name" : "Tag Couleur",
+            "description" : "Méthodes permettant de gérer les tags couleur d'oeuvres"
         }
     ],
     "host": "localhost:8080",
     "basePath": "/api-oani/v1",
     "paths": {
+      "/Adresse-Utilisateur/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type" : "number",
+            "description" : "id d'une adresse d'utilisateur",
+            "required": true
+          }
+        ],
+        "get": {
+          "tags" : ["Adresse d'utilisateur"],
+          "summary": "Retourne une adresse d'utilisateur par son id et l'adresse associée sauf si elle est masquée",
+          "operationId": "getAdresseUtilisateurById",
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": {
+                    "ID": 42,
+                    "Utilisateur": 16,
+                    "Pays": "France",
+                    "Code Postal": "78160",
+                    "Rue": "Montval",
+                    "Numéro de rue": "36",
+                    "Indications Complémentaires": "",
+                    "Masquage": 0
+                }
+              }
+            },
+            "400": {
+                "description": "Erreur",
+                "example": 
+                {
+                    "status": "error",
+                    "message": "Aucun résultat pour cet id !"
+                }
+            }
+          }
+        },
+        "delete": {
+          "tags" : ["Adresse d'utilisateur"],
+          "summary": "Supprime une adresse d'utilisateur par son id",
+          "operationId": "DeleteAdresseUtilisateur",
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": "adresse d'utilisateur 40 deleted !"
+              }
+            },
+            "400": {
+              "description": "Erreur",
+              "example":
+              {
+                "status": "error",
+                "message": "Aucun résultat pour adresse d'utilisateur !"
+              }
+            }
+          }
+        }
+      },
+      "/Adresse-Utilisateur/admin/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type" : "number",
+            "description" : "id d'une adresse d'utilisateur",
+            "required": true
+          }
+        ],
+        "get": {
+          "tags" : ["Adresse d'utilisateur"],
+          "summary": "Retourne une adresse d'utilisateur par son id et l'adresse associée même si elle est masquée",
+          "operationId": "getAdresseUtilisateurById_admin",
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example":
+              {
+                "status": "success",
+                "result": {
+                    "ID": 42,
+                    "Utilisateur": 16,
+                    "Pays": "France",
+                    "Code Postal": "78160",
+                    "Rue": "Montval",
+                    "Numéro de rue": "36",
+                    "Indications Complémentaires": "",
+                    "Masquage": 1
+                }
+              }
+            },
+            "400": {
+                "description": "Erreur",
+                "example": 
+                {
+                    "status": "error",
+                    "message": "Aucun résultat pour id !"
+                }
+            }
+          }
+        }
+      },
+      "/Adresse-Utilisateur/utilisateur/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type" : "number",
+            "description" : "id d'un utilisateur",
+            "required": true
+          }
+        ],
+        "get": {
+          "tags" : ["Adresse d'utilisateur"],
+          "summary": "Retourne toute les adresses d'utilisateur pour l'id d'un utilisateur et leur adresse associée sauf si elles sont masquées",
+          "operationId": "getAdresseUtilisateurByIdUtilisateur",
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": [
+                    {
+                        "ID": 37,
+                        "Utilisateur": 15,
+                        "Pays": "France",
+                        "Code Postal": "78160",
+                        "Rue": "Montval",
+                        "Numéro de rue": "36",
+                        "Indications Complémentaires": "",
+                        "Masquage": 0
+                    },
+                    {
+                        "ID": 38,
+                        "Utilisateur": 15,
+                        "Masquage": 1
+                    },
+                    {
+                        "ID": 39,
+                        "Utilisateur": 15,
+                        "Pays": "France",
+                        "Code Postal": "78160",
+                        "Rue": "Montval",
+                        "Numéro de rue": "36",
+                        "Indications Complémentaires": "",
+                        "Masquage": 0
+                    }
+                ]
+              }
+            },
+            "400": {
+                "description": "Erreur",
+                "example": 
+                {
+                    "status": "error",
+                    "message": "Aucun résultat pour utilisateur !"
+                }
+            }
+          }
+        }
+      },
+      "/Adresse-Utilisateur/admin/utilisateur/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type" : "number",
+            "description" : "id d'un utilisateur",
+            "required": true
+          }
+        ],
+        "get": {
+          "tags" : ["Adresse d'utilisateur"],
+          "summary": "Retourne toute les adresses d'utilisateur pour l'id d'un utilisateur et leur adresse associée même si elles sont masquées",
+          "operationId": "getAdresseUtilisateurByIdUtilisateur_admin",
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": [
+                    {
+                        "ID": 37,
+                        "Utilisateur": 15,
+                        "Pays": "France",
+                        "Code Postal": "78160",
+                        "Rue": "Montval",
+                        "Numéro de rue": "36",
+                        "Indications Complémentaires": "",
+                        "Masquage": 0
+                    },
+                    {
+                        "ID": 38,
+                        "Utilisateur": 15,
+                        "Pays": "France",
+                        "Code Postal": "78160",
+                        "Rue": "Montval",
+                        "Numéro de rue": "36",
+                        "Indications Complémentaires": "",
+                        "Masquage": 1
+                    },
+                    {
+                        "ID": 39,
+                        "Utilisateur": 15,
+                        "Pays": "France",
+                        "Code Postal": "78160",
+                        "Rue": "Montval",
+                        "Numéro de rue": "36",
+                        "Indications Complémentaires": "",
+                        "Masquage": 0
+                    }
+                ]
+              }
+            },
+            "400": {
+                "description": "Erreur",
+                "example": 
+                {
+                    "status": "error",
+                    "message": "Aucun résultat pour utilisateur !"
+                }
+            }
+          }
+        }
+      },
+      "/Adresse-Utilisateur": {
+        "post": {
+          "tags" : ["Adresse d'utilisateur"],
+          "summary": "Ajoute une nouvelle adresse d'utilisateur et la retourne avec son adresse associée sauf si elle est masquée",
+          "operationId": "addAdresseUtilisateur",
+          "consumes": [
+            "text/plain"
+          ],
+          "parameters": [
+            {
+              "name": "id_utilisateur",
+              "in": "formData",
+              "type": "number",
+              "description": "id d'un utilisateur",
+              "required": true
+            },
+            {
+              "name": "id_adresse",
+              "in": "formData",
+              "type": "number",
+              "description": "id d'une adresse",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": {
+                    "ID": 41,
+                    "Pays": "France",
+                    "Code Postal": "78160",
+                    "Rue": "Montval",
+                    "Numéro de rue": "36",
+                    "Indications Complémentaires": "",
+                    "Masquage": 0
+                }
+              }
+            },
+            "400": {
+              "description": "Erreur",
+              "example": 
+              {
+                "status": "error",
+                "message": "Pas de valeur pour utilisateur !"
+              }
+            }
+          }
+        }
+      },
+      "/Adresse-Utilisateur/admin": {
+        "post": {
+          "tags" : ["Adresse d'utilisateur"],
+          "summary": "Ajoute une nouvelle adresse d'utilisateur et la retourne avec son adresse associée même si elle est masquée",
+          "operationId": "addAdresseUtilisateur_admin",
+          "consumes": [
+            "text/plain"
+          ],
+          "parameters": [
+            {
+              "name": "id_utilisateur",
+              "in": "formData",
+              "type": "number",
+              "description": "id d'un utilisateur",
+              "required": true
+            },
+            {
+              "name": "id_adresse",
+              "in": "formData",
+              "type": "number",
+              "description": "id d'une adresse",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": {
+                    "ID": 41,
+                    "Pays": "France",
+                    "Code Postal": "78160",
+                    "Rue": "Montval",
+                    "Numéro de rue": "36",
+                    "Indications Complémentaires": "",
+                    "Masquage": 1
+                }
+              }
+            },
+            "400": {
+              "description": "Erreur",
+              "example": 
+              {
+                "status": "error",
+                "message": "Pas de valeur pour utilisateur !"
+              }
+            }
+          }
+        }
+      },
+      "/Adresse/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type" : "number",
+            "description" : "id d'une adresse",
+            "required": true
+          }
+        ],
+        "get": {
+          "tags" : ["Adresse"],
+          "summary": "Retourne une adresse par son id, sauf si elle est masquée",
+          "operationId": "getAdresseById",
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": {
+                    "ID": 34,
+                    "Pays": "France",
+                    "Code Postal": "78160",
+                    "Rue": "Montval",
+                    "Numéro de rue": "36",
+                    "Indications Complémentaires": "",
+                    "Masquage": 0
+                }
+              }
+            },
+            "400": {
+                "description": "Erreur",
+                "example": 
+                {
+                    "status": "error",
+                    "message": "Aucun résultat pour id !"
+                }
+            }
+          }
+        },
+        "delete": {
+          "tags" : ["Adresse"],
+          "summary": "Supprime une adresse par son id",
+          "operationId": "DeleteAdresse",
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": "adresse 40 deleted !"
+              }
+            },
+            "400": {
+              "description": "Erreur",
+              "example":
+              {
+                "status": "error",
+                "message": "Aucun résultat pour adresse!"
+              }
+            }
+          }
+        }
+      },
+      "/Adresse/admin/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type" : "number",
+            "description" : "id d'une adresse",
+            "required": true
+          }
+        ],
+        "get": {
+          "tags" : ["Adresse"],
+          "summary": "Retourne une adresse par son id, même si elle est masquée",
+          "operationId": "getAdresseById_admin",
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": {
+                    "ID": 34,
+                    "Pays": "France",
+                    "Code Postal": "78160",
+                    "Rue": "Montval",
+                    "Numéro de rue": "36",
+                    "Indications Complémentaires": "",
+                    "Masquage": 1
+                }
+              }
+            },
+            "400": {
+                "description": "Erreur",
+                "example": 
+                {
+                    "status": "error",
+                    "message": "Aucun résultat pour cet id !"
+                }
+            }
+          }
+        }
+      },
+      "/Adresse": {
+        "post": {
+          "tags" : ["Adresse"],
+          "summary": "Ajoute une nouvelle adresse et la retourne sauf si elle est masquée",
+          "operationId": "addAdresse",
+          "consumes": [
+            "text/plain"
+          ],
+          "parameters": [
+            {
+              "name": "pays",
+              "in": "formData",
+              "type": "string",
+              "required": true,
+              "description": "Pays de l'adresse"
+            },
+            {
+              "name": "code_postal",
+              "in": "formData",
+              "type": "number",
+              "description": "Code postal de l'adresse (ville)",
+              "required": true
+            },
+            {
+              "name": "rue",
+              "in": "formData",
+              "type": "string",
+              "required": true,
+              "description": "Nom de la rue de l'adresse"
+            },
+            {
+              "name": "numero",
+              "in": "formData",
+              "type": "number",
+              "description": "Numéro de la rue de l'adresse",
+              "required": true
+            },
+            {
+              "name": "indication",
+              "in": "formData",
+              "type": "string",
+              "required": false,
+              "description": "Indications complémentaires de l'adresse"
+            },
+            {
+              "name": "masquage",
+              "in": "formData",
+              "type": "number",
+              "description": "Boolean pour savoir si l'adresse doit être masquée ou non",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": {
+                    "ID": 41,
+                    "Pays": "France",
+                    "Code Postal": "78160",
+                    "Rue": "Montval",
+                    "Numéro de rue": "36",
+                    "Indications Complémentaires": "",
+                    "Masquage": 0
+                }
+              }
+            },
+            "400": {
+              "description": "Erreur",
+              "example": 
+              {
+                "status": "error",
+                "message": "Pas de valeur pour pays !"
+              }
+            }
+          }
+        }
+      },
+      "/Adresse/admin": {
+        "post": {
+          "tags" : ["Adresse"],
+          "summary": "Ajoute une nouvelle adresse et la retourne même si elle est masquée",
+          "operationId": "addAdresse_admin",
+          "consumes": [
+            "text/plain"
+          ],
+          "parameters": [
+            {
+              "name": "pays",
+              "in": "formData",
+              "type": "string",
+              "required": true,
+              "description": "Pays de l'adresse"
+            },
+            {
+              "name": "code_postal",
+              "in": "formData",
+              "type": "number",
+              "description": "Code postal de l'adresse (ville)",
+              "required": true
+            },
+            {
+              "name": "rue",
+              "in": "formData",
+              "type": "string",
+              "required": true,
+              "description": "Nom de la rue de l'adresse"
+            },
+            {
+              "name": "numero",
+              "in": "formData",
+              "type": "number",
+              "description": "Numéro de la rue de l'adresse",
+              "required": true
+            },
+            {
+              "name": "indication",
+              "in": "formData",
+              "type": "string",
+              "required": false,
+              "description": "Indications complémentaires de l'adresse"
+            },
+            {
+              "name": "masquage",
+              "in": "formData",
+              "type": "number",
+              "description": "Boolean pour savoir si l'adresse doit être masquée ou non",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": {
+                    "ID": 41,
+                    "Pays": "France",
+                    "Code Postal": "78160",
+                    "Rue": "Montval",
+                    "Numéro de rue": "36",
+                    "Indications Complémentaires": "",
+                    "Masquage": 1
+                }
+              }
+            },
+            "400": {
+              "description": "Erreur",
+              "example": 
+              {
+                "status": "error",
+                "message": "Pas de valeur pour pays !"
+              }
+            }
+          }
+        }
+      },
       "/Photo/{id}": {
         "parameters": [
           {
@@ -52,7 +709,7 @@
                 "example": 
                 {
                     "status": "error",
-                    "message": "Aucun résultat pour cet id !"
+                    "message": "Aucun résultat pour id !"
                 }
             }
           }
@@ -134,7 +791,7 @@
               "example":
               {
                 "status": "error",
-                "message": "Aucun résultat pour cet id !"
+                "message": "Aucun résultat pour photo !"
               }
             }
           }

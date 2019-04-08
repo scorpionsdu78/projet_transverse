@@ -141,10 +141,12 @@ exports.checkAndChangeOrdre = (id_oeuvre, ordre, db) => {
 
 
 exports.checkText = (text, label) => {
+    
     return new Promise( (resolve, reject) => {
         
-        if(!text || text.trim() == "")
+        if(!text || text.trim() == ""){
             reject( new Error(config.errors.noValue + label + " !"))
+        }
 
         
         else
