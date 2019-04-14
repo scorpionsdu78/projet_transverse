@@ -37,6 +37,10 @@ app.get("/testes/%C5%93uvre", (req, res) => {
     res.render("testes/œuvre.twig")
 })
 
+app.get("/testes/Utilisateur", (req, res) => {
+    res.render("testes/user.twig")
+})
+
 
 TestesRouter.route("/")
 
