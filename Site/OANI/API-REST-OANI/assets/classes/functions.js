@@ -80,7 +80,7 @@ exports.checkBoolean = (bool, label) => {
 
     return new Promise( (resolve, reject) => {
 
-        if(!bool)
+        if(bool == undefined)
             reject( new Error(config.errors.noValue + label + " !") )
     
     

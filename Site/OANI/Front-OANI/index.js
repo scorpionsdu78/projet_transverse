@@ -47,22 +47,16 @@ app.get("/testes/adresse", (req, res) => {
 
 app.post("/testes/adresse", (req, res) => {
 	
-	console.log((req.body.masquage))
-	
-	bool = (req.body.masquage != undefined) ? 1 :0
-	
-	console.log(bool)
-	
 	apiCall("/adresse","post",{
-	pays : req.body.pays, 
-	code_postal : req.body.postal,
-	rue : req.body.adresse, 
-	numero : req.body.numero,
-	indication : req.body.complement,
-	masquage : bool
+        pays : req.body.pays, 
+        code_postal : req.body.postal,
+        rue : req.body.adresse, 
+        numero : req.body.numero,
+        indications : req.body.complement,
+        masquage : (req.body.masquage != undefined) ? 1 : 0
 	},res,()=>{
             res.redirect("/testes/adresse")
-        })
+    })
 
 })
 
