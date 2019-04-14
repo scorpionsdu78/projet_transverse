@@ -41,6 +41,30 @@ app.get("/testes/Utilisateur", (req, res) => {
     res.render("testes/user.twig")
 })
 
+app.get("/testes/adresse", (req, res) => {
+    res.render("testes/adresse.twig")
+})
+
+app.post("/testes/adresse", (req, res) => {
+	
+	console.log((req.body.masquage))
+	
+	bool = (req.body.masquage != undefined) ? 1 :0
+	
+	console.log(bool)
+	
+	apiCall("/adresse","post",{
+	pays : req.body.pays, 
+	code_postal : req.body.postal,
+	rue : req.body.adresse, 
+	numero : req.body.numero,
+	indication : req.body.complement,
+	masquage : bool
+	},res,()=>{
+            res.redirect("/testes/adresse")
+        })
+
+})
 
 TestesRouter.route("/")
 
