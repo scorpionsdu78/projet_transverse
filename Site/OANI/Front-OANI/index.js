@@ -32,6 +32,9 @@ app.use(express.static("public"));
 app.get("/", (req, res) => {
     res.redirect("/testes/photos")
 })
+app.get("/front", (req, res) => {
+    res.render("ae/index.twig")
+})
 
 app.get("/testes/%C5%93uvre", (req, res) => {
     res.render("testes/œuvre.twig")
@@ -53,7 +56,7 @@ app.post("/testes/adresse", (req, res) => {
 		rue : req.body.adresse, 
 		numero : req.body.numero,
 		indication : req.body.complement,
-		masquage : req.body.masquage
+		masquage : (req.body.masquage != undefined) ? 1 : 0
 	},res,()=>{
             res.redirect("/testes/adresse")
     })

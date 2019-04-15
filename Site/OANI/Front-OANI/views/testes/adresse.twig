@@ -1,35 +1,7 @@
 {% include 'testes/panel_admin_template_top.twig' %}
         <!-- Début du code -->
-		
 		<form action="" method="POST">
-			<div class="form-row py-3 ">
-					
-					<div class="form-group col-7 ">
-						<input type="text" class="form-control" id="inputAdresse" name="adresse" placeholder="addresse">
-						<input type="text" class="form-control" id="inputComplement" name="complement" placeholder="complément">
-						
-					</div>
-						
-					<div class="form-group px-4">
-						<input type="number" class="form-control" id="inputNumber" name="numero" min="1" placeholder="numero">
-						<input type="text" class="form-control" id="inputPost" name="postal" placeholder="code postal">
-					</div>
-						
-					<div class="form-group px-4">
-						<input type="text" class="form-control" id="inputPays" name="pays" placeholder="pays">
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="masquage" id="inlineRadio1" value="1">
-							<label class="form-check-label" for="inlineRadio1">1</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="masquage" id="inlineRadio2" value="0">
-							<label class="form-check-label" for="inlineRadio2">2</label>
-						</div>
-					</div>
-						
-					<button type="submit" class="btn btn-primary">Enregistrer</button>
-			</div>
+			{% include 'testes/adresse_template.twig' %}
 		</form>
-        
         <!-- Fin du code -->
 {% include 'testes/panel_admin_template_bot.twig' %}
