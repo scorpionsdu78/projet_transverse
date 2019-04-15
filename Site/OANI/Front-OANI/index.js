@@ -1,10 +1,12 @@
+const fs =require("fs")
 const express = require("express")
 const bodyParser = require("body-parser")
 const axios = require("axios")
 const twig = require("twig")
-
+const fileUpload = require('express-fileupload');
 const morgan = require("morgan")("dev")
-
+const multer = require('multer');
+const upload = multer({dest: '/public/img'})
 
 
 
@@ -24,6 +26,7 @@ app.use(morgan)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended : true }))    
 app.use(express.static("public"));
+app.use(fileUpload());
 
 
 
@@ -48,6 +51,27 @@ app.get("/testes/adresse", (req, res) => {
     res.render("testes/adresse.twig")
 })
 
+app.get("/testes/upload", (req, res) => {
+	res.render("testes/upload.twig")
+})
+
+app.post('/testes/upload', (req, res) =>{
+  if (Object.keys(req.files).length == 0) {
+    return res.status(400).send('No files were uploaded.');
+  }
+
+  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+  let sampleFile = req.files.image;
+
+  // Use the mv() method to place the file somewhere on your server
+  sampleFile.mv('/public/img/filename.jpg', (err)=> {
+    if (err)
+      return res.status(500).send(err);
+
+    res.send('File uploaded!');
+  });
+});
+
 app.post("/testes/adresse", (req, res) => {
 	
 	apiCall("/adresse","post",{
@@ -62,6 +86,8 @@ app.post("/testes/adresse", (req, res) => {
     })
 
 })
+
+
 
 TestesRouter.route("/")
 
