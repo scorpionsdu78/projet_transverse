@@ -49,11 +49,11 @@ app.post("/testes/adresse", (req, res) => {
 	
 	apiCall("/adresse","post",{
         pays : req.body.pays, 
-        code_postal : req.body.postal,
-        rue : req.body.adresse, 
-        numero : req.body.numero,
-        indications : req.body.complement,
-        masquage : (req.body.masquage != undefined) ? 1 : 0
+		code_postal : req.body.postal,
+		rue : req.body.adresse, 
+		numero : req.body.numero,
+		indication : req.body.complement,
+		masquage : req.body.masquage
 	},res,()=>{
             res.redirect("/testes/adresse")
     })
