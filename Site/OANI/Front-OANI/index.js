@@ -3,10 +3,11 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const axios = require("axios")
 const twig = require("twig")
-const fileUpload = require('express-fileupload');
+//const fileUpload = require('express-fileupload');
 const morgan = require("morgan")("dev")
 const multer = require('multer');
-const upload = multer({dest: '/public/img'})
+const upload = require("express-fileupload");
+const http = require("http")
 
 
 
@@ -21,12 +22,13 @@ const TestesRouter = express.Router()
 
 
 
+
 //Middlewares :
 app.use(morgan)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended : true }))    
 app.use(express.static("public"));
-app.use(fileUpload());
+app.use(upload());
 
 
 
@@ -56,20 +58,62 @@ app.get("/testes/upload", (req, res) => {
 })
 
 app.post('/testes/upload', (req, res) =>{
-  if (Object.keys(req.files).length == 0) {
-    return res.status(400).send('No files were uploaded.');
-  }
+	
+	console.log("fils de pute")
+	
+	if(req.files){
+		console.log("if fils de pute")
+		var file = req.files.filename
+		var filename = req.files.filename.name
+		console.log(file)
+		file.mv("./public/avatar/"+filename,(err)=>{
+			if(err){
+				console.log(err)
+				res.send("error occured")
+			}
+			else{
+				res.send("done")
+			}
+		})
+	}
+  
+});
 
-  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-  let sampleFile = req.files.image;
 
-  // Use the mv() method to place the file somewhere on your server
-  sampleFile.mv('/public/img/filename.jpg', (err)=> {
-    if (err)
-      return res.status(500).send(err);
-
-    res.send('File uploaded!');
-  });
+app.post('/testes/utilisateur', (req, res) =>{
+	
+	
+		console.log(req.body.inputName)
+		console.log(req.body.mot_de_passe)
+		console.log(req.body.email)
+		apiCall("/utilisateur","post",{
+			nom_utilisateur : req.body.inputName,
+			mot_de_passe : req.body.mot_de_passe,
+			adresse_mail : req.body.email,
+			description : req.body.descri
+			
+		},res,(result)=>{
+			console.log(result)
+			var iduser = result.ID
+			apiCall("/adresse","post",{
+				pays : req.body.pays, 
+				code_postal : req.body.postal,
+				rue : req.body.adresse, 
+				numero : req.body.numero,
+				indication : req.body.complement,
+				masquage : (req.body.masquage != undefined) ? 1 : 0
+			},res,(result)=>{
+				console.log(result)
+				var idadresse = result.ID
+				apiCall("/adresse-utilisateur","post",{
+					id_utilisateur : iduser,
+					id_adresse : idadresse
+				},res,()=>{
+					res.redirect("/testes/utilisateur")
+				})
+			})
+		})
+	
 });
 
 app.post("/testes/adresse", (req, res) => {
@@ -154,7 +198,8 @@ app.use(`/testes/photos`, TestesRouter)
 
 
 //Lancement de l'app
-app.listen(port, () => console.log(`Server started on port : ${port}`))
+http.Server(app).listen(port, () => console.log(`Server started on port ${port}`))
+//app.listen(port, () => console.log(`Server started on port : ${port}`))
 
 
 

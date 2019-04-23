@@ -1,42 +1,39 @@
 {% include 'testes/panel_admin_template_top.twig' %}
         <!-- Début du code -->
-		<form>
+		<form action="" method="POST" >
 			<div class="form-row px-3 py-1 ml-1 mt-0">
 				<div class="form-group col-md-6">
 					<input type="text" class="form-control" id="inputName" placeholder="nom de l'utilisateur" >
-					
+					<div class="form-group py-3">
+						<label> entrez avatar utilisateur </label>
+						{% include 'testes/user_template.twig' %}
+					</div>	
 				</div>
 				
 			</div>
 			<div class="form-row px-3 py-1 ml-1 mt-0">
 				<div class="form-group col-md-6">
-					<input type="text" class="form-control" id="inputName" placeholder="email">
+					<input type="text" class="form-control" id="email" placeholder="email">
+				</div>
+				<div class="form-group col-md-6">
+					<input type="text" class="form-control" id="mot_de_passe" placeholder="mot de passe">
 				</div>
 				
-			</div>
-			
-			<div class="form-row px-3 py-1 ml-1 mt-0">
-				<div class="custom-file">
-					<input type="file" class="custom-file-input" id="inputGroupFile02">
-					<label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
-				</div>
-				<div class="input-group-append">
-					<span class="input-group-text" id="inputGroupFileAddon02">Upload</span>
-				</div>
 			</div>
 			
 			<div class="form-row px-3 py-1 ml-1 mt-0">
 				<div class="col-7">
-					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="description"></textarea>
+					<textarea class="form-control" id="descri" rows="3" placeholder="description"></textarea>
 				</div>
 				
 			</div>
 			
-									
+			
+								
 			
 			{% include 'testes/adresse_template.twig' %}
 			
-			
+			<button type="submit" class="btn btn-primary">Enregistrer</button>
         </form>
         <!-- Fin du code -->
 {% include 'testes/panel_admin_template_bot.twig' %}
