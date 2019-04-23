@@ -316,6 +316,7 @@ class Utilisateur {
     }
 
 
+    //NE SUPPRIME PAS ENCORE LES OEUVRES DE L'ARTISTE
     delete(id){
 
         return new Promise( (next) => {

@@ -1,37 +1,37 @@
 const express = require("express")
-const Utilisateur = require(process.cwd() + "/assets/classes/Utilisateur")
+const Artiste = require(process.cwd() + "/assets/classes/Artiste")
 
 const {checkAndChange} = require("./functions")
 
 
-class UtilisateurRouter extends express.Router {
+class ArtisteRouter extends express.Router {
 
     
     constructor(db){
         super()
 
         
-        const utilisateur = new Utilisateur(db)
+        const artiste = new Artiste(db)
 
         this.route(`/:id`)
 
             .get( async (req, res) => {
 
-                const result = await utilisateur.getByID(req.params.id)             
+                const result = await artiste.getByID(req.params.id)             
                 res.json( checkAndChange(result) )
                 
             })
 
             .put( async (req, res) => {
 
-                const result = await utilisateur.update(req.params.id, req.body.mot_de_passe, req.body.new_mot_de_passe, req.body.adresse_mail, req.body.instagram, req.body.avatar, req.body.description)
+                const result = await artiste.update(req.params.id, req.body.mot_de_passe, req.body.new_mot_de_passe, req.body.adresse_mail, req.body.instagram, req.body.avatar, req.body.description)
                 res.json( checkAndChange(result) )
 
             })
             
             .delete( async (req, res) => {
 
-                const result = await utilisateur.delete(req.params.id)
+                const result = await artiste.delete(req.params.id)
                 res.json( checkAndChange(result) )
                 
             })
@@ -41,7 +41,7 @@ class UtilisateurRouter extends express.Router {
 
             .get( async (req, res) => {
 
-                const result = await utilisateur.getByID_admin(req.params.id)             
+                const result = await artiste.getByID_admin(req.params.id)             
                 res.json( checkAndChange(result) )
                 
             })
@@ -52,14 +52,14 @@ class UtilisateurRouter extends express.Router {
 
             .get( async (req, res) => {
 
-                const result = await utilisateur.getAll()
+                const result = await artiste.getAll()
                 res.json(checkAndChange(result))
                     
             })
             
             .post( async (req, res) => {
 
-                const result = await utilisateur.add(req.body.nom_utilisateur, req.body.mot_de_passe, req.body.adresse_mail, req.body.instagram, req.body.avatar, req.body.description)
+                const result = await artiste.add(req.body.id_utilisateur, req.body.pseudo)
                 res.json(checkAndChange(result))
 
             })
@@ -69,7 +69,7 @@ class UtilisateurRouter extends express.Router {
 
             .get( async (req, res) => {
 
-                const result = await utilisateur.getAll_admin()             
+                const result = await artiste.getAll_admin()             
                 res.json( checkAndChange(result) )
                 
             })
@@ -82,4 +82,4 @@ class UtilisateurRouter extends express.Router {
 
 
 
-module.exports = UtilisateurRouter
+module.exports = ArtisteRouter

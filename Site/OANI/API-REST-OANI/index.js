@@ -10,8 +10,10 @@ const expressOasGenerator = require('express-oas-generator');
 const morgan = require("morgan")("dev")
 
 const UtilisateurRouter = require("./routes/UtilisateurRouter")
+const ArtisteRouter = require("./routes/ArtisteRouter")
 const AdresseUtilisateurRouter = require("./routes/AdresseUtilisateurRouter")
 const AdresseRouter = require("./routes/AdresseRouter")
+const ŒuvreRouter = require("./routes/ŒuvreRouter")
 const PhotoRouter = require("./routes/PhotoRouter")
 const TagRouter = require("./routes/TagRouter")
 const TagCouleurRouter = require("./routes/TagCouleurRouter")
@@ -41,11 +43,17 @@ mysql.createConnection(config.db)
         //Utilisateur :
         let utilisateurRouter = new UtilisateurRouter(db);
 
+        //Utilisateur :
+        let artisteRouter = new ArtisteRouter(db);
+
         //Adresse d'utilisateur :
         let adresseUtilisateurRouter = new AdresseUtilisateurRouter(db)
 
         //Adresse :
         let adresseRouter = new AdresseRouter(db)
+
+        //Œuvre :
+        let œuvreRouter = new ŒuvreRouter(db)
 
         //Photo :
         let photoRouter = new PhotoRouter(db)
@@ -57,12 +65,12 @@ mysql.createConnection(config.db)
         let tagCouleurRouter = new TagCouleurRouter(db)
 
 
-
-
         //Initialisation des Routers
+        app.use(config.rootAPI + `Artiste`, artisteRouter)
         app.use(config.rootAPI + `Utilisateur`, utilisateurRouter)
         app.use(config.rootAPI + `Adresse-utilisateur`, adresseUtilisateurRouter)
         app.use(config.rootAPI + `Adresse`, adresseRouter)
+        app.use(config.rootAPI + `Oeuvre`, œuvreRouter)
         app.use(config.rootAPI + `Photo`, photoRouter)
         app.use(config.rootAPI + `Tag`, tagRouter)
         app.use(config.rootAPI + `Tag-couleur`, tagCouleurRouter)
