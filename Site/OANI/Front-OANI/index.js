@@ -81,38 +81,45 @@ app.post('/testes/upload', (req, res) =>{
 
 
 app.post('/testes/utilisateur', (req, res) =>{
-	
-	
-		console.log(req.body.inputName)
-		console.log(req.body.mot_de_passe)
-		console.log(req.body.email)
-		apiCall("/utilisateur","post",{
-			nom_utilisateur : req.body.inputName,
-			mot_de_passe : req.body.mot_de_passe,
-			adresse_mail : req.body.email,
-			description : req.body.descri
-			
-		},res,(result)=>{
-			console.log(result)
-			var iduser = result.ID
-			apiCall("/adresse","post",{
-				pays : req.body.pays, 
-				code_postal : req.body.postal,
-				rue : req.body.adresse, 
-				numero : req.body.numero,
-				indication : req.body.complement,
-				masquage : (req.body.masquage != undefined) ? 1 : 0
-			},res,(result)=>{
-				console.log(result)
-				var idadresse = result.ID
-				apiCall("/adresse-utilisateur","post",{
-					id_utilisateur : iduser,
-					id_adresse : idadresse
-				},res,()=>{
-					res.redirect("/testes/utilisateur")
-				})
-			})
-		})
+    var filename
+
+    //On voit si on a un avatar
+	if(req.files){
+		var file = req.files.avatar
+		filename = req.files.avatar.name
+        //on sauvegarde sur le serveur l'avatar
+		file.mv("./public/img/avatar/"+filename, (err)=>{
+			if(err)
+				res.send(err.message)
+        })
+    }
+    
+    //Puis on crée l'utilisateur
+    apiCall("/utilisateur", "post", {
+        nom_utilisateur : req.body.inputName,
+        mot_de_passe : req.body.mot_de_passe,
+        adresse_mail : req.body.email,
+        avatar : filename,
+        description : req.body.description
+    }, res, (result) => {
+        var iduser = result.ID
+        apiCall("/adresse", "post", {
+            pays : req.body.pays, 
+            code_postal : req.body.postal,
+            rue : req.body.adresse, 
+            numero : req.body.numero,
+            indication : req.body.complement,
+            masquage : (req.body.masquage != undefined) ? 1 : 0
+        }, res, (result) => {
+            var idadresse = result.ID
+            apiCall("/adresse-utilisateur", "post", {
+                id_utilisateur : iduser,
+                id_adresse : idadresse
+            }, res, () => {
+                res.redirect("/testes/utilisateur")
+            })
+        })
+    })
 	
 });
 
