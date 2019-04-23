@@ -1,24 +1,3 @@
-exports.success = (result) => {
-    return {
-        status : "success",
-        result : result
-    }
-}
-
-
-exports.error = (errMessage) => {
-    return {
-        status : "error",
-        message : errMessage
-    }
-}
-
-
-exports.checkAndChange = (obj) => {
-    return (obj instanceof Error) ? this.error(obj.message) : this.success(obj)
-}
-
-
 exports.sorting = (json_object, key_to_sort_by, type) => {
     function sortByKey(a, b, type) {
         var x = a[key_to_sort_by]
