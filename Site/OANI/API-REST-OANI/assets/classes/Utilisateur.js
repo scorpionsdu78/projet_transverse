@@ -63,7 +63,7 @@ class Utilisateur {
                     if(result[0] != undefined)
                         utilisateur.Pseudo = result[0].Pseudo
 
-                    return this.db.query("SELECT a.Pays, a.`Code Postal`, a.Rue, a.`Numéro de rue`, a.`Indications Complémentaires`, a.Masquage FROM utilisateur u INNER JOIN `adresse d'utilisateur` au ON u.id = au.utilisateur INNER JOIN adresse a ON au.adresse = a.id WHERE (u.id = ?)", [id])
+                    return this.db.query("SELECT a.Pays, a.`Code_Postal`, a.Rue, a.`Numéro de rue`, a.`Indications Complémentaires`, a.Masquage FROM utilisateur u INNER JOIN `adresse d'utilisateur` au ON u.id = au.utilisateur INNER JOIN adresse a ON au.adresse = a.id WHERE (u.id = ?)", [id])
                 })
                 .then( (result) => {
 

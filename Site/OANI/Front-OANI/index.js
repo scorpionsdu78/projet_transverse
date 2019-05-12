@@ -57,6 +57,14 @@ app.get("/testes/upload", (req, res) => {
 	res.render("testes/upload.twig")
 })
 
+app.get("/testes/user_edit/:id",(req, res) =>{
+	apiCall("/utilisateur/admin/id/" + req.params.id, "get", {}, res, (response) => {
+            res.render("testes/user_edit.twig", {
+                user : response
+            })
+        })
+})
+
 app.post('/testes/upload', (req, res) =>{
 	
 	console.log("fils de pute")
