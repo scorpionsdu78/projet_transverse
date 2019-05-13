@@ -1,12 +1,13 @@
-{% include 'testes/panel_admin_template_top.twig' %}
+{% include 'panel admin/panel_admin_template_top.twig' %}
         <!-- Début du code -->
 		<form action="" method="POST" enctype="multipart/form-data">
 			<div class="form-row px-3 py-1 ml-1 mt-0">
 				<div class="form-group col-md-6">
-					<input type="text" class="form-control" name="inputName" placeholder="nom de l'utilisateur" >
+					<input type="text" class="form-control" name="inputName" placeholder="nom de l'utilisateur" 
+					{% if utilisateur["Nom d'utilisateur"] %} value="{{utilisateur["Nom d'utilisateur"]}}" {% endif %}>
 					<div class="form-group py-3">
 						<label for="avatar"> entrez avatar utilisateur </label>
-						{% include 'testes/user_template.twig' %}
+						{% include 'panel admin/utilisateur_template.twig' %}
 					</div>	
 				</div>
 				
@@ -31,9 +32,9 @@
 			
 								
 			
-			{% include 'testes/adresse_template.twig' %}
+			{% include 'panel admin/adresse_template.twig' %}
 			
 			<button type="submit" class="btn btn-primary">Enregistrer</button>
         </form>
         <!-- Fin du code -->
-{% include 'testes/panel_admin_template_bot.twig' %}
+{% include 'panel admin/panel_admin_template_bot.twig' %}

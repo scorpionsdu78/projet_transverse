@@ -1,4 +1,4 @@
-{% include 'testes/panel_admin_template_top.twig' %}
+{% include 'panel admin/panel_admin_template_top.twig' %}
             <!-- Début du code -->
             
             <a href="/"><h1 class="mb-5 text-center">Modification de la photo {{photo.ID}}</h1></a>
@@ -25,10 +25,10 @@
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
             </form>
 
-            <form action="/testes/photos/delete" method="POST" class="mt-5">
+            <form action="/panel admin/photos/delete" method="POST" class="mt-5">
                 <input type="hidden" name="id" value="{{photo.ID}}">
                 <button type="submit" class="btn btn-primary">Supprimer</button>
             </form>
             
             <!-- Fin du code -->
-{% include 'testes/panel_admin_template_bot.twig' %}
+{% include 'panel admin/panel_admin_template_bot.twig' %}

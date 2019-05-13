@@ -9,32 +9,21 @@ exports.config = {
 }
 
 
-config = {
-    errors : {
-        wrongValue : "Mauvaise valeur pour ",
-        wrongType : "Mauvais type pour ",
-        noResult : "Aucun résultat pour ",
-        noValue : "Pas de valeur pour ",
-        noUnique : "Valeur déjà existante pour "
-    }
-}
-
-
 
 exports.checkNumber = (num, label) => {
 
     return new Promise( (resolve, reject) => {
 
         if(!num)
-            reject( new Error(config.errors.noValue + label + " !") )
+            reject( new Error(exports.config.errors.noValue + label + " !") )
     
     
         else if(parseInt(num) != num)
-            reject( new Error(config.errors.wrongType + label + " !") )
+            reject( new Error(exports.config.errors.wrongType + label + " !") )
     
     
         else if(num <= 0)
-            reject( new Error(config.errors.wrongValue + label + " !") )
+            reject( new Error(exports.config.errors.wrongValue + label + " !") )
 
         
         resolve(parseInt(num))
@@ -49,22 +38,22 @@ exports.checkExistingId = (id, table, db) => {
     return new Promise( (resolve, reject) => {
 
         if(!id)
-            reject( new Error(config.errors.noValue + label + " !") )
+            reject( new Error(exports.config.errors.noValue + label + " !") )
     
     
         else if(parseInt(id) != id)
-            reject( new Error(config.errors.wrongType + label + " !") )
+            reject( new Error(exports.config.errors.wrongType + label + " !") )
     
     
         else if(id <= 0)
-            reject( new Error(config.errors.wrongValue + label + " !") )
+            reject( new Error(exports.config.errors.wrongValue + label + " !") )
     
         id = parseInt(id)
 
         db.query('SELECT id FROM `' + table  + '` WHERE (id = ?)', [id])
             .then((result) => {
                 if(result[0] == undefined)
-                    reject(new Error(config.errors.noResult + table + " !"))
+                    reject(new Error(exports.config.errors.noResult + table + " !"))
 
                 else
                     resolve(id)
@@ -81,15 +70,15 @@ exports.checkBoolean = (bool, label) => {
     return new Promise( (resolve, reject) => {
 
         if(bool == undefined)
-            reject( new Error(config.errors.noValue + label + " !") )
+            reject( new Error(exports.config.errors.noValue + label + " !") )
     
     
         else if(parseInt(bool) != bool)
-            reject( new Error(config.errors.wrongType + label + " !") )
+            reject( new Error(exports.config.errors.wrongType + label + " !") )
     
     
         else if( (bool < 0) || (bool > 1) ) 
-            reject( new Error(config.errors.wrongValue + label + " !") )
+            reject( new Error(exports.config.errors.wrongValue + label + " !") )
     
         resolve(parseInt(bool))
 
@@ -105,7 +94,7 @@ exports.checkAndChangeOrdre = (id_oeuvre, ordre, db) => {
             //un ordre non nul
         
             if(!ordre || ordre.trim() == "")
-                reject( new Error(config.errors.noValue + "ordre" + " !"))
+                reject( new Error(exports.config.errors.noValue + "ordre" + " !"))
 
             
             else{
@@ -114,7 +103,7 @@ exports.checkAndChangeOrdre = (id_oeuvre, ordre, db) => {
                 db.query('SELECT ordre FROM photo WHERE (ordre = ?)', [ordre])
                     .then( (result) => {
                         if(result[0] != undefined)
-                            reject( new Error(config.errors.noUnique + "ordre" + " !") )
+                            reject( new Error(exports.config.errors.noUnique + "ordre" + " !") )
 
                         else
                             resolve(ordre)
@@ -145,7 +134,7 @@ exports.checkText = (text, label) => {
     return new Promise( (resolve, reject) => {
         
         if(!text || text.trim() == ""){
-            reject( new Error(config.errors.noValue + label + " !"))
+            reject( new Error(exports.config.errors.noValue + label + " !"))
         }
 
         
@@ -159,7 +148,7 @@ exports.checkTag = (tag, id_oeuvre, db) => {
     return new Promise( (resolve, reject) => {
         
         if(!tag || tag.trim() == "")
-            reject( new Error(config.errors.noValue + "tag" + " !") )
+            reject( new Error(exports.config.errors.noValue + "tag" + " !") )
 
 
         else{
@@ -168,7 +157,7 @@ exports.checkTag = (tag, id_oeuvre, db) => {
             db.query('SELECT tag FROM tag WHERE ( (tag = ?) AND (`Œuvre` = ?) )', [tag, id_oeuvre])
                 .then( (result) => {
                     if(result[0] != undefined)
-                        reject( new Error(config.errors.noUnique + "tag" + " !") )
+                        reject( new Error(exports.config.errors.noUnique + "tag" + " !") )
 
                     else
                         resolve(tag)
@@ -184,7 +173,7 @@ exports.checkTagCouleur = (tag, id_oeuvre, db) => {
     return new Promise( (resolve, reject) => {
         
         if(!tag || tag.trim() == "")
-            reject( new Error(config.errors.noValueTag + "tag couleur" + " !") )
+            reject( new Error(exports.config.errors.noValueTag + "tag couleur" + " !") )
 
 
         else{
@@ -193,7 +182,7 @@ exports.checkTagCouleur = (tag, id_oeuvre, db) => {
             db.query('SELECT tag FROM `tag couleur` WHERE ( (tag = ?) AND (`Œuvre` = ?) )', [tag, id_oeuvre])
                 .then( (result) => {
                     if(result[0] != undefined)
-                        reject( new Error(config.errors.noUnique + "tag couleur" + " !") )
+                        reject( new Error(exports.config.errors.noUnique + "tag couleur" + " !") )
 
                     else
                         resolve(tag)

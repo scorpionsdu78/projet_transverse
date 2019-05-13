@@ -1,4 +1,4 @@
-{% include 'testes/panel_admin_template_top.twig' %}
+{% include 'panel admin/panel_admin_template_top.twig' %}
         <div class="container-fluid bg-light pt-5" style="height: 100%; overflow: auto;">
           <div class="container-fluid d-flex justify-content-between">
             <h1>Photos</h1>
@@ -16,15 +16,15 @@
             </thead>
             <tbody>
               {% for photo in photos %}
-                <tr style="cursor: pointer;" onclick="document.location='/testes/photos/get/{{photo.ID}}'">
+                <tr style="cursor: pointer;" onclick="document.location='/panel admin/photos/get/{{photo.ID}}'">
                   {% for index, value in photo %}
                     <th scope="col">{{value}}</th>
                   {% endfor %}
                   <th class="col-1">
-                    <a href="/testes/photos/edit/{{photo.ID}}" class="btn btn-primary">Modifier</a>
+                    <a href="/panel admin/photos/edit/{{photo.ID}}" class="btn btn-primary">Modifier</a>
                   </th>
                   <th class="col-1">
-                    <form action="/testes/photos/delete" method="POST">
+                    <form action="/panel admin/photos/delete" method="POST">
                       <input type="hidden" name="id" value="{{photo.ID}}">
                       <button type="submit" class="btn btn-primary">Supprimer</button>
                     </form>
@@ -34,4 +34,4 @@
             </tbody>
           </table>
         </div>
-{% include 'testes/panel_admin_template_bot.twig' %}
+{% include 'panel admin/panel_admin_template_bot.twig' %}
