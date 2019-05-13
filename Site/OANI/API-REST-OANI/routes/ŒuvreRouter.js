@@ -24,7 +24,7 @@ class ŒuvreRouter extends express.Router {
 
             .put( async (req, res) => {
 
-                const result = await œuvre.update()
+                const result = await œuvre.update(req.params.id, req.body.titre, req.body.description, req.body.prix, req.body.id_adresse)
                 res.json( checkAndChange(result) )
 
             })

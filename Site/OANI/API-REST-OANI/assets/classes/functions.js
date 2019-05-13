@@ -38,15 +38,15 @@ exports.checkExistingId = (id, table, db) => {
     return new Promise( (resolve, reject) => {
 
         if(!id)
-            reject( new Error(exports.config.errors.noValue + label + " !") )
+            reject( new Error(exports.config.errors.noValue + "id" + " !") )
     
     
         else if(parseInt(id) != id)
-            reject( new Error(exports.config.errors.wrongType + label + " !") )
+            reject( new Error(exports.config.errors.wrongType + "id" + " !") )
     
     
         else if(id <= 0)
-            reject( new Error(exports.config.errors.wrongValue + label + " !") )
+            reject( new Error(exports.config.errors.wrongValue + "id" + " !") )
     
         id = parseInt(id)
 

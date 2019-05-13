@@ -190,7 +190,7 @@ class Utilisateur {
     update(id, mot_de_passe, new_mot_de_passe, adresse_mail, instagram, avatar, description){
 
         return new Promise( (next) => {
-            let bool_changement = 0;
+            let bool_changement = 0
 
             checkExistingId(id, "utilisateur", this.db)
                 .then( (result) => {
