@@ -44,7 +44,7 @@ class Tag {
                     .then((result) => {
                         id_oeuvre = result
 
-                        return this.db.query('SELECT * FROM tag WHERE (`Œuvre` = ?) ORDER BY ordre', [id_oeuvre])
+                        return this.db.query('SELECT * FROM tag WHERE (`Œuvre` = ?)', [id_oeuvre])
                     })
                     .then( (result) => next(result) )
                     .catch( (err) => next(err) )

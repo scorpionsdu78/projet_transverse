@@ -2072,6 +2072,190 @@
             }
           }
         }
+      },
+      "/Tag/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type" : "number",
+            "description" : "id d'un tag",
+            "required": true
+          }
+        ],
+        "get": {
+          "tags" : ["Tag"],
+          "summary": "Retourne un tag par son id",
+          "operationId": "getTagById",
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": {
+                "status": "success",
+                "result": [
+                    {
+                        "ID": 5,
+                        "Tag": "tag1",
+                        "Œuvre": 2
+                    },
+                    {
+                        "ID": 6,
+                        "Tag": "tag2",
+                        "Œuvre": 2
+                    },
+                    {
+                        "ID": 7,
+                        "Tag": "tag3",
+                        "Œuvre": 3
+                    }
+                ]
+              }
+            },
+            "400": {
+                "description": "Erreur",
+                "example": 
+                {
+                    "status": "error",
+                    "message": "Aucun résultat pour id !"
+                }
+            }
+          }
+        },
+        "delete": {
+          "tags" : ["Tag"],
+          "summary": "Supprime un tag par son id et renvoie la requête GET /tag",
+          "operationId": "DeleteTag",
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": {
+                "status": "success",
+                "result": [
+                    {
+                        "ID": 5,
+                        "Tag": "tag1",
+                        "Œuvre": 2
+                    },
+                    {
+                        "ID": 6,
+                        "Tag": "tag2",
+                        "Œuvre": 2
+                    },
+                    {
+                        "ID": 7,
+                        "Tag": "tag3",
+                        "Œuvre": 3
+                    }
+                ]
+              }
+            },
+            "400": {
+              "description": "Erreur",
+              "example":
+              {
+                "status": "error",
+                "message": "Aucun résultat pour tag !"
+              }
+            }
+          }
+        }
+      },
+      "/Tag": {
+        "get": {
+          "tags" : ["Tag"],
+          "summary": "Retourne toute les tags",
+          "operationId": "getAllTag",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": 
+          [
+            {
+              "name": "id_oeuvre",
+              "in": "query",
+              "type" : "number",
+              "description" : "id d'une oeuvre",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": {
+                "status": "success",
+                "result": [
+                    {
+                        "ID": 5,
+                        "Tag": "tag1",
+                        "Œuvre": 2
+                    },
+                    {
+                        "ID": 6,
+                        "Tag": "tag2",
+                        "Œuvre": 2
+                    }
+                ]
+              }
+            },
+            "400": {
+                "description": "Erreur",
+                "example":{
+                  "status": "error",
+                  "message": "Aucun résultat pour Œuvre !"
+              }
+            }
+          }
+        },
+        "post": {
+          "tags" : ["Tag"],
+          "summary": "Ajoute un nouveau tag associée à une oeuvre",
+          "operationId": "addTag",
+          "consumes": [
+            "text/plain"
+          ],
+          "parameters": [
+            {
+              "name": "id_oeuvre",
+              "in": "formData",
+              "type": "number",
+              "description": "id de l'oeuvre associé",
+              "required": true
+            },
+            {
+              "name": "tag",
+              "in": "formData",
+              "type": "string",
+              "required": true,
+              "description": "valeur du tag"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": {
+                "status": "success",
+                "result": {
+                    "ID": 8,
+                    "Tag": "tag4",
+                    "Œuvre": 3
+                }
+              }
+            },
+            "400": {
+              "description": "Erreur",
+              "example": {
+                "status": "error",
+                "message": "Pas de valeur pour tag !"
+              }
+            }
+          }
+        }
       }
     },
     "swagger": "2.0"

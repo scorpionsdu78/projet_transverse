@@ -35,7 +35,7 @@ class TagRouter extends express.Router {
 
             .get( async (req, res) => {
 
-                const result = await tag.getAll(req.query.oeuvre)
+                const result = await tag.getAll(req.query.id_oeuvre)
                 res.json(checkAndChange(result))
                     
             })

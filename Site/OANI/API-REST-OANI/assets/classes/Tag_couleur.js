@@ -44,7 +44,7 @@ class Tag_couleur {
                     .then((result) => {
                         id_oeuvre = result
 
-                        return this.db.query('SELECT * FROM `tag couleur` WHERE (`Œuvre` = ?) ORDER BY ordre', [id_oeuvre])
+                        return this.db.query('SELECT * FROM `tag couleur` WHERE (`Œuvre` = ?)', [id_oeuvre])
                     })
                     .then( (result) => next(result) )
                     .catch( (err) => next(err) )
