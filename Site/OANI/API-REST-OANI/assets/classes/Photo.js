@@ -130,11 +130,11 @@ class Photo {
                 .then( (result) => {
                     ordre = result
 
-                    console.log(`id : ${id}`)
                     return this.db.query('SELECT `Œuvre` FROM photo WHERE (id = ?)', [id])
                 })
                 .then( (result) => {
                     let id_oeuvre = result[0][`Œuvre`]
+
                     return this.db.query('SELECT ordre FROM photo WHERE ( (`Œuvre` = ?) AND (ordre = ?) AND (id != ?) )', [id_oeuvre, ordre, id])
                 })
                 .then( (result) => {

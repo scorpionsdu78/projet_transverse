@@ -50,10 +50,16 @@ class Artiste {
                     return this.db.query("SELECT * FROM Artiste WHERE (id = ?)", [id])
                 })
                 .then( (result) => {
-                    artiste = result[0];
-                    id_utilisateur = result[0].Utilisateur;
+                    if(result[0] == undefined)
+                        next( new Error(config.errors.noResult + "id" + " !") )
 
-                    return this.db.query("SELECT `Nom d'utilisateur`, `Adresse mail`, Instagram, Avatar, Description FROM Utilisateur WHERE (id = ?)", [id_utilisateur])
+                    
+                    else{
+                        artiste = result[0];
+                        id_utilisateur = result[0].Utilisateur;
+    
+                        return this.db.query("SELECT `Nom d'utilisateur`, `Adresse mail`, Instagram, Avatar, Description FROM Utilisateur WHERE (id = ?)", [id_utilisateur])    
+                    }
                 })
                 .then( (result) => {
                     if(result[0] == undefined)
@@ -185,129 +191,30 @@ class Artiste {
     }
 
 
-    update(id, mot_de_passe, new_mot_de_passe, adresse_mail, instagram, avatar, description){
+    update(id, pseudo){
 
         return new Promise( (next) => {
-            let bool_changement = 0;
 
-            checkExistingId(id, "utilisateur", this.db)
+            checkExistingId(id, "artiste", this.db)
                 .then( (result) => {
                     id = result
                     
 
-                    return new Promise( (resolve, reject) => {
-                        
-                        if( (mot_de_passe != undefined) && (mot_de_passe.trim() != "") && (new_mot_de_passe != undefined) && (new_mot_de_passe.trim() != "") ){
-                            this.db.query("SELECT `Nom d'utilisateur` FROM utilisateur where ( (id = ?) AND (`Mot de passe` = ?) )", [id, mot_de_passe])
-                                .then( (result) => {
-                                    if (result[0] == undefined)
-                                    reject( new Error("Mot de passe incorrect !") )
-                        
-                                    
-                                    else
-                                        return this.db.query("UPDATE utilisateur SET `Mot de passe` = ? WHERE (id = ?)", [new_mot_de_passe, id])   
-
-                                })
-                                .then( () => resolve(1) )
-                                .catch( (err) => reject(err) )
-                        }
-                        
-                        else
-                            resolve(0)
-                    })
+                    return checkText(pseudo)
                 })
                 .then( (result) => {
-                    if(bool_changement == 0)
-                        bool_changement += result
+                    pseudo = result
 
-                    return new Promise( (resolve, reject) => {
-
-                        if( (adresse_mail != undefined) && (adresse_mail.trim() != "") ){
-                            adresse_mail = adresse_mail.trim()
-                            this.db.query("SELECT `Nom d'utilisateur` FROM utilisateur where ( (id != ?) AND (`Adresse mail` = ?) )", [id, adresse_mail])
-                                .then( (result) => {
-                                    if (result[0] != undefined)
-                                        reject( new Error(config.errors.noUnique + "adresse mail" + " !") )
-                        
-                                    
-                                    else
-                                        return this.db.query("UPDATE utilisateur SET `Adresse mail` = ? WHERE (id = ?)", [adresse_mail, id])   
-                                })
-                                .then( () => resolve(1) )
-                                .catch( (err) => reject(err) )
-                        }
-
-
-                        else
-                            resolve(0)
-                    })
+                    return this.db.query('SELECT pseudo FROM artiste WHERE ( (pseudo = ?) AND (id != ?) )', [pseudo, id])
                 })
                 .then( (result) => {
-                    if(bool_changement == 0)
-                        bool_changement += result
+                    if(result[0] != undefined)
+                        next( new Error(config.errors.noUnique + "pseudo" + " !") )
 
-                    return new Promise( (resolve, reject) => {
-
-                        if( (instagram != undefined) && (instagram.trim() != "") ){
-                            instagram = instagram.trim()
-                            this.db.query("UPDATE utilisateur SET `Instagram` = ? WHERE (id = ?)", [instagram, id])
-                                .then( () => resolve(1) )
-                                .catch( (err) => reject(err) )
-                        }
-
-
-                        else
-                            resolve(0)
-                    })
-                })
-                .then( (result) => {
-                    if(bool_changement == 0)
-                        bool_changement += result
-
-                    return new Promise( (resolve, reject) => {
-
-                        if( (avatar != undefined) && (avatar.trim() != "") ){
-                            avatar = avatar.trim()
-                            this.db.query("UPDATE utilisateur SET `Avatar` = ? WHERE (id = ?)", [avatar, id])
-                                .then( () => resolve(1) )
-                                .catch( (err) => reject(err) )
-                        }
-
-
-                        else
-                            resolve(0)
-                    })
-                })
-                .then( (result) => {
-                    if(bool_changement == 0)
-                        bool_changement += result
-
-                    return new Promise( (resolve, reject) => {
-
-                        if( (description != undefined) && (description.trim() != "") ){
-                            description = description.trim()
-                            this.db.query("UPDATE utilisateur SET `Description` = ? WHERE (id = ?)", [description, id])
-                                .then( () => resolve(1) )
-                                .catch( (err) => reject(err) )
-                        }
-
-
-                        else
-                            resolve(0)
-                    })
-                })
-                .then( (result) => {
-                    if(bool_changement == 0)
-                        bool_changement += result
-                        
-
-
-                    if(bool_changement == 0)
-                        next(false)
-                    
                     else
-                        next(true)
+                        return this.db.query("UPDATE artiste SET `Pseudo` = ? WHERE (id = ?)", [pseudo, id])
                 })
+                .then( () => next(true) )
                 .catch( (err) => next(err) )
 
         })

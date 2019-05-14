@@ -24,7 +24,7 @@ class ArtisteRouter extends express.Router {
 
             .put( async (req, res) => {
 
-                const result = await artiste.update(req.params.id, req.body.mot_de_passe, req.body.new_mot_de_passe, req.body.adresse_mail, req.body.instagram, req.body.avatar, req.body.description)
+                const result = await artiste.update(req.params.id, req.body.pseudo)
                 res.json( checkAndChange(result) )
 
             })
