@@ -92,8 +92,23 @@ class Panel_admin_router extends express.Router {
                     })
             })
 			
-			.put((req,res) =>{
-				apiCall("/utilisateur/admin/id/" + req.params.id, "put", {
+			.post((req,res) =>{
+				
+				
+				var filename
+
+                //On voit si on a un avatar
+                if(req.files){
+                    var file = req.files.avatar
+                    filename = req.files.avatar.name
+                    //on sauvegarde sur le serveur l'avatar
+                    file.mv("./public/img/avatar/"+filename, (err)=>{
+                        if(err)
+                            res.send(err.message)
+                    })
+                }
+								
+				apiCall("/utilisateur/" + req.params.id, "put", {
                     adresse_mail : req.body.email,
                     avatar : filename,
                     description : req.body.description
