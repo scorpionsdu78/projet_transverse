@@ -1,38 +1,47 @@
 {% include 'panel admin/panel_admin_template_top.twig' %}
         <!-- Début du code -->
-		<form action="" method="POST" enctype="multipart/form-data">
-			<div class="form-row px-3 py-1 ml-1 mt-0">
-				<div class="form-group col-md-6">
+		<form action="" method="PUT" enctype="multipart/form-data">
+			<div class="container">
+				<div class="d-flex flex-column bd-highlight mb-3">
+				<div class="p-1 bd-highlight">
 					<input type="text" class="form-control" name="inputName" placeholder="nom de l'utilisateur" 
 					{% if utilisateur["Nom d'utilisateur"] %} value="{{utilisateur["Nom d'utilisateur"]}}" {% endif %}>
-					<div class="form-group py-3">
+				</div>
+				{% if utilisateur.Avatar != null %}
+					<div class="p-2 bd-highlight">
+						<img src="http://localhost:8081/img/Avatar/{{utilisateur.Avatar}}" width="75" height="75" alt="..." class="img-fluid">
+					</div>
+				{% endif %}
+					<div class="p-2 bd-highlight">
 						<label for="avatar"> entrez avatar utilisateur </label>
 						{% include 'panel admin/utilisateur_template.twig' %}
 					</div>	
+					<div class="p-2 bd-highlight">
+						<div class="form-row">
+							<div class="form-group">
+								<input type="text" class="form-control" name="email" {% if utilisateur["Adresse mail"] %} value="{{utilisateur["Adresse mail"]}}" {% endif %}>
+							</div>
+						
+						
+						</div>
+					
+						<div class="form-row">
+							<div class="">
+								<textarea class="form-control" name="description" rows="3"  >{{utilisateur.Description}}</textarea>
+							</div>
+						
+						</div>
+						
+					</div>
 				</div>
 				
 			</div>
-			<div class="form-row px-3 py-1 ml-1 mt-0">
-				<div class="form-group col-md-6">
-					<input type="text" class="form-control" name="email" placeholder="email">
-				</div>
-				<div class="form-group col-md-6">
-					<input type="text" class="form-control" name="mot_de_passe" placeholder="mot de passe">
-				</div>
-				
-			</div>
-			
-			<div class="form-row px-3 py-1 ml-1 mt-0">
-				<div class="col-7">
-					<textarea class="form-control" name="description" rows="3" placeholder="description"></textarea>
-				</div>
-				
-			</div>
+		
 			
 			
 								
 			
-			{% include 'panel admin/adresse_template.twig' %}
+			{% include 'panel admin/adresse_template.twig'  with {'foo': 'bar'} %}
 			
 			<button type="submit" class="btn btn-primary">Enregistrer</button>
         </form>
