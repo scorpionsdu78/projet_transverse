@@ -912,6 +912,266 @@
           }
         }
       },
+      "/Oeuvre/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type" : "number",
+            "description" : "id d'une oeuvre",
+            "required": true
+          }
+        ],
+        "get": {
+          "tags" : ["Oeuvre"],
+          "summary": "Retourne une oeuvre par son id",
+          "operationId": "getOeuvreById",
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": {
+                "status": "success",
+                "result": {
+                    "ID": 2,
+                    "Titre": "user3_oeuvre1",
+                    "Auteur": 7,
+                    "Description": null,
+                    "Prix de location": 500,
+                    "Localisation": 34
+                }
+              }
+            },
+            "400": {
+                "description": "Erreur",
+                "example": 
+                {
+                    "status": "error",
+                    "message": "Aucun résultat pour id !"
+                }
+            }
+          }
+        },
+        "put": {
+          "tags" : ["Oeuvre"],
+          "summary": "Modifie le titre, la description, le prix ou l'adresse associé d'une oeuvre par son id",
+          "operationId": "UpdateOeuvre",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": 
+          [
+            {
+              "name": "titre",
+              "in": "formData",
+              "type" : "string",
+              "description" : "titre de l'oeuvre",
+              "required": false
+            },
+            {
+              "name": "description",
+              "in": "formData",
+              "type" : "string",
+              "description" : "description de l'oeuvre",
+              "required": false
+            },
+            {
+              "name": "prix",
+              "in": "formData",
+              "type" : "number",
+              "description" : "prix de location de l'oeuvre",
+              "required": false
+            },
+            {
+              "name": "id_adresse",
+              "in": "formData",
+              "type" : "number",
+              "description" : "id de l'adresse associé à l'oeuvre",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": 
+              {
+                "status": "success",
+                "result": true
+              }
+            },
+            "400": {
+              "description": "Erreur",
+              "example": {
+                "status": "success",
+                "result": false
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags" : ["Oeuvre"],
+          "summary": "Supprime une oeuvre par son id",
+          "operationId": "DeleteOeuvre",
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": {
+                "status": "success",
+                "result": true
+              }
+            },
+            "400": {
+              "description": "Erreur",
+              "example":{
+                "status": "error",
+                "message": "Aucun résultat pour Œuvre !"
+              }
+            }
+          }
+        }
+      },
+      "/Oeuvre": {
+        "get": {
+          "tags" : ["Oeuvre"],
+          "summary": "Retourne toute les oeuvres",
+          "operationId": "getAllOeuvre",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": 
+          [
+            {
+              "name": "id_artiste",
+              "in": "query",
+              "type" : "number",
+              "description" : "id d'un artiste",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": {
+                "status": "success",
+                "result": [
+                    {
+                        "ID": 2,
+                        "Titre": "user3_oeuvre1",
+                        "Auteur": 7,
+                        "Description": null,
+                        "Prix de location": 500,
+                        "Localisation": 34
+                    },
+                    {
+                        "ID": 3,
+                        "Titre": "titre",
+                        "Auteur": 6,
+                        "Description": null,
+                        "Prix de location": 50,
+                        "Localisation": 34
+                    },
+                    {
+                        "ID": 4,
+                        "Titre": "titre",
+                        "Auteur": 6,
+                        "Description": null,
+                        "Prix de location": 50,
+                        "Localisation": 34
+                    },
+                    {
+                        "ID": 5,
+                        "Titre": "titre5",
+                        "Auteur": 6,
+                        "Description": "bonjour je ss    uis une   de    sc",
+                        "Prix de location": 55,
+                        "Localisation": 34
+                    }
+                ]
+              }
+            },
+            "400": {
+                "description": "Erreur",
+                "example": {
+                  "status": "error",
+                  "message": "Aucun résultat pour artiste !"
+              }
+            }
+          }
+        },
+        "post": {
+          "tags" : ["Oeuvre"],
+          "summary": "Ajoute une nouvelle oeuvre associée à un artiste",
+          "operationId": "addOeuvre",
+          "consumes": [
+            "text/plain"
+          ],
+          "parameters": 
+          [
+            {
+              "name": "titre",
+              "in": "formData",
+              "type" : "string",
+              "description" : "titre de l'oeuvre",
+              "required": true
+            },
+            {
+              "name": "id_auteur",
+              "in": "formData",
+              "type" : "number",
+              "description" : "id d'un artiste auteur de l'oeuvre",
+              "required": true
+            },
+            {
+              "name": "description",
+              "in": "formData",
+              "type" : "string",
+              "description" : "description de l'oeuvre",
+              "required": true
+            },
+            {
+              "name": "prix",
+              "in": "formData",
+              "type" : "number",
+              "description" : "prix de location de l'oeuvre",
+              "required": true
+            },
+            {
+              "name": "id_adresse",
+              "in": "formData",
+              "type" : "number",
+              "description" : "id de l'adresse associé à l'oeuvre",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": {
+                "status": "success",
+                "result": {
+                  "ID": 31,
+                  "URL": "1552513483315",
+                  "Œuvre": 2,
+                  "ordre": 12
+                }
+              }
+            },
+            "400": {
+              "description": "Erreur",
+              "example": 
+              {
+                "status": "error",
+                "message": "Aucun résultat pour cet id !"
+              }
+            }
+          }
+        }
+      },
       "/Adresse-Utilisateur/{id}": {
         "parameters": [
           {
