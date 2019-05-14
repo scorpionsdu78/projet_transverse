@@ -91,8 +91,17 @@ class Panel_admin_router extends express.Router {
                         })
                     })
             })
-
-
+			
+			.put((req,res) =>{
+				apiCall("/utilisateur/admin/id/" + req.params.id, "put", {
+                    adresse_mail : req.body.email,
+                    avatar : filename,
+                    description : req.body.description
+					
+				},res,()=>{
+					res.render("panel admin/utilisateur_edit.twig")
+				})
+			})
 
 
         //Adresse
