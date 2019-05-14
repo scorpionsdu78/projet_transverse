@@ -7,6 +7,8 @@ const morgan = require("morgan")("dev")
 const multer = require('multer');
 const upload = require("express-fileupload");
 const http = require("http")
+
+const Site_router = require("./routes/Site_router.js")
 const Panel_admin_router = require("./routes/Panel_admin_router.js")
 
 
@@ -30,11 +32,15 @@ app.use(upload());
 
 //Routes :
 
+//Webapp
+let site_router = new Site_router()
+
 //Panel admin
 let panel_admin_router = new Panel_admin_router()
 
 
 //Création de nos routes :
+app.use(``, site_router)
 app.use(`/panel_admin`, panel_admin_router)
 
 

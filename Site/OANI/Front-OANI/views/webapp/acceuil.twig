@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <title>{{template.title}}</title>
+    </head>
+    <body style="height: 100vh;">
+        <nav class="navbar navbar-expand navbar-light bg-warning">
+            <a class="navbar-brand" href="#">
+                <img src="/ressources/Oani_logo.png" style="max-width: 30px; max-height: 30px;">
+                OANI
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav">
+                    <span class="nav-item nav-link">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <a class="nav-item nav-link {% if template.active == "Acceuil" %} active {% endif%}" href="#">Acceuil</a>
+                    <a class="nav-item nav-link{% if template.active == "Œuvre" %} active {% endif%}" href="#">Œuvre</a>
+                    <a class="nav-item nav-link{% if template.active == "Artiste" %} active {% endif%}" href="#">Artiste</a>
+                    <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Évènement</a>
+                    <a class="nav-item nav-link {% if template.active == "Qui somme-nous ?" %} active {% endif%}" href="#">Qui somme-nous ?</a>
+                </div>
+            </div>
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="#">Connection</a>
+            </div>
+        </nav>
+
+        <div class="container-fluid" style="height: 400px; overflow: hidden; background: center/100% url('{{template.image}}')">
+            <div class="container-fluid" style="position: absolute; top: 200px;">
+                <div style="text-align: center;">
+                    <h1 class="text-light"><b>{{template.title}}</b></h1>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Fin du template top -->
+
+
+        <div class="bg-primary">
+            <div class="container-fluid d-flex bg-dark" style="width: 80%">
+                <div class="bg-light" style="width: 75%">
+                    <h1>Vitrine</h1>
+                    <br>
+                    <p>
+                        des éléments
+                    </p>
+                    <p>
+                        des éléments
+                    </p>
+                    <p>
+                        des éléments
+                    </p>
+                    <p>
+                        des éléments
+                    </p>
+                    <p>
+                        des éléments
+                    </p>
+                    <p>
+                        des éléments
+                    </p>
+                    <p>
+                        des éléments
+                    </p>
+                    <p>
+                        des éléments
+                    </p>
+                    <p>
+                        des éléments
+                    </p>
+                    <p>
+                        des éléments
+                    </p>
+                    <p>
+                        des éléments
+                    </p>
+                    <p>
+                        des éléments
+                    </p>
+                </div>
+                <div class="bg-warning" style="width: 25%">
+                    <h1>Filtre</h1>
+                    <br>
+                    <p>
+                        des filtres
+                    </p>
+                    <p>
+                        des filtres
+                    </p>
+                    <p>
+                        des filtres
+                    </p>
+                    <p>
+                        des filtres
+                    </p>
+                    <p>
+                        des filtres
+                    </p>
+                    <p>
+                        des filtres
+                    </p>
+                    <p>
+                        des filtres
+                    </p>
+                    <p>
+                        des filtres
+                    </p>
+                    <p>
+                        des filtres
+                    </p>
+                    <p>
+                        des filtres
+                    </p>
+                    <p>
+                        des filtres
+                    </p>
+                    <p>
+                        des filtres
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Début du template bot -->
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>
