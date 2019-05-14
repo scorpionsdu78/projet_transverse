@@ -120,6 +120,22 @@ class Panel_admin_router extends express.Router {
 
 
 
+        //Artiste
+        this.route("/artiste")
+
+            .get((req, res) => {
+
+                apiCall("/artiste", "GET", {}, res, (response) => {
+                    res.render("panel admin/artiste.twig", {
+                        artiste: response
+                    })
+                })
+
+            })
+
+
+
+
         //Oeuvre
         this.route("/%C5%93uvre/edit")
 
