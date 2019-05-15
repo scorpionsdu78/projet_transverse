@@ -81,6 +81,51 @@ class Panel_admin_router extends express.Router {
                 res.render("panel admin/utilisateur_edit.twig")
             })
 
+            .post((req, res) =>{
+                var filename
+
+                //On voit si on a un avatar
+                if(req.files){
+                    var file = req.files.avatar
+                    filename = req.files.avatar.name
+                    //on sauvegarde sur le serveur l'avatar
+                    file.mv("./public/img/avatar/"+filename, (err)=>{
+                        if(err)
+                            res.send(err.message)
+                    })
+                }
+                
+                //Puis on crée l'utilisateur
+                apiCall("/utilisateur", "post", {
+                    nom_utilisateur : req.body.inputName,
+                    mot_de_passe : req.body.mot_de_passe,
+                    adresse_mail : req.body.email,
+                    avatar : filename,
+                    description : req.body.description
+                }, res, (result) => {
+                    var iduser = result.ID
+                    apiCall("/adresse", "post", {
+                        pays : req.body.pays, 
+                        code_postal : req.body.postal,
+                        rue : req.body.adresse, 
+                        numero : req.body.numero,
+                        indication : req.body.complement,
+                        masquage : (req.body.masquage != undefined) ? 1 : 0
+                    }, res, (result) => {
+                        var idadresse = result.ID
+                        apiCall("/adresse-utilisateur", "post", {
+                            id_utilisateur : iduser,
+                            id_adresse : idadresse
+                        }, res, () => {
+                            res.redirect("/panel_admin/utilisateur/" + id_utilisateur)
+                        })
+                    })
+                })
+
+            });
+
+
+
 
         this.route("/utilisateur/edit/:id")
 
