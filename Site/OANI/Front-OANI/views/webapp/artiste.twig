@@ -1,48 +1,41 @@
 {% include 'webapp/template_top.twig' with template %}
-            <!-- Début du code -->
+            <!-- Début du code --> 
 
 
             <div class="bg-primary">
-                <div class="container-fluid d-flex bg-dark" style="width: 80%">
-                    <div class="bg-light" style="width: 75%">
-                        <h1>Vitrine</h1>
-                        <br>
-                        <p>
-                            des éléments
-                        </p>
-                        <p>
-                            des éléments
-                        </p>
-                        <p>
-                            des éléments
-                        </p>
-                        <p>
-                            des éléments
-                        </p>
-                        <p>
-                            des éléments
-                        </p>
-                        <p>
-                            des éléments
-                        </p>
-                        <p>
-                            des éléments
-                        </p>
-                        <p>
-                            des éléments
-                        </p>
-                        <p>
-                            des éléments
-                        </p>
-                        <p>
-                            des éléments
-                        </p>
-                        <p>
-                            des éléments
-                        </p>
-                        <p>
-                            des éléments
-                        </p>
+                <div class="container-fluid d-flex" style="width: 95%">
+                    <div class="bg-light p-3" style="width: 75%">
+                        <div class="container-fluid">
+                        {% for i in 0..5 %}
+                            <div class="row">
+                                {% for j in 0..3 %}
+                                <div class="col" style="display: block; padding: 2%;">
+                                    <a href="/oeuvre/id" style="text-decoration:none;">
+                                    <div class="">
+                                        <div id="carouselExampleFade" class="carousel carousel-fade" data-ride="carousel">
+                                            <div class="carousel-inner w-100">
+                                                <div class="carousel-item active" style="background: center/100% url('/img/oeuvre/Photo-site-oeuvre-dart-1.jpg') no-repeat; padding-top: 100%;" data-interval="1000">
+                                                </div>
+                                                <div class="carousel-item" style="background: center/100% url('/img/oeuvre/oeuvre-d-art-contemporain-adolescent-13-agusil.jpg'); padding-top: 100%;" data-interval="1000">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: center; padding-top: 2%;">
+                                        <span class="text-dark" style="font-weight: bold; font-size: calc(2.5vmin);">
+                                            Nom de l'artiste
+                                        </span>
+                                        <br>
+                                        <div class="btn btn-info" style="font-size: calc(2.5vmin);">
+                                            Voir la galerie
+                                        </div>
+                                    </div>
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                        </div>
                     </div>
                     <div class="bg-warning" style="width: 25%">
                         <h1>Filtre</h1>
