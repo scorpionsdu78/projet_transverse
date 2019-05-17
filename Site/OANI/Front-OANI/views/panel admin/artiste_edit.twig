@@ -1,0 +1,42 @@
+{% include 'panel admin/panel_admin_template_top.twig' %}
+        <!-- Début du code -->
+		<form action="" method="POST" enctype="multipart/form-data">
+		
+			<div class="d-flex flex-column bd-highlight mb-3">
+			
+				<div class="p-1 bd-highlight">
+					<input type="text" class="form-control" name="pseudo" placeholder="pseudo"
+					{% if Artiste.Pseudo %} value="{{Artiste.Pseudo}}" {% endif %}>
+				</div>
+				
+				{% if Artiste %}
+					<div>
+						<input type="text" class="form-control" name="id" placeholder="pseudo"
+					{% if Artiste.Utilisateur.ID %} value="{{Artiste.Utilisateur.ID}}" {% endif %} hidden>
+					</div>
+					{% include 'panel admin/utilisateur_template.twig' with {utilisateur : Artiste.Utilisateur} %}
+					
+					
+					{% else %}
+						<div class="p-1 bd-highlight">
+							<select name="User" id="inputUser" class="form-control">
+								<option selected>Choose...</option>
+								{% for user in Users %}
+								{% if user.Pseudo %}
+								{% else %}
+								<option value={{user.ID}}>{{user["Nom d'utilisateur"]}}</option>
+								{% endif %}
+								{% endfor %}
+							</select>
+						</div>
+				{% endif%}
+				
+				<button type="submit" class="btn btn-primary">Enregistrer</button>
+				
+				
+			</div>
+			
+		</form>
+        
+        <!-- Fin du code -->
+{% include 'panel admin/panel_admin_template_bot.twig' %}

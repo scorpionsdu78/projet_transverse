@@ -58,7 +58,7 @@ class Artiste {
                         artiste = result[0];
                         id_utilisateur = result[0].Utilisateur;
     
-                        return this.db.query("SELECT `Nom d'utilisateur`, `Adresse mail`, Instagram, Avatar, Description FROM Utilisateur WHERE (id = ?)", [id_utilisateur])    
+                        return this.db.query("SELECT ID, `Nom d'utilisateur`, `Adresse mail`, Instagram, Avatar, Description FROM Utilisateur WHERE (id = ?)", [id_utilisateur])    
                     }
                 })
                 .then( (result) => {
@@ -130,7 +130,7 @@ class Artiste {
                                 .then( (result) => {
                                     id_utilisateur = result[0].ID
                 
-                                    return this.db.query("SELECT `Nom d'utilisateur`, `Adresse mail`, Instagram, Avatar, Description FROM Utilisateur WHERE (id = ?)", [id_utilisateur])
+                                    return this.db.query("SELECT ID, `Nom d'utilisateur`, `Adresse mail`, Instagram, Avatar, Description FROM Utilisateur WHERE (id = ?)", [id_utilisateur])
                                 })
                                 .then( (result) => {
                                     artiste.Utilisateur = result[0]
