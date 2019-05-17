@@ -1,6 +1,51 @@
-<div class="input-group mb-3">
-				
-				<input type="file"  name="avatar" id="avatar">
-				<input type="submit" value="upload" >
 
-</div>
+				<div class="d-flex flex-column bd-highlight mb-3">
+				<div class="p-1 bd-highlight">
+					<input type="text" class="form-control" name="inputName" placeholder="nom de l'utilisateur" 
+					{% if utilisateur["Nom d'utilisateur"] %} value="{{utilisateur["Nom d'utilisateur"]}}" {% endif %}>
+				</div>
+				{% if utilisateur.Avatar != null %}
+					<div class="p-2 bd-highlight">
+						<img src="http://localhost:8081/img/Avatar/{{utilisateur.Avatar}}" width="75" height="75" alt="..." class="img-fluid">
+					</div>
+				{% endif %}
+					<div class="p-2 bd-highlight">
+						<label for="avatar"> entrez avatar utilisateur </label>
+						<input type="file"  name="avatar" id="avatar">
+						<input type="submit" value="upload" >
+					</div>	
+					<div class="p-2 bd-highlight">
+						<div class="form-row">
+							<div class="form-group">
+								<input type="text" class="form-control" name="email" placeholder="email" {% if utilisateur["Adresse mail"] %} value="{{utilisateur["Adresse mail"]}}" {% endif %}>
+							</div>
+							
+							{% if new %}
+							<div class="form-group">
+								<input type="text" class="form-control" name="mot_de_passe" placeholder="mot de passe" >
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" name="confirmation" placeholder="confirmation mot de passe" >
+							</div>
+							
+							{% endif %}
+							
+						</div>
+					
+						<div class="form-row">
+							<div class="">
+								<textarea class="form-control" name="description" placeholder="description" rows="3"  >{{utilisateur.Description}}</textarea>
+							</div>
+						
+						</div>
+						
+					</div>
+				</div>
+				
+
+		
+			
+			
+								
+			
+	{% include 'panel admin/adresse_template.twig'  with {'foo': 'bar'} %}

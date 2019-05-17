@@ -20,16 +20,16 @@
                 <tbody>
                   {% for artiste in artistes %}
                   <tr>
-                    <th> <img src="/img/avatar/{{artiste.Avatar}}" style="max-height: 75px; max-width: 75px;"> </th>
-                    <th> {{artiste["Nom d'utilisateur"]}} </th>
+                    <th> <img src="/img/avatar/{{artiste.Utilisateur.Avatar}}" style="max-height: 75px; max-width: 75px;"> </th>
+                    <th> {{artiste.Utilisateur["Nom d'utilisateur"]}} </th>
                     <th> {{artiste.Pseudo}} </th>
-                    <th> {{artiste["Adresse mail"]}} </th>
+                    <th> {{artiste.Utilisateur["Adresse mail"]}} </th>
                     <th scope="col">
-                      <a href="/panel_admin/utilisateur/edit/{{artiste.ID}}" class="btn btn-primary mr-5"></a>
+                      <a href="/panel_admin/artiste/edit/{{artiste.ID}}" class="btn btn-primary mr-5"></a>
                     </th>
                     <th>
-                      <form class="mr-5" action="/panel_admin/utilisateur/delete" method="POST">
-                        <input type="hidden" name="id" value="{{artiste.ID}}">
+                      <form class="mr-5" action="/panel_admin/artiste/delete" method="POST">
+                        <input type="text" name="id" value="{{artiste.ID}}" hidden>
                         <button type="submit" class="btn btn-primary"></button>
                       </form>
                     </th>
