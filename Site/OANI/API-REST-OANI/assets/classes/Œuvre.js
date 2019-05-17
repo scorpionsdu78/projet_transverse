@@ -36,6 +36,7 @@ class Œuvre {
     getAll(id_auteur){
 
         return new Promise( (next) => {
+            let oeuvres
 
             if(id_auteur){
 
@@ -44,6 +45,28 @@ class Œuvre {
                         id_auteur = result
 
                         return this.db.query('SELECT * FROM `Œuvre` WHERE (Auteur = ?)', [id_auteur])
+                    })
+                    .then( (result) => {
+                        oeuvres = result
+
+                        return new Promise( (resolve, reject) => {
+
+                            let i = 0
+                            oeuvres.forEach( async (oeuvre) => {
+    
+                                await this.db.query('SELECT * FROM photo WHERE (`Œuvre` = ?) ORDER BY ordre',[oeuvre.ID])
+                                    .then( (result) => {
+                                        if(result != undefined)
+                                            oeuvre.Photos = result
+                                        
+                                        if(++i == oeuvres.length)
+                                            resolve(oeuvres)
+                                    })
+                                    .catch( (err) => reject(err) )
+    
+                            })
+
+                        })
                     })
                     .then( (result) => next(result) )
                     .catch( (err) => next(err) )
@@ -54,7 +77,29 @@ class Œuvre {
             else{
 
                 this.db.query('SELECT * FROM `Œuvre`')
-                    .then( (result) => next(result) )
+                .then( (result) => {
+                    oeuvres = result
+
+                    return new Promise( (resolve, reject) => {
+
+                        let i = 0
+                        oeuvres.forEach( async (oeuvre) => {
+
+                            await this.db.query('SELECT * FROM photo WHERE (`Œuvre` = ?) ORDER BY ordre',[oeuvre.ID])
+                                .then( (result) => {
+                                    if(result != undefined)
+                                        oeuvre.Photos = result
+                                    
+                                    if(++i == oeuvres.length)
+                                        resolve(oeuvres)
+                                })
+                                .catch( (err) => reject(err) )
+
+                        })
+
+                    })
+                })
+                .then( (result) => next(result) )
                     .catch( (err) => next(err) )
 
             }

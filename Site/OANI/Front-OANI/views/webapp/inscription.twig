@@ -1,10 +1,345 @@
 {% include 'webapp/template_top.twig' with template %}
+            <!-- Début du style -->
+             <style>
+				body{
+				  font-family: :'Lato', sans-serif;
+				}
+
+				h1
+				{
+				   font-size: 100px;
+				   color: white;
+				   font-weight: 900;
+				}
+
+				h2
+				{
+				  font-size: 20px;
+				  color: black;
+				}
+				h3
+				{
+				  font-size: 15px;
+				}
+				h2,h3,h4,h5,h6
+				{
+				  font-weight: bold;
+				}
+				img
+				{
+				  max-width: 100%;
+				  height: auto;
+				}
+
+				/* plus*/
+
+				#Main
+				{
+				  padding-top: 30px;
+				  background-image: url("https://s3.dexerto.com/thumbnails/_thumbnailLarge/556287/How-to-find-hidden-Fortnite-banner-for-Week-8-Season-8-min.jpg");
+				  
+				  text-align: center;
+				  margin: 0 auto;
+				  
+				}
+
+				.profile-entreprise
+				{
+				  
+				  margin: 0 auto;
+				  padding-bottom: 20px;
+				  float: none;
+				  
+				}
+
+				.heading
+				{
+				text-align: center;
+
+				}
+
+				.contact-us
+				{
+				  padding-top: 60px;
+				  text-align: center;
+				  float: none;
+				}
+				#Contact
+				{
+				  background: blue;
+				  text-align: center;
+				  margin: 0 auto;
+				  
+				}
+				.aka
+				{
+				  padding-bottom: 10px;
+				  padding-right: 10px;
+				  padding-left: 0px;
+
+				}
+
+				.akao
+				{
+				  padding-bottom: 10px;
+				  padding-right: 0px;
+				  padding-left: 0px;
+
+				}
+
+
+
+				.bob
+				{
+				  background-color: #ffffffb3;
+
+				  
+
+				}
+
+				#SignIn
+				{
+				  text-align: center;
+				  margin: 0 auto;
+				}
+				.img-responsive2
+				{
+				  display: block;
+
+				  max-width: 100%;
+
+				  height: auto;
+				}
+				.img-KK
+				{
+				  display: block;
+
+				  max-width: 50%;
+
+				  height: auto;
+				}
+
+				.cheze
+				{
+				  
+				}
+
+				.thumbnail 
+				{
+				  display: block;
+				  padding: 4px;
+				      padding-top: 4px;
+				      padding-right: 4px;
+				      padding-bottom: 4px;
+				      padding-left: 4px;
+				  margin-bottom: 0px;
+				  line-height: 1.42857143;
+				  background-color: #fff;
+				  border: 1px solid #ddd;
+				      border-top-color: rgb(221, 221, 221);
+				      border-top-style: solid;
+				      border-top-width: 1px;
+				      border-right-color: rgb(221, 221, 221);
+				      border-right-style: solid;
+				      border-right-width: 1px;
+				      border-bottom-color: rgb(221, 221, 221);
+				      border-bottom-style: solid;
+				      border-bottom-width: 1px;
+				      border-left-color: rgb(221, 221, 221);
+				      border-left-style: solid;
+				      border-left-width: 1px;
+				      border-image-outset: 0;
+				      border-image-repeat: stretch;
+				      border-image-slice: 100%;
+				      border-image-source: none;
+				      border-image-width: 1;
+				  border-radius: 4px;
+				      border-top-left-radius: 150px;
+				      border-top-right-radius: 150px;
+				      border-bottom-right-radius: 0px;
+				      border-bottom-left-radius: 0px;
+				  -webkit-transition: border .2s ease-in-out;
+				      transition-property: border;
+				      transition-duration: 0.2s;
+				      transition-timing-function: ease-in-out;
+				      transition-delay: 0s;
+				  -o-transition: border .2s ease-in-out;
+				  transition: border .2s ease-in-out;
+				      transition-property: border;
+				      transition-duration: 0.2s;
+				      transition-timing-function: ease-in-out;
+				      transition-delay: 0s;
+
+
+				  max-width: 70%;
+				  margin: auto;
+				  
+
+				}
+
+
+
+				.chocolat
+				{
+				  
+				  
+				  display: block;
+				  padding: 4px;
+				      padding-top: 4px;
+				      padding-right: 4px;
+				      padding-bottom: 4px;
+				      padding-left: 4px;
+				  margin-bottom: 0px;
+				  line-height: 1.42857143;
+				  background-color: #fff9;
+				  border: 1px solid #ddd;
+				      border-top-color: rgb(221, 221, 221);
+				      border-top-style: solid;
+				      border-top-width: 1px;
+				      border-right-color: rgb(221, 221, 221);
+				      border-right-style: solid;
+				      border-right-width: 1px;
+				      border-bottom-color: rgb(221, 221, 221);
+				      border-bottom-style: solid;
+				      border-bottom-width: 1px;
+				      border-left-color: rgb(221, 221, 221);
+				      border-left-style: solid;
+				      border-left-width: 1px;
+				      border-image-outset: 0;
+				      border-image-repeat: stretch;
+				      border-image-slice: 100%;
+				      border-image-source: none;
+				      border-image-width: 1;
+				  border-radius: 4px;
+				      border-top-left-radius: 0px;
+				      border-top-right-radius: 0px;
+				      border-bottom-right-radius: 4px;
+				      border-bottom-left-radius: 4px;
+				  -webkit-transition: border .2s ease-in-out;
+				      transition-property: border;
+				      transition-duration: 0.2s;
+				      transition-timing-function: ease-in-out;
+				      transition-delay: 0s;
+				  -o-transition: border .2s ease-in-out;
+				  transition: border .2s ease-in-out;
+				      transition-property: border;
+				      transition-duration: 0.2s;
+				      transition-timing-function: ease-in-out;
+				      transition-delay: 0s;
+
+
+				  max-width: 70%;
+				  margin: auto;
+				}
+</style>
+             <!-- fin du style -->
+
+
             <!-- Début du code -->
 
 
             <div class="bg-primary" style="width: 100%;">
                 <div class="bg-dark" style="width: 75%; margin: 0px auto 0px">
-                    <h1>Inscription</h1>
+                    <section id="Contact" class="container-fluid">
+						<div class="container">
+							<div class="row">
+								<div class= "heading">
+									<h1> Contact </h1>
+								</div>
+							</div>
+						
+							<div class="row">
+								<div class="col-sm-2">
+								</div>
+								<div class="col-sm-8">
+								
+								<form class="needs-validation" novalidate style="margin-bottom: 50px">
+									
+										<div class="aka">
+											<input type="text" id="name" class="form-control" placeholder="Nom de l'utilisateur" required>
+										</div>
+
+										<div class="aka">
+
+											<input type="text" id="Number" class="form-control" placeholder="Numero de telephone" required>
+										</div>
+										<div class=" form-row">
+											<div class="aka col-sm-6">
+												<input type="text" id="email1" class="form-control" placeholder=" Email" required>
+											</div>
+											
+											<div class="aka col-sm-6">
+												<input type="text" id="email2" class="form-control" placeholder="Répétez votre Email "required>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="aka col-sm-6">
+												<input type="text" id="password" class="form-control" placeholder=" Mot de passe"required>
+											</div>
+											
+											<div class="aka col-sm-6">
+												<input type="text" id="password2" class="form-control" placeholder="Répétez votre Mot de passe"required>
+											</div>
+										</div>
+										
+
+
+
+										<div class="aka">
+											<textarea class="form-control" id="inputCom" rows="3"  maxlength="250" placeholder="Pourquoi vous inscrire? (Max 250 mots)"></textarea>
+											
+										</div>
+										<div class=" form-row">
+											<div class="aka col-sm-2">
+												<input type="text" class="form-control" id="inputAddress" placeholder="N°"required>
+											</div>
+											<div class="aka col-sm-8">
+												<input type="text" class="form-control" id="inputAddress" placeholder="Adresse"required>
+											</div>
+											<div class="aka col-sm-2">
+												<input type="Number" class="form-control" id="inputAddress" placeholder="Code postal" required>
+												
+									    	</div>
+
+											<div class="aka col-sm-9">
+												<input type="text" class="form-control" id="inputAddress" placeholder="Ville"required>
+											</div>
+											<div class="aka col-sm-3">
+												<input type="Country" class="form-control" id="inputAddress" placeholder="Pays"required>
+											</div>
+											
+											<div class="col-sm-12 aka">
+												<input type="text" class="form-control" id="inputAddress" placeholder="Infos Complémentaires">	
+											</div>
+											<div class="form-group">
+											    <div class="form-check pl-0">
+											      <input class="form-check-input" type="checkbox" value="" id="Check222" required>
+											      <label class="form-check-label" for="Check222" style="color: white;">
+											        Masquage de votre adresse ?
+											      </label>
+											    </div>
+											  </div>
+											
+
+										</div>
+
+										<button type="submit" class="btn btn-default" > S'inscrire </button>
+
+
+									
+								</form>
+								</div>
+								<div class="col-sm-2">
+									
+								</div>
+
+								</div>
+
+						</div>
+						
+					</section>
+
+
                 </div>
             </div>
 

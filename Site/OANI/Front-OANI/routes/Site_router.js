@@ -32,12 +32,18 @@ class Site_router extends express.Router {
         this.route("/%C5%93uvre")
 
             .get((req, res) => {
-                res.render("webapp/oeuvre.twig", {
-                    template: {
-                        title: "Œuvre",
-                        active: "Œuvre",
-                        image: "https://img.bfmtv.com/c/1256/708/b87/5bd3f140ad92aee49f283503f8538.jpeg"
-                    }
+
+                apiCall("/oeuvre", "GET", {}, res, (result) => {
+                    
+                    res.render("webapp/oeuvre.twig", {
+                        template: {
+                            title: "Œuvre",
+                            active: "Œuvre",
+                            image: "https://img.bfmtv.com/c/1256/708/b87/5bd3f140ad92aee49f283503f8538.jpeg"
+                        },
+                        oeuvres: result
+                    })
+
                 })
             })
 

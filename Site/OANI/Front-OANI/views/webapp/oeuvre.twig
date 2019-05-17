@@ -6,7 +6,7 @@
                 <div class="container-fluid d-flex" style="width: 95%">
                     <div class="bg-light p-3" style="width: 75%">
                         <div class="container-fluid">
-                        {% for i in 0..5 %}
+                        {% for i in 0..3 %}
                             <div class="row">
                                 {% for j in 0..3 %}
                                 <style>
@@ -25,23 +25,28 @@
                                     }
                                 </style>
                                 <div class="col" style="display: block;">
-                                    <a href="/oeuvre/id" style="text-decoration:none;">
+                                    {% if oeuvres[i*4+j] %}
+                                    <a href="/oeuvre/{{oeuvres[i*4+j].ID}}" style="text-decoration:none;">
                                         <div class="oeuvre-container">
                                             <div id="carouselExampleFade" class="carousel carousel-fade" data-ride="carousel">
                                                 <div class="carousel-inner w-100">
-                                                    <div class="carousel-item active" style="background: center/100% url('/img/oeuvre/Photo-site-oeuvre-dart-1.jpg') no-repeat; padding-top: 100%;" data-interval="1000">
+                                                    {% for photo in oeuvres[i*4+j].Photos %}
+                                                    <div class="carousel-item {% if photo == oeuvres[i*4+j].Photos[0] %} active {% endif %}" style="background: center/100% url('/img/oeuvre/{{oeuvres[i*4+j].ID}}/{{photo.URL}}') no-repeat; padding-top: 100%;" data-interval="1000">
                                                     </div>
-                                                    <div class="carousel-item" style="background: center/100% url('/img/oeuvre/oeuvre-d-art-contemporain-adolescent-13-agusil.jpg'); padding-top: 100%;" data-interval="1000">
+                                                    {% endfor %}
+                                                    {% if oeuvres[i*4+j].Photos|length == 0 %}
+                                                    <div class="carousel-item active" style="background: center/100% url('/img/oeuvre/default.jpg') no-repeat; padding-top: 100%;" data-interval="1000">
                                                     </div>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                             <div style="text-align: center; padding-top: 2%;">
                                                 <span class="text-dark" style="font-weight: bold; font-size: calc(2.5vmin);">
-                                                    Nom de l'oeuvre
+                                                    {{oeuvres[i*4+j].Titre}}
                                                 </span>
                                                 <br>
                                                 <span class="text-dark" style="font-weight: 1000; font-size: calc(3vmin);">
-                                                    65€
+                                                    {{oeuvres[i*4+j]["Prix de location"]}}€
                                                 </span>
                                                 <br>
                                                 <div class="btn btn-info" style="font-size: calc(2.5vmin);">
@@ -50,6 +55,7 @@
                                             </div>
                                         </div>
                                     </a>
+                                    {% endif %}
                                 </div>
                                 {% endfor %}
                             </div>
