@@ -2,36 +2,36 @@
             <!-- Début du code --> 
 
 
-            <div class="bg-primary">
+            <div class="bg-light">
                 <div class="container-fluid d-flex" style="width: 95%">
-                    <div class="bg-light p-3" style="width: 75%">
+                    <div class="bg-light p-3" style="width: 75%; background: url('/ressources/background_custom_lightGray.png');">
                         <div class="container-fluid">
+                            <style>
+                                @keyframes oeuvre-container-anim {
+                                    from {opacity: 1; box-shadow: inset 0 0 0 1px #FFFFFF;}
+                                    to {opacity: 0.7; box-shadow: inset 0 0 0 1px #3a7999;}
+                                }   
+                                .oeuvre-container {
+                                    padding: 2%;
+                                }
+                                .oeuvre-container:hover {
+                                    animation-name: oeuvre-container-anim;
+                                    animation-duration: 1s;
+                                    opacity: 0.7;
+                                    box-shadow: inset 0 0 0 1px #3a7999;
+                                }
+                            </style>
                         {% for i in 0..3 %}
                             <div class="row">
                                 {% for j in 0..3 %}
-                                <style>
-                                    @keyframes oeuvre-container-anim {
-                                      from {opacity: 1; box-shadow: inset 0 0 0 1px #FFFFFF;}
-                                        to {opacity: 0.7; box-shadow: inset 0 0 0 1px #3a7999;}
-                                    }   
-                                    .oeuvre-container {
-                                        padding: 2%;
-                                    }
-                                    .oeuvre-container:hover {
-                                        animation-name: oeuvre-container-anim;
-                                        animation-duration: 1s;
-                                        opacity: 0.7;
-                                        box-shadow: inset 0 0 0 1px #3a7999;
-                                    }
-                                </style>
                                 <div class="col" style="display: block;">
                                     {% if oeuvres[i*4+j] %}
                                     <a href="/oeuvre/{{oeuvres[i*4+j].ID}}" style="text-decoration:none;">
                                         <div class="oeuvre-container">
-                                            <div id="carouselExampleFade" class="carousel carousel-fade" data-ride="carousel">
+                                            <div id="carouselExampleFade" class="carousel carousel-fade slide" data-ride="carousel">
                                                 <div class="carousel-inner w-100">
                                                     {% for photo in oeuvres[i*4+j].Photos %}
-                                                    <div class="carousel-item {% if photo == oeuvres[i*4+j].Photos[0] %} active {% endif %}" style="background: center/100% url('/img/oeuvre/{{oeuvres[i*4+j].ID}}/{{photo.URL}}') no-repeat; padding-top: 100%;" data-interval="1000">
+                                                    <div class="carousel-item {% if photo == oeuvres[i*4+j].Photos[0] %} active {% endif %}" style="background: center/100% url('/img/oeuvre/{{oeuvres[i*4+j].ID}}/{{photo.URL}}') no-repeat; padding-top: 100%;" data-interval="{{ random(2000) + 3250 }}">
                                                     </div>
                                                     {% endfor %}
                                                     {% if oeuvres[i*4+j].Photos|length == 0 %}
@@ -62,7 +62,7 @@
                         {% endfor %}
                         </div>
                     </div>
-                    <div class="bg-warning" style="width: 25%">
+                    <div style="width: 25%; background: url('/ressources/background_custom_gray.png');">
                         <h1>Filtre</h1>
                         <br>
                         <p>
