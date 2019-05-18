@@ -384,7 +384,15 @@ class Panel_admin_router extends express.Router {
 		this.route("/%C5%93uvre")
 			
 			.get((req,res)=>{
-				
+				apiCall("/oeuvre","get",{},res,(oeuvres)=>{
+					let oeuvres1 = oeuvres
+					apiCall("/artiste","get",{},res,(artistes)=>{
+						res.render("panel admin/œuvre.twig",{
+							oeuvres : oeuvres1,
+							artistes : artistes 
+						})
+					})
+				})
 			})
 			
     }
