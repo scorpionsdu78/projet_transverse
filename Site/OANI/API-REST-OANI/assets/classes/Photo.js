@@ -88,7 +88,9 @@ class Photo {
                         else{
                             name = name.trim()
             
+
 								this.db.query('SELECT url FROM photo WHERE url = ?', [name])
+
                                 .then( (result) => {
                                     if(result[0] != undefined)
                                         reject( new Error(config.errors.noUnique + "name" + " !") )

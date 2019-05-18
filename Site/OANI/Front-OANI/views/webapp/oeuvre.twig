@@ -1,0 +1,89 @@
+{% include 'webapp/template_top.twig' with template %}
+ 
+            <!-- Début du code -->
+
+
+            <div style="width: 100%; background: url('/ressources/background_custom_lightGray.png');">
+                <div style="width: 75%; margin: 0px auto 0px; background: url('/ressources/background_custom_gray.png');">
+                   <div style="width: 75%; margin: 0px auto 0px; padding-top: 10px;">
+                        <div>
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                    {% if oeuvre.Photos|length > 0 %}
+                                    {% for i in 1..(oeuvre.Photos|length -1) %}
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="{{i}}"></li>
+                                    {% endfor %}
+                                    {% endif %}
+                                </ol>
+                                <div class="carousel-inner">
+                                    {% for photo in oeuvre.Photos %}
+                                    <div class="carousel-item {% if photo == oeuvre.Photos[0] %} active {% endif %}" style="background: center/contain url('/img/oeuvre/{{oeuvre.ID}}/{{photo.URL}}') no-repeat; padding-top: 56.25%;" data-interval="{{ random(2000) + 3250 }}">
+                                    </div>
+                                    {% endfor %}
+                                    {% if oeuvre.Photos|length == 0 %}
+                                    <div class="carousel-item active" style="background: center/100% url('/img/oeuvre/default.jpg') no-repeat; padding-top: 56.25%;" data-interval="1000">
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div style="padding: 50px; width: 75%; border-right: 2px dashed #555555; background-color:rgba(59, 23, 11, 0.2);">
+                            <p>
+                                {{oeuvre.Description}}
+                            </p>
+                        </div>
+                        <div style="padding: 50px; width: 25%; min-height: 250px; border-left: 2px dashed #5555FF; background-color:rgba(50, 50, 255, 0.5);">
+                            <p>
+                                {{oeuvre["Prix de location"]}}€
+                            </p>
+                        </div>
+                    </div>
+                    <div class="w-100" style="background-color:rgba(118, 46, 22, 0.2); padding: 10px 50px 2px">
+                        <div style="display: inline;">
+                            Tags : 
+                            {% for Tag in oeuvre.Tags %}
+                            {% if Tag.Tag != oeuvre.Tags[0].Tag %}, {% endif %}
+                            <div style="font-variant: small-caps; display: inline;">
+                                {{Tag.Tag}}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div style="height: 50px; width: 100%;">
+                        <div style="margin: auto; height: 50%; width: 50%; border-bottom: 1px solid black;"></div>
+                    </div>
+                    <div style="width: 75%; background-color:rgba(59, 23, 11, 0.2); margin: auto;">
+                        <div style="width: 100%; text-align: center;">
+                            <b>À propos de l'auteur {{auteur.Pseudo}}</b>
+                        </div>
+                        <div style="width: 100%; padding: 50px; display: flex;">
+                            <div>
+                                <img src="/img/avatar/{{auteur.Utilisateur.Avatar}}" style="max-height: 150px; max-width: 150px;">
+                                <br>
+                                <i>{{auteur.Utilisateur.Instagram}}</i>
+                                <br>
+                                <i>{{auteur.Utilisateur["Adresse mail"]}}</i>
+                            </div>
+                            <div style="margin-left: 20px; padding-left: 20px; border-left: 3px solid blue; background-color:rgba(50, 50, 255, 0.5);">
+                                {{auteur.Utilisateur.Description}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Fin du code -->
+
+{% include 'webapp/template_bot.twig' %}

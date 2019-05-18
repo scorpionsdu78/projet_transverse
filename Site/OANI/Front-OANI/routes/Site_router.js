@@ -47,6 +47,30 @@ class Site_router extends express.Router {
                 })
             })
 
+        this.route("/%C5%93uvre/:id")
+
+            .get((req, res) => {
+
+                apiCall("/oeuvre/" + req.params.id, "GET", {}, res, (result) => {
+                    const photo = (result.Photos.length > 0) ? ( result.ID + "/" + result.Photos[0].URL) : "default.jpg"
+                    const oeuvre = result;
+
+                    apiCall("/artiste/" + oeuvre.Auteur, "GET", {}, res, (result) => {
+
+                        res.render("webapp/oeuvre.twig", {
+                            template: {
+                                title: oeuvre.Titre,
+                                image: "/img/oeuvre/" + photo
+                            },
+                            oeuvre: oeuvre,
+                            auteur: result
+                        })
+
+                    })
+
+                })
+            })
+
         this.route("/artiste")
 
             .get((req, res) => {

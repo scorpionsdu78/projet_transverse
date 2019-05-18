@@ -93,7 +93,7 @@ exports.checkAndChangeOrdre = (id_oeuvre, ordre, db) => {
         if(ordre != undefined){
             //un ordre non nul
         
-            if(!ordre || ordre.trim() == "")
+            if(ordre.trim() == "")
                 reject( new Error(exports.config.errors.noValue + "ordre" + " !"))
 
             
