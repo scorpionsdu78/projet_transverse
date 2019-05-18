@@ -35,7 +35,7 @@ class Site_router extends express.Router {
 
                 apiCall("/oeuvre", "GET", {}, res, (result) => {
                     
-                    res.render("webapp/oeuvre.twig", {
+                    res.render("webapp/oeuvres.twig", {
                         template: {
                             title: "Œuvre",
                             active: "Œuvre",
@@ -50,7 +50,7 @@ class Site_router extends express.Router {
         this.route("/artiste")
 
             .get((req, res) => {
-                res.render("webapp/artiste.twig", {
+                res.render("webapp/artistes.twig", {
                     template: {
                         title: "Artiste",
                         active: "Artiste",

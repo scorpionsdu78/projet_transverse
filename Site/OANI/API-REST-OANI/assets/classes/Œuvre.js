@@ -13,6 +13,7 @@ class Œuvre {
 
     getByID(id){
         return new Promise((next) => {
+            let oeuvre
 
             checkNumber(id, "id")
                 .then( (result) => {
@@ -24,8 +25,21 @@ class Œuvre {
                     if(result[0] == undefined)
                         next( new Error(config.errors.noResult + "id" + " !") )
 
-                    else
-                        next(result[0])
+                    else{
+                        oeuvre = result[0]
+    
+                        return this.db.query('SELECT * FROM photo WHERE (`Œuvre` = ?) ORDER BY ordre',[oeuvre.ID])
+                    }
+                })
+                .then( (result) => {
+                    oeuvre.Photos = result
+
+                    return this.db.query('SELECT * FROM tag WHERE (`Œuvre` = ?)',[oeuvre.ID])
+                })
+                .then( (result) => {
+                    oeuvre.Tags = result
+
+                    next(oeuvre)
                 })
                 .catch( (err) => next(err) )
 
@@ -56,8 +70,12 @@ class Œuvre {
     
                                 await this.db.query('SELECT * FROM photo WHERE (`Œuvre` = ?) ORDER BY ordre',[oeuvre.ID])
                                     .then( (result) => {
-                                        if(result != undefined)
-                                            oeuvre.Photos = result
+                                        oeuvre.Photos = result
+                                        
+                                        return this.db.query('SELECT * FROM tag WHERE (`Œuvre` = ?)',[oeuvre.ID])
+                                    })
+                                    .then( (result) => {
+                                        oeuvre.Tags = result
                                         
                                         if(++i == oeuvres.length)
                                             resolve(oeuvres)
@@ -87,8 +105,12 @@ class Œuvre {
 
                             await this.db.query('SELECT * FROM photo WHERE (`Œuvre` = ?) ORDER BY ordre',[oeuvre.ID])
                                 .then( (result) => {
-                                    if(result != undefined)
-                                        oeuvre.Photos = result
+                                    oeuvre.Photos = result
+                                    
+                                    return this.db.query('SELECT * FROM tag WHERE (`Œuvre` = ?)',[oeuvre.ID])
+                                })
+                                .then( (result) => {
+                                    oeuvre.Tags = result
                                     
                                     if(++i == oeuvres.length)
                                         resolve(oeuvres)
