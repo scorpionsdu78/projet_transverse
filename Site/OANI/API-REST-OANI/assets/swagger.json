@@ -940,7 +940,33 @@
                     "Auteur": 7,
                     "Description": null,
                     "Prix de location": 500,
-                    "Localisation": 34
+                    "Localisation": 34,
+                    "Photos": [
+                        {
+                            "ID": 1,
+                            "URL": "oeuvre-d-art-contemporain-adolescent-13-agusil.jpg",
+                            "Œuvre": 1,
+                            "ordre": 1
+                        },
+                        {
+                            "ID": 2,
+                            "URL": "Photo-site-oeuvre-dart-1.jpg",
+                            "Œuvre": 1,
+                            "ordre": 2
+                        }
+                    ],
+                    "Tags": [
+                        {
+                            "ID": 1,
+                            "Tag": "tag1",
+                            "Œuvre": 1
+                        },
+                        {
+                            "ID": 2,
+                            "Tag": "tag2",
+                            "Œuvre": 1
+                        }
+                    ]
                 }
               }
             },
@@ -1065,7 +1091,33 @@
                         "Auteur": 7,
                         "Description": null,
                         "Prix de location": 500,
-                        "Localisation": 34
+                        "Localisation": 34,
+                        "Photos": [
+                            {
+                                "ID": 1,
+                                "URL": "oeuvre-d-art-contemporain-adolescent-13-agusil.jpg",
+                                "Œuvre": 1,
+                                "ordre": 1
+                            },
+                            {
+                                "ID": 2,
+                                "URL": "Photo-site-oeuvre-dart-1.jpg",
+                                "Œuvre": 1,
+                                "ordre": 2
+                            }
+                        ],
+                        "Tags": [
+                            {
+                                "ID": 1,
+                                "Tag": "tag1",
+                                "Œuvre": 1
+                            },
+                            {
+                                "ID": 2,
+                                "Tag": "tag2",
+                                "Œuvre": 1
+                            }
+                        ]
                     },
                     {
                         "ID": 3,
@@ -1073,7 +1125,9 @@
                         "Auteur": 6,
                         "Description": null,
                         "Prix de location": 50,
-                        "Localisation": 34
+                        "Localisation": 34,
+                        "Photos": [],
+                        "Tags": []
                     },
                     {
                         "ID": 4,
@@ -1081,7 +1135,9 @@
                         "Auteur": 6,
                         "Description": null,
                         "Prix de location": 50,
-                        "Localisation": 34
+                        "Localisation": 34,
+                        "Photos": [],
+                        "Tags": []
                     },
                     {
                         "ID": 5,
@@ -1089,7 +1145,9 @@
                         "Auteur": 6,
                         "Description": "bonjour je ss    uis une   de    sc",
                         "Prix de location": 55,
-                        "Localisation": 34
+                        "Localisation": 34,
+                        "Photos": [],
+                        "Tags": []
                     }
                 ]
               }
