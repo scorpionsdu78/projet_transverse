@@ -294,17 +294,99 @@ class Panel_admin_router extends express.Router {
         this.route("/%C5%93uvre/edit")
 
             .get((req, res) => {
-                res.render("panel admin/œuvre.twig",)
+				
+				apiCall("/artiste", "get", {}, res, (artistes) =>{
+					console.log(artistes)
+					res.render("panel admin/œuvre_edit.twig", {
+						artistes : artistes
+					})
+				})
             })
 			
 			.post((req, res) => {
-				apiCall("/oeuvre","post",{
-					
-				},res,(response)=>{
 				
+				var id
+				
+				
+				apiCall("/adresse/admin", "post", {
+					pays : req.body.pays, 
+					code_postal : req.body.postal,
+					rue : req.body.adresse, 
+					numero : req.body.numero,
+					indication : req.body.complement,
+					masquage : (req.body.masquage != undefined) ? 1 : 0
+				}, res, (result) =>{
+					id = result.ID
+					apiCall("/Oeuvre", "post", {
+						titre : req.body.nom,
+						id_auteur : req.body.artiste,
+						description : req.body.description,
+						prix : req.body.prix,
+						id_adresse : id
+					
+					}, res, (resolve)=>{
+						let id = resolve.ID
+						console.log(id)
+						let tags = req.body.tags
+						tags = tags.split(",")
+						console.log(tags)
+						new Promise( (resolve,reject) =>{
+							let i=0
+							tags.forEach( async(tag) =>{
+								await apiCall("/Tag","post",{
+									id_oeuvre : id,
+									tag : tag
+									
+								},res,(result)=>{
+									if(result instanceof Error)
+										reject(result)
+									if(++i == tags.length)
+                                        resolve(tags)
+								})
+							})
+							
+						})
+						.then(
+							()=>{
+								var filename
+								var fs = require('fs')
+
+							//On voit si on a un avatar
+								if(req.files){
+									var file = req.files.photo1
+									filename = req.files.photo1.name
+									//on sauvegarde sur le serveur l'avatar
+									fs.mkdir("./public/img/oeuvre/"+id,()=>{
+										file.mv("./public/img/oeuvre/"+id+"/"+filename, (err)=>{
+											if(err)
+												res.send(err.message)
+										})
+										apiCall("/Photo","post",{
+											id_oeuvre : id,
+											ordre : "1",
+											name : filename
+										},res,()=>{
+											res.render("panel admin/œuvre.twig")
+										})
+									})
+								}
+							}
+							
+						)
+						.catch( (err) => res.redirect("error.twig", {err}))
+						
+					})
+					
 				})
 				
 			})
+			
+		this.route("/%C5%93uvre")
+			
+			.get((req,res)=>{
+				
+			})
+			
     }
 
 }

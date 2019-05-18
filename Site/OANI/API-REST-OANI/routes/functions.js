@@ -15,5 +15,5 @@ exports.error = (errMessage) => {
 
 
 exports.checkAndChange = (obj) => {
-    return (obj instanceof Error) ? this.error(obj.message) : this.success(obj)
+    return (obj instanceof Error) ? this.error(obj.stack) : this.success(obj)
 }

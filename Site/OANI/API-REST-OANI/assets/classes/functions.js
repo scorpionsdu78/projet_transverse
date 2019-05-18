@@ -100,7 +100,7 @@ exports.checkAndChangeOrdre = (id_oeuvre, ordre, db) => {
             else{
                 ordre = ordre.trim()
         
-                db.query('SELECT ordre FROM photo WHERE (ordre = ?)', [ordre])
+                db.query('SELECT ordre FROM photo WHERE ( (ordre = ?) AND (`Œuvre` = ?) )', [ordre, id_oeuvre])
                     .then( (result) => {
                         if(result[0] != undefined)
                             reject( new Error(exports.config.errors.noUnique + "ordre" + " !") )
