@@ -60,7 +60,8 @@ INSERT INTO `utilisateur` (`ID`, `Nom d'utilisateur`, `Mot de passe`, `Adresse m
 (15, 'Caethronrag', 'dsqdxc7', 'Caethronrag@gmail.com', 'Caethronrag_76', '44611183_579903162442855_2431212529058316288_n.jpg', 'Artiste de grand envergure'),
 (16, 'Rhunfron', 'dsqdxc7', 'Rhunfron@gmail.com', 'Rhunfron_81', '45467614_2175527415804051_3754367978724917248_n.jpg', 'Artiste de grand envergure'),
 (17, 'Dronvon', 'dsqdxc7', 'Dronvon@gmail.com', 'Dronvon_35', '52574074_2023630637734072_689954120638922752_n.jpg', 'Artiste de grand envergure'),
-(18, 'Toldam', 'dsqdxc7', 'Toldam@gmail.com', 'Toldam_56', 'avatar.jpg', 'Artiste de grand envergure');
+(18, 'Toldam', 'dsqdxc7', 'Toldam@gmail.com', 'Toldam_56', 'avatar.jpg', 'Artiste de grand envergure'),
+(19, 'Admin', 'secret', 'Admin@gmail.com', 'OANI', null, 'Administrateur du site');
 
 -- --------------------------------------------------------
 

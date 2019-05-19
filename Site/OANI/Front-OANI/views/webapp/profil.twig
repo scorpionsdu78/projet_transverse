@@ -6,12 +6,12 @@
             <div style="width: 100%; background: url('/ressources/background_custom_lightGray.png');">
                 <div style="width: 75%; margin: 0px auto 0px; background: url('/ressources/background_custom_gray.png'); min-height: 600px;">
                     <div style="padding: 50px;">
-                        <div style="width: 75%; background-color:rgba(59, 23, 11, 0.2); margin: auto;">
+                        <div style="width: 85%; background-color:rgba(59, 23, 11, 0.2); margin: auto;">
                             <div style="width: 100%; padding: 25px 50px; display: flex;">
                                 <div>
-                                    <img src="/img/avatar/{% if utilisateur.Avatar %}{{utilisateur.Avatar}}{% else %}default.jpg{% endif %}" style="max-height: 150px; max-width: 150px;">
+                                    <img src="/img/avatar/{% if utilisateur.Avatar %}{{utilisateur.Avatar}}{% else %}default.jpg{% endif %}" style="max-height: 250px; max-width: 250px;">
                                     <br>
-                                    <div style="max-width: 150px; background-color:rgba(118, 46, 22, 0.2); padding: 10px 0px 10px">
+                                    <div style="max-width: 250px; background-color:rgba(118, 46, 22, 0.2); padding: 10px 0px 10px">
                                         Instagram :<br>
                                         {% if utilisateur.Instagram %}
                                         <i>{{utilisateur.Instagram}}</i>
@@ -34,6 +34,75 @@
                         <a style="width: inherit" class="btn btn-primary" href="/profil/edit">
                             Editer son profil
                         </a>
+                    </div>
+                    {% endif %}
+                    {% if session.connexion.ID == utilisateur.ID %}
+                    <div style="margin: auto; width: 150px; padding-top: 50px">
+                        <a style="width: inherit" class="btn btn-primary" href="/profil/edit">
+                            Editer son profil
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if oeuvres %}
+                    <div style="height: 50px; width: 100%;">
+                        <div style="margin: auto; height: 50%; width: 50%; border-bottom: 1px solid black;"></div>
+                    </div>
+                        <div class="container-fluid">
+                            <style>
+                                @keyframes oeuvre-container-anim {
+                                    from {opacity: 1; box-shadow: inset 0 0 0 1px #FFFFFF;}
+                                    to {opacity: 0.7; box-shadow: inset 0 0 0 1px #3a7999;}
+                                }   
+                                .oeuvre-container {
+                                    padding: 2%;
+                                }
+                                .oeuvre-container:hover {
+                                    animation-name: oeuvre-container-anim;
+                                    animation-duration: 1s;
+                                    opacity: 0.7;
+                                    box-shadow: inset 0 0 0 1px #3a7999;
+                                }
+                            </style>
+                        {% for i in 0..3 %}
+                            <div class="row">
+                                {% for j in 0..3 %}
+                                <div class="col" style="display: block;">
+                                    {% if oeuvres[i*4+j] %}
+                                    <a href="/%C5%93uvre/{{oeuvres[i*4+j].ID}}" style="text-decoration:none;">
+                                        <div class="oeuvre-container">
+                                            <div id="carouselExampleFade" class="carousel carousel-fade slide" data-ride="carousel">
+                                                <div class="carousel-inner w-100">
+                                                    {% for photo in oeuvres[i*4+j].Photos %}
+                                                    <div class="carousel-item {% if photo == oeuvres[i*4+j].Photos[0] %} active {% endif %}" style="background: center/100% url('/img/oeuvre/{{oeuvres[i*4+j].ID}}/{{photo.URL}}') no-repeat; padding-top: 100%;" data-interval="{{ random(2000) + 3250 }}">
+                                                    </div>
+                                                    {% endfor %}
+                                                    {% if oeuvres[i*4+j].Photos|length == 0 %}
+                                                    <div class="carousel-item active" style="background: center/100% url('/img/oeuvre/default.jpg') no-repeat; padding-top: 100%;" data-interval="1000">
+                                                    </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div style="text-align: center; padding-top: 2%;">
+                                                <span class="text-dark" style="font-weight: bold; font-size: calc(2.5vmin);">
+                                                    {{oeuvres[i*4+j].Titre}}
+                                                </span>
+                                                <br>
+                                                <span class="text-dark" style="font-weight: 1000; font-size: calc(3vmin);">
+                                                    {{oeuvres[i*4+j]["Prix de location"]}}€
+                                                </span>
+                                                <br>
+                                                <div class="btn btn-info" style="font-size: calc(2.5vmin);">
+                                                    Voir l'oeuvre
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                        </div>
                     </div>
                     {% endif %}
                 </div>

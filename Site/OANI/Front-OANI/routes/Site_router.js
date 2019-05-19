@@ -203,16 +203,20 @@ class Site_router extends express.Router {
                     nom_utilisateur: req.body.nom_utilisateur,
                     mot_de_passe: req.body.mot_de_passe
                 }, res, (result) => {
-                    if(result != undefined){
+                    if(result != 0){
                         req.session.connexion = {
                             ID: result.ID,
                             nom_utilisateur: result["Nom d'utilisateur"],
                             avatar: result.Avatar
                         }
+                        if(result.Artiste_ID != undefined){
+                            req.session.connexion.Artiste_ID = result.Artiste_ID
+                        }
                     }
                     else{
                         req.session.connexion = undefined
                     }
+                    
                     res.redirect("/")
                 })
 
@@ -232,15 +236,50 @@ class Site_router extends express.Router {
             .get((req, res) => {
 
                 apiCall("utilisateur/" + req.params.id, "GET", {}, res, (result) => {
+                    let utilisateur = result
 
-                    res.render("webapp/profil.twig", {
-                        template: {
-                            title: "Profil de " + result["Nom d'utilisateur"],
-                            image: "https://www.artranked.com/images/d8/d89f2577b3829a0c46996c792c357862.png"
-                        },
-                        session: req.session,
-                        utilisateur: result
-                    })
+                    if(utilisateur.Pseudo){
+
+                        apiCall("artiste", "GET", {}, res, (result) => {
+                                
+                            const artistes = result
+                            let bool = true
+
+                            for(let artiste in artistes){
+                                if( (artistes[artiste].Utilisateur["Nom d'utilisateur"] == utilisateur["Nom d'utilisateur"]) && (bool) ){
+
+                                    apiCall("oeuvre?id_auteur=" + artistes[artiste].ID, "GET", {}, res, (result) => {
+                                        bool = false
+
+                                        res.render("webapp/profil.twig", {
+                                            template: {
+                                                title: "Profil de " + utilisateur.Pseudo,
+                                                image: "https://www.artranked.com/images/d8/d89f2577b3829a0c46996c792c357862.png"
+                                            },
+                                            session: req.session,
+                                            utilisateur: utilisateur,
+                                            oeuvres: result
+                                        })
+
+                                    })
+                                }
+                            }
+                            
+                        })
+
+                    }
+                    else {
+    
+                        res.render("webapp/profil.twig", {
+                            template: {
+                                title: "Profil de " + utilisateur["Nom d'utilisateur"],
+                                image: "https://www.artranked.com/images/d8/d89f2577b3829a0c46996c792c357862.png"
+                            },
+                            session: req.session,
+                            utilisateur: utilisateur
+                        })
+
+                    }
 
                 })
 
