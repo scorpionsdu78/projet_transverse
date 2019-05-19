@@ -40,6 +40,31 @@ INSERT INTO `adresse` (`ID`, `Pays`, `Code Postal`, `Rue`, `Numéro de rue`, `In
 -- --------------------------------------------------------
 
 --
+-- Déchargement des données de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`ID`, `Nom d'utilisateur`, `Mot de passe`, `Adresse mail`, `Instagram`, `Avatar`, `Description`) VALUES
+(1, 'topcasedu99', 'dsqdxc7', 'topcasedu99@gmail.com', 'topcasedu_99', '7d4ce918810525a5c8c097c8cf2be9c7.jpg', 'non'),
+(3, 'Lurggar', 'dsqdxc7', 'Lurggar@gmail.com', 'Lurggar_79', '499496.jpg', 'Artiste de grand envergure'),
+(4, 'Trulith', 'dsqdxc7', 'Trulith@gmail.com', 'Trulith_34', '16730488_1168378756593975_7162810654086681616_n.jpg', 'Artiste de grand envergure'),
+(5, 'Moatdon', 'dsqdxc7', 'Moatdon@gmail.com', 'Moatdon_21', '17265085_10155224871087941_2719979986532961305_n.jpg', 'Artiste de grand envergure'),
+(6, 'Urukrod', 'dsqdxc7', 'Urukrod@gmail.com', 'Urukrod_76', '18157191_10158693240550193_146876833177479490_n.jpg', 'Artiste de grand envergure'),
+(7, 'Arariss', 'dsqdxc7', 'Arariss@gmail.com', 'Arariss_3', '18698349_286289208447628_6171174935325848801_n.jpg', 'Artiste de grand envergure'),
+(8, 'Goadfrid', 'dsqdxc7', 'Goadfrid@gmail.com', 'Goadfrid_75', '19105741_1747984218838282_8635148997344850310_n.jpg', 'Artiste de grand envergure'),
+(9, 'Losdir', 'dsqdxc7', 'Losdir@gmail.com', 'Losdir_63', '19225892_10155436352837840_1254540457562038641_n.jpg', 'Artiste de grand envergure'),
+(10, 'Honhae', 'dsqdxc7', 'Honhae@gmail.com', 'Honhae_48', '19366266_1894693200780589_8360078089074888263_n.jpg', 'Artiste de grand envergure'),
+(11, 'Tegrhî', 'dsqdxc7', 'Tegrhî@gmail.com', 'Tegrhî_97', '19732221_452107195173234_396841025370562985_n.jpg', 'Artiste de grand envergure'),
+(12, 'Pydien', 'dsqdxc7', 'Pydien@gmail.com', 'Pydien_80', '20840904_1890152374334432_3416921083395940340_n.jpg', 'Artiste de grand envergure'),
+(13, 'Lhîbar', 'dsqdxc7', 'Lhîbar@gmail.com', 'Lhîbar_11', '24312711_1000542300085974_201450037980878655_n.jpg', 'Artiste de grand envergure'),
+(14, 'Bartei', 'dsqdxc7', 'Bartei@gmail.com', 'Bartei_2', '29789880_446127632487076_6267720144196162384_n.jpg', 'Artiste de grand envergure'),
+(15, 'Caethronrag', 'dsqdxc7', 'Caethronrag@gmail.com', 'Caethronrag_76', '44611183_579903162442855_2431212529058316288_n.jpg', 'Artiste de grand envergure'),
+(16, 'Rhunfron', 'dsqdxc7', 'Rhunfron@gmail.com', 'Rhunfron_81', '45467614_2175527415804051_3754367978724917248_n.jpg', 'Artiste de grand envergure'),
+(17, 'Dronvon', 'dsqdxc7', 'Dronvon@gmail.com', 'Dronvon_35', '52574074_2023630637734072_689954120638922752_n.jpg', 'Artiste de grand envergure'),
+(18, 'Toldam', 'dsqdxc7', 'Toldam@gmail.com', 'Toldam_56', 'avatar.jpg', 'Artiste de grand envergure');
+
+-- --------------------------------------------------------
+
+--
 -- Déchargement des données de la table `adresse d'utilisateur`
 --
 
@@ -75,12 +100,35 @@ INSERT INTO `artiste` (`ID`, `Utilisateur`, `Pseudo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Déchargement des données de la table `œuvre`
+--
+
+INSERT INTO `œuvre` (`ID`, `Titre`, `Auteur`, `Description`, `Prix de location`, `Localisation`) VALUES
+(1, 'Chez bob', 2, 'Il etait une fois chez bob', 56.00, 18),
+(2, 'Cook ', 1, 'Selon Christie\'s10, le tableau aurait autrefois appartenu à Charles Ier d\'Angleterre. À la demande de sa veuve, née Henriette Marie de France, Wenceslas Hollar en réalise une copie gravée, qui est enregistrée dans la collection royale en 164913. Il est admis que la reine Henriette a apporté l\'œuvre en Angleterre par son mariage. Ensuite, on perd sa trace durant un siècle. Le tableau est vendu aux enchères par le fils du duc de Buckingham et Normanby en 1763, puis, sa trace se perd de nouveau14. ', 5555.00, 22),
+(3, 'La joconde', 2, 'L histoire du TERTER', 1806.00, 19),
+(4, 'Girl with a Pearl Earring', 1, 'Il etait une fois chez TC', 5566.00, 20),
+(5, 'Wailing man', 1, 'En 2005, mise en vente à la Nouvelle-Orléans, la version Cook est acquise par un consortium de marchands d\'art dont Robert Simon, spécialiste des maîtres anciens, pour 10 000 dollars. Le tableau a été gravement endommagé par des tentatives de restauration précédentes, fortement repeint et reverni, de sorte qu\'il ressemble à une copie. Une barbe et des moustaches ont été ajoutées', 1800.00, 21),
+(6, 'Redécouverte de la version', 1, 'En 2005, mise en vente à la Nouvelle-Orléans, la version Cook est acquise par un consortium de marchands d\'art dont Robert Simon, spécialiste des maîtres anciens, pour 10 000 dollars. Le tableau a été gravement endommagé par des tentatives de restauration précédentes, fortement repeint et reverni, de sorte qu\'il ressemble à une copie. Une barbe et des moustaches ont été ajoutées, probablement après la Contre-Réforme, pour adapter l\'image du Christ à la physionomie officielle. Il est alors décrit comme « une épave, sombre et lugubre »25. ', 9898.00, 23),
+(7, 'Expertise', 2, 'Le site britannique the ArtWatch.org.uk de Michel Daley, démontre photographies à l\'appui qu\'entre 2011 et 2017, de nombreux détails de la peinture ont changé, parmi eux le drapé de l\'épaule droite dont le nombre de plis est passé de 9 à 4 ! et qu\'aucune de ces versions ne correspond à la gravure de Hollar49. ', 9587.00, 24),
+(8, 'Interrogations et doutes persistants', 1, 'En août 2018, plusieurs experts, dont Matthew Landrus, du Wolfson College d\'Oxford, font part de leurs doutes et attribuent le tableau à Bernardino Luini et aux suiveurs de Léonard de Vinci2. Matthew Landrus démontre, en superposant les radiographies du Salvator Mundi (1500), de la version Ganay (1512) et du Christ parmi les docteurs (1510), l\'existence de trois dessins poncifs préalables, un pour la tête de Christ, un pour le vêtement, un pour la main droite. Chaque partie se superpose parfaitement51. Il attribue les poncifs à Léonard de Vinci pour la fresque perdue du Salvator Mundi peinte en 1495-1498 et détruite en 1603, dans l\'église Santa Maria delle Grazie à Milan, suivant l\'opinion de Ludwig Heydenreich en 196452', 2500.00, 25),
+(9, 'Attribution ', 2, 'Certains, à l\'inverse, considèrent certaines parties comme médiocres', 2689.00, 26),
+(10, 'technique', 2, 'L\'analyse technique des pigments est réputée « globalement »59 compatible avec la technique de Vinci60. Selon Dianne Modestini, la restauratrice le support en bois de noyer est en très mauvais état et réagit à tout changement d\'humidité et doit être conservé dans un taux d\'humidité de 45 % minimum6', 1256.00, 27),
+(11, 'Iconographie', 2, 'ianne Modestini, affirme que le support comportait deux nœuds de boi', 6965.00, 28),
+(12, 'Nafea faa ipoipo', 2, ' francs à la mort de l\'artiste, il a été acheté, en 2015, par le Qatar ermites pour 300 millions de dollars,', 325.00, 29),
+(13, 'arco Ottoboni', 2, 'Fils de famille, il fut fait cardinal à la demande de la République de Venise par Innocent X le 19 février 1652, puis reçut l\'évêché de Brescia, en territoire vénitien, où il vécut tranquillement. Il devint cardinal dataire sous Clément IX. Presque octogénaire il fut élu pape mais ne régna que quinze mois pendant lesquels il se passa peu de choses. Louis XIV qui se trouvait alors en difficulté voulut profiter des dispositions conciliantes du nouveau pontife, qu\'il avait contribué à faire élire', 569.00, 30),
+(14, 'à la reine', 1, 'Christine de Suède Presque octogénaire il fut élu pape mais ne régna que quinze mois pendant lesquels il se passa peu de choses. Louis XIV qui se trouvait alors en difficulté voulut profiter des dispositions conciliantes du nouveau pontife, qu\'il avait contribué à faire élire, et pour se le rendre favorable lui restitua Avignon qu\'il avait fait occupe', 265.00, 31),
+(15, 'Canonisations', 1, 'Il canonisa saint Jean de Capistran (1690) et saint Jean de Dieu (16 octobre 1690). ', 899.00, 32);
+
+-- --------------------------------------------------------
+
+--
 -- Déchargement des données de la table `photo`
 --
 
 INSERT INTO `photo` (`ID`, `URL`, `Œuvre`, `ordre`) VALUES
-(1, '  1.0.jpg', 1, 1),
-(25, '  1.1.jpg', 1, 2),
+(1, '1.0.jpg', 1, 1),
+(25, '1.1.jpg', 1, 2),
 (50, '3.0.jpg', 3, 1),
 (73, '3.1.jpg', 3, 2),
 (74, '3.2.jpg', 3, 3),
@@ -93,9 +141,7 @@ INSERT INTO `photo` (`ID`, `URL`, `Œuvre`, `ordre`) VALUES
 (98, '7.0.jpg', 7, 1),
 (99, '7.1.jpg', 7, 2),
 (100, '7.2.jpg', 7, 3),
-(101, '8.0.jpg', 8, 1),
-(102, '8.1.jpg', 8, 2),
-(103, '8.2.jpg', 8, 3),
+(101, '8.0.png', 8, 1),
 (104, '9.0.jpg', 9, 1),
 (105, '10.0.jpg', 10, 1),
 (106, '11.0.jpg', 11, 1),
@@ -468,51 +514,3 @@ INSERT INTO `tag` (`ID`, `Tag`, `Œuvre`) VALUES
 (723, 'mère', 15),
 (721, 'Napoléon', 15),
 (719, 'seconde', 15);
-
--- --------------------------------------------------------
-
---
--- Déchargement des données de la table `utilisateur`
---
-
-INSERT INTO `utilisateur` (`ID`, `Nom d'utilisateur`, `Mot de passe`, `Adresse mail`, `Instagram`, `Avatar`, `Description`) VALUES
-(1, 'topcasedu99', 'dsqdxc7', 'topcasedu99@gmail.com', 'topcasedu_99', ' 7d4ce918810525a5c8c097c8cf2be9c7.jpg', 'non'),
-(3, 'Lurggar', 'dsqdxc7', 'Lurggar@gmail.com', 'Lurggar_79', ' 499496.jpg', 'Artiste de grand envergure'),
-(4, 'Trulith', 'dsqdxc7', 'Trulith@gmail.com', 'Trulith_34', ' 16730488_1168378756593975_7162810654086681616_n.jpg', 'Artiste de grand envergure'),
-(5, 'Moatdon', 'dsqdxc7', 'Moatdon@gmail.com', 'Moatdon_21', ' 17265085_10155224871087941_2719979986532961305_n.jpg', 'Artiste de grand envergure'),
-(6, 'Urukrod', 'dsqdxc7', 'Urukrod@gmail.com', 'Urukrod_76', ' 18157191_10158693240550193_146876833177479490_n.jpg', 'Artiste de grand envergure'),
-(7, 'Arariss', 'dsqdxc7', 'Arariss@gmail.com', 'Arariss_3', ' 18698349_286289208447628_6171174935325848801_n.jpg', 'Artiste de grand envergure'),
-(8, 'Goadfrid', 'dsqdxc7', 'Goadfrid@gmail.com', 'Goadfrid_75', ' 19105741_1747984218838282_8635148997344850310_n.jpg', 'Artiste de grand envergure'),
-(9, 'Losdir', 'dsqdxc7', 'Losdir@gmail.com', 'Losdir_63', ' 19225892_10155436352837840_1254540457562038641_n.jpg', 'Artiste de grand envergure'),
-(10, 'Honhae', 'dsqdxc7', 'Honhae@gmail.com', 'Honhae_48', ' 19366266_1894693200780589_8360078089074888263_n.jpg', 'Artiste de grand envergure'),
-(11, 'Tegrhî', 'dsqdxc7', 'Tegrhî@gmail.com', 'Tegrhî_97', ' 19732221_452107195173234_396841025370562985_n.jpg', 'Artiste de grand envergure'),
-(12, 'Pydien', 'dsqdxc7', 'Pydien@gmail.com', 'Pydien_80', ' 20840904_1890152374334432_3416921083395940340_n.jpg', 'Artiste de grand envergure'),
-(13, 'Lhîbar', 'dsqdxc7', 'Lhîbar@gmail.com', 'Lhîbar_11', ' 24312711_1000542300085974_201450037980878655_n.jpg', 'Artiste de grand envergure'),
-(14, 'Bartei', 'dsqdxc7', 'Bartei@gmail.com', 'Bartei_2', ' 29789880_446127632487076_6267720144196162384_n.jpg', 'Artiste de grand envergure'),
-(15, 'Caethronrag', 'dsqdxc7', 'Caethronrag@gmail.com', 'Caethronrag_76', ' 44611183_579903162442855_2431212529058316288_n.jpg', 'Artiste de grand envergure'),
-(16, 'Rhunfron', 'dsqdxc7', 'Rhunfron@gmail.com', 'Rhunfron_81', ' 45467614_2175527415804051_3754367978724917248_n.jpg', 'Artiste de grand envergure'),
-(17, 'Dronvon', 'dsqdxc7', 'Dronvon@gmail.com', 'Dronvon_35', ' 52574074_2023630637734072_689954120638922752_n.jpg', 'Artiste de grand envergure'),
-(18, 'Toldam', 'dsqdxc7', 'Toldam@gmail.com', 'Toldam_56', ' avatar.jpg', 'Artiste de grand envergure');
-
--- --------------------------------------------------------
-
---
--- Déchargement des données de la table `œuvre`
---
-
-INSERT INTO `œuvre` (`ID`, `Titre`, `Auteur`, `Description`, `Prix de location`, `Localisation`) VALUES
-(1, 'Chez bob', 2, 'Il etait une fois chez bob', 56.00, 18),
-(2, 'MDR c est le TERTER', 2, 'L histoire du TERTER', 1806.00, 19),
-(3, 'Chez TC', 1, 'Il etait une fois chez TC', 5566.00, 20),
-(4, 'Entree dans le monde moderne', 1, 'En 2005, mise en vente à la Nouvelle-Orléans, la version Cook est acquise par un consortium de marchands d\'art dont Robert Simon, spécialiste des maîtres anciens, pour 10 000 dollars. Le tableau a été gravement endommagé par des tentatives de restauration précédentes, fortement repeint et reverni, de sorte qu\'il ressemble à une copie. Une barbe et des moustaches ont été ajoutées', 1800.00, 21),
-(5, 'Cook ', 1, 'Selon Christie\'s10, le tableau aurait autrefois appartenu à Charles Ier d\'Angleterre. À la demande de sa veuve, née Henriette Marie de France, Wenceslas Hollar en réalise une copie gravée, qui est enregistrée dans la collection royale en 164913. Il est admis que la reine Henriette a apporté l\'œuvre en Angleterre par son mariage. Ensuite, on perd sa trace durant un siècle. Le tableau est vendu aux enchères par le fils du duc de Buckingham et Normanby en 1763, puis, sa trace se perd de nouveau14. ', 5555.00, 22),
-(6, 'Redécouverte de la version', 1, 'En 2005, mise en vente à la Nouvelle-Orléans, la version Cook est acquise par un consortium de marchands d\'art dont Robert Simon, spécialiste des maîtres anciens, pour 10 000 dollars. Le tableau a été gravement endommagé par des tentatives de restauration précédentes, fortement repeint et reverni, de sorte qu\'il ressemble à une copie. Une barbe et des moustaches ont été ajoutées, probablement après la Contre-Réforme, pour adapter l\'image du Christ à la physionomie officielle. Il est alors décrit comme « une épave, sombre et lugubre »25. ', 9898.00, 23),
-(7, 'Expertise', 2, 'Le site britannique the ArtWatch.org.uk de Michel Daley, démontre photographies à l\'appui qu\'entre 2011 et 2017, de nombreux détails de la peinture ont changé, parmi eux le drapé de l\'épaule droite dont le nombre de plis est passé de 9 à 4 ! et qu\'aucune de ces versions ne correspond à la gravure de Hollar49. ', 9587.00, 24),
-(8, 'Interrogations et doutes persistants', 1, 'En août 2018, plusieurs experts, dont Matthew Landrus, du Wolfson College d\'Oxford, font part de leurs doutes et attribuent le tableau à Bernardino Luini et aux suiveurs de Léonard de Vinci2. Matthew Landrus démontre, en superposant les radiographies du Salvator Mundi (1500), de la version Ganay (1512) et du Christ parmi les docteurs (1510), l\'existence de trois dessins poncifs préalables, un pour la tête de Christ, un pour le vêtement, un pour la main droite. Chaque partie se superpose parfaitement51. Il attribue les poncifs à Léonard de Vinci pour la fresque perdue du Salvator Mundi peinte en 1495-1498 et détruite en 1603, dans l\'église Santa Maria delle Grazie à Milan, suivant l\'opinion de Ludwig Heydenreich en 196452', 2500.00, 25),
-(9, 'Attribution ', 2, 'Certains, à l\'inverse, considèrent certaines parties comme médiocres', 2689.00, 26),
-(10, 'technique', 2, 'L\'analyse technique des pigments est réputée « globalement »59 compatible avec la technique de Vinci60. Selon Dianne Modestini, la restauratrice le support en bois de noyer est en très mauvais état et réagit à tout changement d\'humidité et doit être conservé dans un taux d\'humidité de 45 % minimum6', 1256.00, 27),
-(11, 'Iconographie', 2, 'ianne Modestini, affirme que le support comportait deux nœuds de boi', 6965.00, 28),
-(12, 'Nafea faa ipoipo', 2, ' francs à la mort de l\'artiste, il a été acheté, en 2015, par le Qatar ermites pour 300 millions de dollars,', 325.00, 29),
-(13, 'arco Ottoboni', 2, 'Fils de famille, il fut fait cardinal à la demande de la République de Venise par Innocent X le 19 février 1652, puis reçut l\'évêché de Brescia, en territoire vénitien, où il vécut tranquillement. Il devint cardinal dataire sous Clément IX. Presque octogénaire il fut élu pape mais ne régna que quinze mois pendant lesquels il se passa peu de choses. Louis XIV qui se trouvait alors en difficulté voulut profiter des dispositions conciliantes du nouveau pontife, qu\'il avait contribué à faire élire', 569.00, 30),
-(14, 'à la reine', 1, 'Christine de Suède Presque octogénaire il fut élu pape mais ne régna que quinze mois pendant lesquels il se passa peu de choses. Louis XIV qui se trouvait alors en difficulté voulut profiter des dispositions conciliantes du nouveau pontife, qu\'il avait contribué à faire élire, et pour se le rendre favorable lui restitua Avignon qu\'il avait fait occupe', 265.00, 31),
-(15, 'Canonisations', 1, 'Il canonisa saint Jean de Capistran (1690) et saint Jean de Dieu (16 octobre 1690). ', 899.00, 32);

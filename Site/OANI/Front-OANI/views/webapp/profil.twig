@@ -1,0 +1,46 @@
+{% include 'webapp/template_top.twig' with template %}
+           
+            <!-- Début du code -->
+
+
+            <div style="width: 100%; background: url('/ressources/background_custom_lightGray.png');">
+                <div style="width: 75%; margin: 0px auto 0px; background: url('/ressources/background_custom_gray.png'); min-height: 600px;">
+                    <div style="padding: 50px;">
+                        <div style="width: 75%; background-color:rgba(59, 23, 11, 0.2); margin: auto;">
+                            <div style="width: 100%; padding: 25px 50px; display: flex;">
+                                <div>
+                                    <img src="/img/avatar/{% if utilisateur.Avatar %}{{utilisateur.Avatar}}{% else %}default.jpg{% endif %}" style="max-height: 150px; max-width: 150px;">
+                                    <br>
+                                    <div style="max-width: 150px; background-color:rgba(118, 46, 22, 0.2); padding: 10px 0px 10px">
+                                        Instagram :<br>
+                                        {% if utilisateur.Instagram %}
+                                        <i>{{utilisateur.Instagram}}</i>
+                                        {% endif %}
+                                        <br>
+                                        Adresse mail :<br>
+                                        {% if utilisateur["Adresse mail"] %}
+                                        <i>{{utilisateur["Adresse mail"]}}</i>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div style="margin-left: 20px; padding-left: 20px; padding-right: 20px; border-left: 3px solid blue; background-color:rgba(50, 50, 255, 0.5); width: 100%">
+                                    {{utilisateur.Description}}
+                                </div>
+                            </div>
+                        </div>
+                    <div>
+                    {% if session.connexion.ID == utilisateur.ID %}
+                    <div style="margin: auto; width: 150px; padding-top: 50px">
+                        <a style="width: inherit" class="btn btn-primary" href="/profil/edit">
+                            Editer son profil
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+
+
+            <!-- Fin du code -->
+
+{% include 'webapp/template_bot.twig' %}

@@ -115,4 +115,4 @@ CREATE TABLE `oani`.`Tag Couleur` (
 
 
 CREATE VIEW `oani`.`Compte view` AS
-	SELECT ID, `Nom d'utilisateur`, PASSWORD(`Mot de passe`) AS `Mot de passe` FROM `oani`.`Utilisateur`;
+	SELECT ID, `Nom d'utilisateur`, PASSWORD(`Mot de passe`) AS `Mot de passe`, Avatar FROM `oani`.`Utilisateur`;

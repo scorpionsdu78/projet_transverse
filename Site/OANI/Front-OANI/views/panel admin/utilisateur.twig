@@ -20,7 +20,7 @@
                 <tbody>
                   {% for utilisateur in utilisateurs %}
                   <tr>
-                    <th> <img src="/img/avatar/{{utilisateur.Avatar}}" style="max-height: 75px; max-width: 75px;"> </th>
+                    <th> <img src="/img/avatar/{% if utilisateur.Avatar %}{{utilisateur.Avatar}}{% else %}default.jpg{% endif %}" style="max-height: 75px; max-width: 75px;"> </th>
                     <th> {{utilisateur["Nom d'utilisateur"]}} </th>
                     <th> {{utilisateur["Adresse mail"]}} </th>
                     <th> {% if utilisateur.Pseudo %} Artiste {% else %} Utilisateur simple {% endif %} </th>
