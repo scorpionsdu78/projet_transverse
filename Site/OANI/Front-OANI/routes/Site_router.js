@@ -25,7 +25,8 @@ class Site_router extends express.Router {
                         title: "Acceuil",
                         active: "Acceuil",
                         image: "/ressources/acceuil.jpg"
-                    }
+                    },
+                    session: req.session
                 })
             })
 
@@ -34,6 +35,7 @@ class Site_router extends express.Router {
             .get((req, res) => {
 
                 apiCall("/oeuvre", "GET", {}, res, (result) => {
+                    console.log(req.session.connexion)
                     
                     res.render("webapp/oeuvres.twig", {
                         template: {
@@ -41,6 +43,7 @@ class Site_router extends express.Router {
                             active: "Œuvre",
                             image: "https://img.bfmtv.com/c/1256/708/b87/5bd3f140ad92aee49f283503f8538.jpeg"
                         },
+                        session: req.session,
                         oeuvres: result
                     })
 
@@ -62,6 +65,7 @@ class Site_router extends express.Router {
                                 title: oeuvre.Titre,
                                 image: "/img/oeuvre/" + photo
                             },
+                            session: req.session,
                             oeuvre: oeuvre,
                             auteur: result
                         })
@@ -102,7 +106,8 @@ class Site_router extends express.Router {
                         title: "Artiste",
                         active: "Artiste",
                         image: "http://www.pvdial.fr/blog/wp-content/uploads/2018/04/artiste.jpg"
-                    }
+                    },
+                    session: req.session
                 })
             })
 
@@ -114,20 +119,31 @@ class Site_router extends express.Router {
                         title: "Qui sommes-nous ?",
                         active: "Qui sommes-nous ?",
                         image: "/ressources/oani_logo.png"
-                    }
+                    },
+                    session: req.session
                 })
             })
 
         this.route("/connexion")
 
-            .get((req, res) => {
-                res.render("webapp/connexion.twig", {
-                    template: {
-                        title: "Connexion",
-                        active: "Connexion",
-                        image: "/ressources/oani_logo.png"
+            .post((req, res) => {
+                
+                apiCall("/compte", "POST", {
+                    nom_utilisateur: req.body.nom_utilisateur,
+                    mot_de_passe: req.body.mot_de_passe
+                }, res, (result) => {
+                    if(result != 0){
+                        req.session.connexion = {
+                            ID: result
+                        }
                     }
+                    else{
+                        req.session.connexion = undefined
+                    }
+                    console.log(req.session.connexion)  
+                    res.redirect("/")
                 })
+
             })
 
         this.route("/inscription")
@@ -138,7 +154,8 @@ class Site_router extends express.Router {
                         title: "Inscription",
                         active: "Inscription",
                         image: "/ressources/oani_logo.png"
-                    }
+                    },
+                    session: req.session
                 })
             })
 			

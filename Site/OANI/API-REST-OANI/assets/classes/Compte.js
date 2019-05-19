@@ -23,9 +23,19 @@ class Compte {
                 .then( (result) => {
                     mot_de_passe = result
 
-                    return this.db.query("SELECT (`Mot de passe` = PASSWORD(?)) AS `check`, ID FROM `compte view` WHERE (`Nom d'utilisateur` = ?)", [mot_de_passe, nom_utilisateur])    
+                    return this.db.query("SELECT (`Mot de passe` = PASSWORD(?)) AS `check` FROM `compte view` WHERE (`Nom d'utilisateur` = ?)", [mot_de_passe, nom_utilisateur])    
                 })
-                .then( (result) => next((result[0].check == 0) ? 0 : result[0].ID ) )
+                .then( (result) =>{
+                    if( result[0] == undefined || result[0].check == 0)
+                        next(0)
+                    
+                    else
+                        return this.db.query("SELECT ID FROM `compte view` WHERE (`Nom d'utilisateur` = ?)", [nom_utilisateur])
+                })
+                .then( (result) => {
+                    if(result[0] != undefined)
+                        next(result[0].ID)
+                })
                 .catch( (err) => next(err) )      
         })
     }

@@ -30,8 +30,15 @@
                 </div>
             </div>
             <div class="navbar-nav">
-                <a class="nav-item nav-link {% if template.active == "Connexion" %} active {% endif%}" href="/connexion">Connexion</a>
+                {% if session.connexion %}
+                <a class="nav-item nav-link {% if template.active == "Inscription" %} active {% endif%}" href="/inscription">Connecté : {{session.connexion.ID}}</a>
+                {% else %}
+                <!-- Button trigger modal -->
+                <div class="nav-item nav-link" data-toggle="modal" data-target="#connexionModal">
+                    Connexion
+                </div>
                 <a class="nav-item nav-link {% if template.active == "Inscription" %} active {% endif%}" href="/inscription">Inscription</a>
+                {% endif %}
             </div>
         </nav>
 
@@ -39,6 +46,34 @@
             <div class="container-fluid" style="position: absolute; top: 200px;">
                 <div style="text-align: center;">
                     <h1 class="text-light"><b>{{template.title}}</b></h1>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="connexionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Connexion</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-connexion" method="POST" action="/connexion">	
+                            <div style="padding-bottom: 10px; padding-right: 10px; padding-left: 0px;">
+                                <input type="text" class="form-control" name="nom_utilisateur" id="inputText" placeholder="Nom d'utilisateur">
+                            </div>
+                            <div style="padding-bottom: 10px; padding-right: 10px; padding-left: 0px;">
+                                <input type="password" class="form-control" name="mot_de_passe" id="inputPassword" placeholder="Mot de passe">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <input type="submit" class="btn btn-primary" value="Se connecter" form="form-connexion">
+                    </div>
                 </div>
             </div>
         </div>
