@@ -101,14 +101,21 @@ class Site_router extends express.Router {
         this.route("/artiste")
 
             .get((req, res) => {
-                res.render("webapp/artistes.twig", {
-                    template: {
-                        title: "Artiste",
-                        active: "Artiste",
-                        image: "http://www.pvdial.fr/blog/wp-content/uploads/2018/04/artiste.jpg"
-                    },
-                    session: req.session
+    
+                apiCall("/artiste", "GET", {}, res, (result) => {
+
+                    res.render("webapp/artistes.twig", {
+                        template: {
+                            title: "Artiste",
+                            active: "Artiste",
+                            image: "http://www.pvdial.fr/blog/wp-content/uploads/2018/04/artiste.jpg"
+                        },
+                        session: req.session,
+                        artistes: result
+                    })
+
                 })
+
             })
 
         this.route("/qui-sommes-nous")
