@@ -235,7 +235,7 @@
 
             <!-- Début du code -->
 
-
+		<form action="" method="POST" enctype="multipart/form-data">
             <div style="width: 100%; background: url('/ressources/background_custom_lightGray.png');">
 							<div style="width: 75%; margin: 0px auto 0px; background: url('/ressources/background_custom_gray.png'); color: black; min-height: 600px;">
 								<section id="Contact" class="container-fluid">
@@ -254,29 +254,31 @@
 												<form class="needs-validation" novalidate style="margin-bottom: 50px">
 													
 														<div class="aka">
-															<input type="text" id="name" class="form-control" placeholder="Nom de l'utilisateur" required>
+															<input type="text" id="name" name="inputName" class="form-control" placeholder="Nom de l'utilisateur" required>
 														</div>
 
-														<div class="aka">
-
-															<input type="text" id="Number" class="form-control" placeholder="Numero de telephone" required>
-														</div>
+														<div class="p-2 bd-highlight">
+															<label for="avatar"> entrez avatar utilisateur </label>
+															<input type="file"  name="avatar" id="avatar">
+															<input type="submit" value="upload" >
+														</div>	
+													
 														<div class=" form-row">
 															<div class="aka col-sm-6">
-																<input type="text" id="email1" class="form-control" placeholder=" Email" required>
+																<input type="text" id="email1" name="email" class="form-control" placeholder=" Email" required>
 															</div>
 															
 															<div class="aka col-sm-6">
-																<input type="text" id="email2" class="form-control" placeholder="Répétez votre Email "required>
+																<input type="text" id="email2" name="email2" class="form-control" placeholder="Répétez votre Email "required>
 															</div>
 														</div>
 														<div class="form-row">
 															<div class="aka col-sm-6">
-																<input type="text" id="password" class="form-control" placeholder=" Mot de passe"required>
+																<input type="text" id="password" name="mot_de_passe" class="form-control" placeholder=" Mot de passe"required>
 															</div>
 															
 															<div class="aka col-sm-6">
-																<input type="text" id="password2" class="form-control" placeholder="Répétez votre Mot de passe"required>
+																<input type="text" id="password2" name="mot_de_passe2" class="form-control" placeholder="Répétez votre Mot de passe"required>
 															</div>
 														</div>
 														
@@ -284,18 +286,18 @@
 
 
 														<div class="aka">
-															<textarea class="form-control" id="inputCom" rows="3"  maxlength="250" placeholder="Pourquoi vous inscrire? (Max 250 mots)"></textarea>
+															<textarea class="form-control" id="inputCom" name="description" rows="3"  maxlength="250" placeholder="Pourquoi vous inscrire? (Max 250 mots)"></textarea>
 															
 														</div>
 														<div class=" form-row">
 															<div class="aka col-sm-2">
-																<input type="text" class="form-control" id="inputAddress" placeholder="N°"required>
+																<input type="Number" class="form-control" id="inputAddress" name="numero" placeholder="N°"required>
 															</div>
 															<div class="aka col-sm-8">
-																<input type="text" class="form-control" id="inputAddress" placeholder="Adresse"required>
+																<input type="text" class="form-control" id="inputAddress" name="adresse" placeholder="Adresse"required>
 															</div>
 															<div class="aka col-sm-2">
-																<input type="Number" class="form-control" id="inputAddress" placeholder="Code postal" required>
+																<input type="text" class="form-control" id="inputAddress" name="postal" placeholder="Code postal" required>
 																
 																</div>
 
@@ -303,18 +305,16 @@
 																<input type="text" class="form-control" id="inputAddress" placeholder="Ville"required>
 															</div>
 															<div class="aka col-sm-3">
-																<input type="Country" class="form-control" id="inputAddress" placeholder="Pays"required>
+																<input type="Country" class="form-control" id="inputAddress" name="pays" placeholder="Pays"required>
 															</div>
 															
 															<div class="col-sm-12 aka">
-																<input type="text" class="form-control" id="inputAddress" placeholder="Infos Complémentaires">	
+																<input type="text" class="form-control" id="inputAddress" name="complement" placeholder="Infos Complémentaires">	
 															</div>
 															<div class="form-group">
 																	<div class="form-check pl-0">
-																		<input class="form-check-input" type="checkbox" value="" id="Check222" required>
-																		<label class="form-check-label" for="Check222" style="color: white;">
-																			Masquage de votre adresse ?
-																		</label>
+																		<input class="form-check-input" type="checkbox" name="masquage" id="inlineCheckBox" value="1" {% if utilisateur.Adresses[0].Masquage == 1 %} checked {% endif %}>
+																		<label class="form-check-label" for="inlineCheckBox">Masquage</label>
 																	</div>
 																</div>
 															
@@ -338,7 +338,7 @@
 									</section>
                 </div>
             </div>
-
+		</form>
 
             <!-- Fin du code -->
 
