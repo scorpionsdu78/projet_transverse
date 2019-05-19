@@ -324,7 +324,7 @@ class Site_router extends express.Router {
                     description : req.body.description
 					
 				},res,()=>{
-					res.redirect("/")
+					res.redirect("/profil/user/" + req.session.connexion.ID)
 				})
 			})
     }
