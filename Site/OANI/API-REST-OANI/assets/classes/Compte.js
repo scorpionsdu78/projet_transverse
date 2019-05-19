@@ -30,11 +30,11 @@ class Compte {
                         next(0)
                     
                     else
-                        return this.db.query("SELECT ID FROM `compte view` WHERE (`Nom d'utilisateur` = ?)", [nom_utilisateur])
+                        return this.db.query("SELECT ID, `Nom d'utilisateur`, `Avatar` FROM `compte view` WHERE (`Nom d'utilisateur` = ?)", [nom_utilisateur])
                 })
                 .then( (result) => {
                     if(result[0] != undefined)
-                        next(result[0].ID)
+                        next(result[0])
                 })
                 .catch( (err) => next(err) )      
         })

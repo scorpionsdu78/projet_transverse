@@ -31,7 +31,22 @@
             </div>
             <div class="navbar-nav">
                 {% if session.connexion %}
-                <a class="nav-item nav-link {% if template.active == "Inscription" %} active {% endif%}" href="/inscription">Connecté : {{session.connexion.ID}}</a>
+                <div class="btn-group bg-info">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Mon espace
+                    </button>
+                    <div class="dropdown-menu bg-info">
+                        <div class="dropdown-item bg-info">
+                            <div style="text-align: center">
+                                <i><b>{{session.connexion.nom_utilisateur}}</b></i>
+                            </div>
+                            <img src="/img/avatar/{{session.connexion.avatar}}" style="max-width: 150px; max-heigth: 150px">
+                        </div>
+                        <div class="dropdown-divider bg-info"></div>
+                        <a class="dropdown-item bg-info" href="#">Mon profil</a>
+                        <a class="dropdown-item bg-info" href="/déconnexion">Se déconnecter</a>
+                    </div>
+                </div>
                 {% else %}
                 <!-- Button trigger modal -->
                 <div class="nav-item nav-link" data-toggle="modal" data-target="#connexionModal">
