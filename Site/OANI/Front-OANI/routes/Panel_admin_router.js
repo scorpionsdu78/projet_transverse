@@ -414,7 +414,23 @@ class Panel_admin_router extends express.Router {
 					})
 				})
 			})
-			
+		
+		this.route("/%C5%93uvre/edit/:id")
+			.get((req,res)=>{
+				
+				apiCall("/oeuvre/"+req.params.id,"get",{},res,(response) =>{
+					let oeuvre = response
+					
+					
+					apiCall("/artiste/"+oeuvre.Auteur,"get",{},res, (response)=>{
+						res.render("panel admin/œuvre_edit.twig",{ 
+							oeuvre : oeuvre,
+							artiste : response
+						})
+					})
+				})
+			})
+		
     }
 
 }
