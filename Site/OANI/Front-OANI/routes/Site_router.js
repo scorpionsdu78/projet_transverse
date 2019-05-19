@@ -59,17 +59,19 @@ class Site_router extends express.Router {
                     const oeuvre = result;
 
                     apiCall("/artiste/" + oeuvre.Auteur, "GET", {}, res, (result) => {
-
-                        res.render("webapp/oeuvre.twig", {
-                            template: {
-                                title: oeuvre.Titre,
-                                image: "/img/oeuvre/" + photo
-                            },
-                            session: req.session,
-                            oeuvre: oeuvre,
-                            auteur: result
-                        })
-
+						const auteur = result;
+						apiCall("/commande","get",{}, res, (result) =>{
+							res.render("webapp/oeuvre.twig", {
+								template: {
+									title: oeuvre.Titre,
+									image: "/img/oeuvre/" + photo
+								},
+								session: req.session,
+								oeuvre: oeuvre,
+								auteur: auteur,
+								commandes: result
+							})
+						})
                     })
 
                 })
@@ -86,7 +88,7 @@ class Site_router extends express.Router {
 					masquage : 0
 				},res, (response)=>{
 					apiCall("/commande","post",{
-						id_acheteur : 4,
+						id_acheteur : req.session.connexion.ID,
 						id_oeuvre : req.params.id,
 						date : req.body.debut,
 						date_de_fin : req.body.fin,

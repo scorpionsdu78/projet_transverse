@@ -47,9 +47,21 @@
                             <div style="background: url('/ressources/background_custom_gray.png');">
                                 <div style="padding: 40px 40px 25px; background-color:rgba(50, 50, 255, 0.25); text-align: center;">
                                     <h3>Le produit est actuellement :</h3>
-                                    <span style="color: green">
-                                        <h2><i>Disponible !</i></h2>
-                                    </span>
+									{% set break=false %}
+									{% for commande in commandes %}
+										{% if commande["Œuvre"] == oeuvre.ID %}
+										<span style="color: red">
+                                        <h2><i>Indisponible !</i></h2>
+										</span>
+										{% set break=true %}
+										{% endif %}
+									{% endfor %}
+									{% if not break %}
+										<span style="color: green">
+										<h2><i>Disponible !</i></h2>
+										</span>
+									{% endif %}
+                                    
                                 </div>
                             </div>
                             <div style="margin-top: 10px; background: url('/ressources/background_custom_gray.png');">
@@ -57,7 +69,7 @@
                                     <div class="text-dark w-100" style="font-weight: 1000; font-size: calc(3vmin); text-align: center;">
                                         {{oeuvre["Prix de location"]}}€
                                     </div>
-									<button type="button" style="font-size: calc(2.5vmin); border-radius: 30px; margin: auto;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+									<button type="button" style="font-size: calc(2.5vmin); border-radius: 30px; margin: auto;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" {% for commande in commandes %} {% if commande["Œuvre"] == oeuvre.ID %} disabled {% endif %} {% endfor %} >
                                         Louez-moi !
                                     </button>
 									<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
