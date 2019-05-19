@@ -93,23 +93,21 @@ exports.checkAndChangeOrdre = (id_oeuvre, ordre, db) => {
         if(ordre != undefined){
             //un ordre non nul
         
-            if(ordre.trim() == "")
-                reject( new Error(exports.config.errors.noValue + "ordre" + " !"))
-
             
-            else{
-                ordre = ordre.trim()
+			exports.checkNumber(ordre, "ordre")
+				.then( (result) => {
+					ordre = result
         
-                db.query('SELECT ordre FROM photo WHERE ( (ordre = ?) AND (`Œuvre` = ?) )', [ordre, id_oeuvre])
-                    .then( (result) => {
-                        if(result[0] != undefined)
-                            reject( new Error(exports.config.errors.noUnique + "ordre" + " !") )
+					return db.query('SELECT ordre FROM photo WHERE ( (ordre = ?) AND (`Œuvre` = ?) )', [ordre, id_oeuvre])					
+				})
+				.then( (result) => {
+					if(result[0] != undefined)
+						reject( new Error(exports.config.errors.noUnique + "ordre" + " !") )
 
-                        else
-                            resolve(ordre)
-                    })
-                    .catch( (err) => reject(err) )
-            }
+					else
+						resolve(ordre)
+				})
+				.catch( (err) => reject(err) )
             
         }
 

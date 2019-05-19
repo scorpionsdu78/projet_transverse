@@ -326,10 +326,10 @@ class Panel_admin_router extends express.Router {
 					
 					}, res, (resolve)=>{
 						let id = resolve.ID
-						console.log(id)
+						//console.log(id)
 						let tags = req.body.tags
 						tags = tags.split(",")
-						console.log(tags)
+						//console.log(tags)
 						new Promise( (resolve,reject) =>{
 							let i=0
 							tags.forEach( async(tag) =>{
@@ -346,33 +346,53 @@ class Panel_admin_router extends express.Router {
 							})
 							
 						})
-						.then(
-							()=>{
-								var filename
-								var fs = require('fs')
+						.then(()=>{
+							var fs = require('fs')
 
-							//On voit si on a un avatar
-								if(req.files){
-									var file = req.files.photo1
-									filename = req.files.photo1.name
-									//on sauvegarde sur le serveur l'avatar
-									fs.mkdir("./public/img/oeuvre/"+id,()=>{
-										file.mv("./public/img/oeuvre/"+id+"/"+filename, (err)=>{
-											if(err)
-												res.send(err.message)
-										})
-										apiCall("/Photo","post",{
-											id_oeuvre : id,
-											ordre : "1",
-											name : filename
-										},res,()=>{
-											res.render("panel admin/œuvre.twig")
+						//On voit si on a un avatar
+							if(req.files){
+								var files = [] 
+								if(req.files.photo1)
+									files.push(req.files.photo1)
+								if(req.files.photo2)
+									files.push(req.files.photo2)
+								if(req.files.photo3)
+									files.push(req.files.photo3)
+								
+								console.log(files)
+								
+								fs.mkdir("./public/img/oeuvre/"+id,()=>{
+									
+									new Promise( (resolve, reject) =>{
+										let i=0
+										var j=0
+										files.forEach( async(file)=>{
+											var k = ++j
+											var filename = file.name
+											console.log(filename)
+											await file.mv("./public/img/oeuvre/"+id+"/"+filename, (err)=>{
+												if(err)
+													reject(err.message)
+												apiCall("/Photo","post",{
+													id_oeuvre : id,
+													ordre : k,
+													name : filename
+												},res,()=>{
+													if(++i == files.length)
+														resolve(files)
+												})
+											})
 										})
 									})
-								}
+									.then(()=>{
+										res.redirect("/%C5%93uvre")
+									})
+									.catch( (err) => res.redirect("error.twig", {err}))
+				
+								})
 							}
 							
-						)
+						})
 						.catch( (err) => res.redirect("error.twig", {err}))
 						
 					})

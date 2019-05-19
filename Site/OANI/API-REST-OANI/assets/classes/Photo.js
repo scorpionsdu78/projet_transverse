@@ -74,6 +74,7 @@ class Photo {
                     id_oeuvre = result
 
                     //GESTION DE ordre
+					console.log(ordre)
                     return checkAndChangeOrdre(id_oeuvre, ordre, this.db)
                 })
                 .then( (result) => {
