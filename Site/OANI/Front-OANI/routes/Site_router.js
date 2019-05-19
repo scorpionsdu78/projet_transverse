@@ -24,7 +24,7 @@ class Site_router extends express.Router {
                     template: {
                         title: "Acceuil",
                         active: "Acceuil",
-                        image: "/ressources/oani_logo.png"
+                        image: "/ressources/acceuil.jpg"
                     }
                 })
             })

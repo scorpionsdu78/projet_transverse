@@ -18,6 +18,7 @@ const PhotoRouter = require("./routes/PhotoRouter")
 const TagRouter = require("./routes/TagRouter")
 const TagCouleurRouter = require("./routes/TagCouleurRouter")
 const CommandeRouter = require("./routes/CommandeRouter")
+const CompteRouter = require("./routes/CompteRouter")
 
 
 //Connection à la database
@@ -68,6 +69,10 @@ mysql.createConnection(config.db)
         //Tag couleur :
         let commandeRouter = new CommandeRouter(db)
 
+        //Compte :
+        let compteRouter = new CompteRouter(db)
+
+
 
         //Initialisation des Routers
         app.use(config.rootAPI + `Artiste`, artisteRouter)
@@ -79,6 +84,7 @@ mysql.createConnection(config.db)
         app.use(config.rootAPI + `Tag`, tagRouter)
         app.use(config.rootAPI + `Tag-couleur`, tagCouleurRouter)
         app.use(config.rootAPI + `Commande`, commandeRouter)
+        app.use(config.rootAPI + `Compte`, compteRouter)
 
 
 

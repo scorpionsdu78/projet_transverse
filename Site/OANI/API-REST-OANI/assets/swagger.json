@@ -6,6 +6,10 @@
     },
     "tags" : [
         {
+            "name" : "Compte",
+            "description" : "Méthodes permettant de gérer les comptes"
+        },
+        {
             "name" : "Utilisateur",
             "description" : "Méthodes permettant de gérer les utilisateurs"
         },
@@ -41,6 +45,49 @@
     "host": "localhost:8080",
     "basePath": "/api-oani/v1",
     "paths": {
+      "/Compte": {
+        "post": {
+          "tags" : ["Compte"],
+          "summary": "Renvoie l'ID du compte qui possède le nom d'utilisateur et le mot de passe",
+          "operationId": "checkCompte",
+          "consumes": [
+            "text/plain"
+          ],
+          "parameters": [
+            {
+              "name": "nom_utilisateur",
+              "in": "formData",
+              "type": "string",
+              "required": true,
+              "description": "nom de l'utilisateur du compte"
+            },
+            {
+              "name": "mot_de_passe",
+              "in": "formData",
+              "type": "string",
+              "required": true,
+              "description": "mot de passe à tester pour ce nom d'utilisateur"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "example": {
+                "status": "success",
+                "result": 2
+              }
+            },
+            "400": {
+              "description": "Erreur",
+              "example": 
+              {
+                "status": "succes",
+                "message": 0
+              }
+            }
+          }
+        }
+      },
       "/Utilisateur/{id}": {
         "parameters": [
           {

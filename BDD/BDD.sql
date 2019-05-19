@@ -112,3 +112,7 @@ CREATE TABLE `oani`.`Tag Couleur` (
 ) ENGINE = InnoDB COMMENT = 'Tags couleur des œuvres';
 
 
+
+
+CREATE VIEW `oani`.`Compte view` AS
+	SELECT ID, `Nom d'utilisateur`, PASSWORD(`Mot de passe`) AS `Mot de passe` FROM `oani`.`Utilisateur`;
