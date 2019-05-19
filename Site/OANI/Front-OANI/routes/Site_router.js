@@ -133,38 +133,6 @@ class Site_router extends express.Router {
                 })
             })
 
-        this.route("/connexion")
-
-            .post((req, res) => {
-                
-                apiCall("/compte", "POST", {
-                    nom_utilisateur: req.body.nom_utilisateur,
-                    mot_de_passe: req.body.mot_de_passe
-                }, res, (result) => {
-                    if(result != undefined){
-                        req.session.connexion = {
-                            ID: result.ID,
-                            nom_utilisateur: result["Nom d'utilisateur"],
-                            avatar: result.Avatar
-                        }
-                    }
-                    else{
-                        req.session.connexion = undefined
-                    }
-                    console.log(req.session.connexion)  
-                    res.redirect("/")
-                })
-
-            })
-
-
-        this.route("/d%C3%A9connexion")
-
-            .get((req, res) => {
-                req.session.connexion = undefined;
-                res.redirect("/")
-            })
-
 
         this.route("/inscription")
 
@@ -226,6 +194,57 @@ class Site_router extends express.Router {
                 })
 				
 			})
+
+        this.route("/connexion")
+
+            .post((req, res) => {
+                
+                apiCall("/compte", "POST", {
+                    nom_utilisateur: req.body.nom_utilisateur,
+                    mot_de_passe: req.body.mot_de_passe
+                }, res, (result) => {
+                    if(result != undefined){
+                        req.session.connexion = {
+                            ID: result.ID,
+                            nom_utilisateur: result["Nom d'utilisateur"],
+                            avatar: result.Avatar
+                        }
+                    }
+                    else{
+                        req.session.connexion = undefined
+                    }
+                    res.redirect("/")
+                })
+
+            })
+
+
+        this.route("/d%C3%A9connexion")
+
+            .get((req, res) => {
+                req.session.connexion = undefined;
+                res.redirect("/")
+            })
+
+
+        this.route("/profil/user/:id")
+
+            .get((req, res) => {
+
+                apiCall("utilisateur/" + req.params.id, "GET", {}, res, (result) => {
+
+                    res.render("webapp/profil.twig", {
+                        template: {
+                            title: "Profil de " + result["Nom d'utilisateur"],
+                            image: "https://www.artranked.com/images/d8/d89f2577b3829a0c46996c792c357862.png"
+                        },
+                        session: req.session,
+                        utilisateur: result
+                    })
+
+                })
+
+            })
     }
 
 }

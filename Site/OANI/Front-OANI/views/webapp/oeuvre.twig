@@ -50,13 +50,14 @@
 									{% set break=false %}
 									{% for commande in commandes %}
 										{% if commande["Œuvre"] == oeuvre.ID %}
-										<span style="color: red">
-                                        <h2><i>Indisponible !</i></h2>
-										</span>
 										{% set break=true %}
 										{% endif %}
 									{% endfor %}
-									{% if not break %}
+									{% if break %}
+										<span style="color: red">
+                                        <h2><i>Indisponible !</i></h2>
+										</span>
+                                    {% else %}
 										<span style="color: green">
 										<h2><i>Disponible !</i></h2>
 										</span>
@@ -69,9 +70,11 @@
                                     <div class="text-dark w-100" style="font-weight: 1000; font-size: calc(3vmin); text-align: center;">
                                         {{oeuvre["Prix de location"]}}€
                                     </div>
-									<button type="button" style="font-size: calc(2.5vmin); border-radius: 30px; margin: auto;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" {% for commande in commandes %} {% if commande["Œuvre"] == oeuvre.ID %} disabled {% endif %} {% endfor %} >
-                                        Louez-moi !
-                                    </button>
+                                    <div style="padding: 0px 50px;">
+                                        <button type="button" style="font-size: calc(2.5vmin); border-radius: 30px; margin: auto;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" {% for commande in commandes %} {% if commande["Œuvre"] == oeuvre.ID %} disabled {% endif %} {% endfor %} >
+                                            Louez-moi !
+                                        </button>
+                                    </div>
 									<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 										<div class="modal-dialog" role="document">
 											<div class="modal-content">
@@ -125,21 +128,48 @@
                         <div style="margin: auto; height: 50%; width: 50%; border-bottom: 1px solid black;"></div>
                     </div>
                     <div style="width: 75%; background-color:rgba(59, 23, 11, 0.2); margin: auto;">
-                        <div style="padding-top: 25px; width: 100%; text-align: center;">
-                            <h1><b>À propos de l'auteur {{auteur.Pseudo}}</b></h1>
-                        </div>
-                        <div style="width: 100%; padding: 25px 50px; display: flex;">
-                            <div>
-                                <img src="/img/avatar/{{auteur.Utilisateur.Avatar}}" style="max-height: 150px; max-width: 150px;">
-                                <br>
-                                <i>{{auteur.Utilisateur.Instagram}}</i>
-                                <br>
-                                <i>{{auteur.Utilisateur["Adresse mail"]}}</i>
+                        <style>
+                            @keyframes artiste-container-anim {
+                                from {opacity: 1; box-shadow: inset 0 0 0 1px #FFFFFF;}
+                                to {opacity: 0.7; box-shadow: inset 0 0 0 1px #3a7999;}
+                            }   
+                            .artiste-container {
+                                padding: 2%;
+                            }
+                            .artiste-container:hover {
+                                animation-name: artiste-container-anim;
+                                animation-duration: 1s;
+                                opacity: 0.7;
+                                box-shadow: inset 0 0 0 1px #3a7999;
+                            }
+                        </style>
+                        <a href="/profil/user/{{auteur.Utilisateur.ID}}" style="color: black; text-decoration: none;">
+                            <div class="artiste-container">
+                                <div style="padding-top: 25px; width: 100%; text-align: center;">
+                                    <h1><b>À propos de l'auteur {{auteur.Pseudo}}</b></h1>
+                                </div>
+                                <div style="width: 100%; padding: 25px 50px; display: flex;">
+                                    <div>
+                                        <img src="/img/avatar/{% if auteur.Utilisateur.Avatar %}{{auteur.Utilisateur.Avatar}}{% else %}default.jpg{% endif %}" style="max-height: 150px; max-width: 150px;">
+                                        <br>
+                                        <div style="max-width: 150px; background-color:rgba(118, 46, 22, 0.2); padding: 10px 0px 10px">
+                                            Instagram :<br>
+                                            {% if auteur.Utilisateur.Instagram %}
+                                            <i>{{auteur.Utilisateur.Instagram}}</i>
+                                            {% endif %}
+                                            <br>
+                                            Adresse mail :<br>
+                                            {% if auteur.Utilisateur["Adresse mail"] %}
+                                            <i>{{auteur.Utilisateur["Adresse mail"]}}</i>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div style="margin-left: 20px; padding-left: 20px; padding-right: 20px; border-left: 3px solid blue; background-color:rgba(50, 50, 255, 0.5); width: 100%">
+                                        {{auteur.Utilisateur.Description}}
+                                    </div>
+                                </div>
                             </div>
-                            <div style="margin-left: 20px; padding-left: 20px; padding-right: 20px; border-left: 3px solid blue; background-color:rgba(50, 50, 255, 0.5); width: 100%">
-                                {{auteur.Utilisateur.Description}}
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>

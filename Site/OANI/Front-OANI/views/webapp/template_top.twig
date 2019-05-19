@@ -40,11 +40,15 @@
                             <div style="text-align: center">
                                 <i><b>{{session.connexion.nom_utilisateur}}</b></i>
                             </div>
-                            <img src="/img/avatar/{{session.connexion.avatar}}" style="max-width: 150px; max-heigth: 150px">
+                            <img src="/img/avatar/{% if session.connexion.avatar %}{{session.connexion.avatar}}{% else %}default.jpg{% endif %}" style="max-width: 150px; max-heigth: 150px">
                         </div>
                         <div class="dropdown-divider bg-info"></div>
-                        <a class="dropdown-item bg-info" href="#">Mon profil</a>
+                        <a class="dropdown-item bg-info" href="/profil/user/{{session.connexion.ID}}">Mon profil</a>
                         <a class="dropdown-item bg-info" href="/déconnexion">Se déconnecter</a>
+                        {% if session.connexion.nom_utilisateur == "Admin" %}
+                        <div class="dropdown-divider bg-info"></div>
+                        <a class="dropdown-item bg-info" href="/panel_admin">Panel Admin</a>
+                        {% endif %}
                     </div>
                 </div>
                 {% else %}
