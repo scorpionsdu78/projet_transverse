@@ -57,9 +57,44 @@
                                     <div class="text-dark w-100" style="font-weight: 1000; font-size: calc(3vmin); text-align: center;">
                                         {{oeuvre["Prix de location"]}}€
                                     </div>
-                                    <a class="btn btn-info w-100" style="font-size: calc(2.5vmin); border-radius: 30px; margin: auto;">
+									<button type="button" style="font-size: calc(2.5vmin); border-radius: 30px; margin: auto;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                         Louez-moi !
-                                    </a>
+                                    </button>
+									<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLabel">réservation</h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body">
+													<span class="badge badge-primary">début</span>
+													<input type="date" class="form-control" placeholder="début" name="debut">
+													<span class="badge badge-primary">fin</span>
+													<input type="date" class="form-control" placeholder="fin" name="fin">
+													
+													<span class="badge badge-primary">adresse</span>
+													
+													<input type="text" class="form-control" id="inputAdresse" name="adresse" placeholder="adresse" value="{{utilisateur.Adresses[0].Rue}}">
+													<input type="text" class="form-control" id="inputComplement" name="complement" placeholder="complement" value="{{utilisateur.Adresses[0]["Indications Complémentaires"]}}">
+												
+													
+												
+													<input type="number" class="form-control" id="inputNumber" name="numero" min="1" placeholder="numéro" value="{{utilisateur.Adresses[0]["Numéro de rue"]}}">
+													<input type="text" class="form-control" id="inputPost" name="postal" placeholder="code postal" value="{{utilisateur.Adresses[0]["Code Postal"]}}">
+												
+													<input type="text" class="form-control" id="inputPays" name="pays" placeholder="Pays" value="{{utilisateur.Adresses[0].Pays}}">
+													
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+													<button type="button" class="btn btn-primary">Save changes</button>
+												</div>
+											</div>
+										</div>
+									</div>
                                 </div>
                             </div>
                         </div>
