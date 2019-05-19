@@ -79,6 +79,7 @@ class Site_router extends express.Router {
                     rue : req.body.adresse, 
                     numero : req.body.numero,
                     indication : req.body.complement,
+					masquage : 0
 				},res, (response)=>{
 					apiCall("/commande","post",{
 						id_acheteur : 4,
