@@ -74,7 +74,29 @@ class Site_router extends express.Router {
 
                 })
             })
-
+			
+			.post((req, res) =>{
+				
+				apiCall("/Adresse/admin","post",{
+					pays : req.body.pays, 
+                    code_postal : req.body.postal,
+                    rue : req.body.adresse, 
+                    numero : req.body.numero,
+                    indication : req.body.complement,
+				},res, (response)=>{
+					apiCall("/commande","post",{
+						id_acheteur : 4,
+						id_oeuvre : req.params.id,
+						date : req.body.debut,
+						date_de_fin : req.body.fin,
+						id_adresse : response.ID
+					},res,(result)=>{
+						res.redirect("/%C5%93uvre")
+					})
+				})
+				
+			})
+				
         this.route("/artiste")
 
             .get((req, res) => {
