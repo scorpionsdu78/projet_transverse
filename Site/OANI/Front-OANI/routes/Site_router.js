@@ -131,9 +131,11 @@ class Site_router extends express.Router {
                     nom_utilisateur: req.body.nom_utilisateur,
                     mot_de_passe: req.body.mot_de_passe
                 }, res, (result) => {
-                    if(result != 0){
+                    if(result != undefined){
                         req.session.connexion = {
-                            ID: result
+                            ID: result.ID,
+                            nom_utilisateur: result["Nom d'utilisateur"],
+                            avatar: result.Avatar
                         }
                     }
                     else{
@@ -144,6 +146,15 @@ class Site_router extends express.Router {
                 })
 
             })
+
+
+        this.route("/d%C3%A9connexion")
+
+            .get((req, res) => {
+                req.session.connexion = undefined;
+                res.redirect("/")
+            })
+
 
         this.route("/inscription")
 
