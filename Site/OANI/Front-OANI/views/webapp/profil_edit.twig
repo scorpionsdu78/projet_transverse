@@ -1,0 +1,76 @@
+{% include 'webapp/template_top.twig' with template %}
+           
+            <!-- Début du code -->
+
+			<form action="" method="POST" enctype="multipart/form-data">
+            <div style="width: 100%; background: url('/ressources/background_custom_lightGray.png');">
+                <div style="width: 75%; margin: 0px auto 0px; background: url('/ressources/background_custom_gray.png'); min-height: 600px;">
+                    <div style="padding: 50px;">
+                        <div style="width: 75%; background-color:rgba(59, 23, 11, 0.2); margin: auto;">
+                            <div style="width: 100%; padding: 25px 50px; display: flex;">
+                                
+								<div class="d-flex flex-column bd-highlight mb-3">
+									<div class="p-1 bd-highlight">
+										<div class="row">
+											<div class="col-">
+												<input type="text" class="form-control" name="inputName" placeholder="nom de l'utilisateur" style="width: 540px;" 
+												{% if utilisateur["Nom d'utilisateur"] %} value="{{utilisateur["Nom d'utilisateur"]}}" {% endif %}>
+											</div>
+											{% if utilisateur.Avatar != null %}
+										
+											<div class="col-sm">
+												<img src="http://localhost:8081/img/Avatar/{{utilisateur.Avatar}}" width="150" height="150" alt="..." class="img-fluid">
+											</div>
+											{% else %}
+											<div class="col-sm">
+												<img src="http://localhost:8081/img/Avatar/default.jpg" width="75" height="75" alt="..." class="img-fluid">
+											</div>
+											{% endif %}
+										</div>
+									</div>
+									<div class="p-2 bd-highlight">
+										<label for="avatar"> entrez avatar utilisateur </label>
+										<input type="file"  name="avatar" id="avatar">
+										<input type="submit" value="upload" >
+									</div>	
+									<div class="p-2 bd-highlight">	
+										<input type="text" class="form-control" name="email" placeholder="email" {% if utilisateur["Adresse mail"] %} value="{{utilisateur["Adresse mail"]}}" {% endif %}>
+									</div>
+												
+									{% if new %}
+									<div class="p-2 bd-highlight">
+										<input type="text" class="form-control" name="mot_de_passe" placeholder="mot de passe" >
+										<br>
+										<input type="text" class="form-control" name="confirmation" placeholder="confirmation mot de passe" >
+									</div>
+												
+									{% endif %}
+								
+										
+									<div class="p-2 bd-highlight">
+										<div class="">
+											<textarea class="form-control" name="description" placeholder="description" rows="3"  >{{utilisateur.Description}}</textarea>
+										</div>
+											
+									</div>
+											
+										
+								</div>
+                            </div>
+                        </div>
+                    <div>
+                    {% if session.connexion.ID == utilisateur.ID %}
+                    <div style="margin: auto; width: 150px; padding-top: 50px">
+                        <button type="submit" class="btn btn-primary">Editer son profil</button>
+
+                        
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            </form>
+
+
+            <!-- Fin du code -->
+
+{% include 'webapp/template_bot.twig' %}

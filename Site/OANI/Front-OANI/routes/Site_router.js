@@ -188,7 +188,7 @@ class Site_router extends express.Router {
                             id_adresse : idadresse
                         }, res, () => {
 						
-                            res.redirect("/panel_admin/utilisateur/edit/" + iduser)
+                            res.redirect("/")
                         })
                     })
                 })
@@ -284,6 +284,49 @@ class Site_router extends express.Router {
                 })
 
             })
+			
+		this.route("/profil/edit")
+			.get((req,res) => {
+				console.log(req.session.connexion)
+				
+				if(req.session.connexion == undefined)
+					res.redirect("/")
+				else{
+					console.log(req.session.connexion)
+					apiCall("/Utilisateur/"+req.session.connexion.ID, "get", {}, res, (result) => {
+						res.render("webapp/profil_edit.twig",{
+							session: req.session,
+							utilisateur : result
+						})
+					})
+				}
+			})
+			
+			.post((req,res) =>{
+				
+				
+				var filename
+
+                //On voit si on a un avatar
+                if(req.files){
+                    var file = req.files.avatar
+                    filename = req.files.avatar.name
+                    //on sauvegarde sur le serveur l'avatar
+                    file.mv("./public/img/avatar/"+filename, (err)=>{
+                        if(err)
+                            res.send(err.message)
+                    })
+                }
+								
+				apiCall("/utilisateur/" + req.session.connexion.ID, "put", {
+                    adresse_mail : req.body.email,
+                    avatar : filename,
+                    description : req.body.description
+					
+				},res,()=>{
+					res.redirect("/")
+				})
+			})
     }
 
 }
