@@ -22,7 +22,7 @@ class Site_router extends express.Router {
             .get((req, res) => {
                 res.render("webapp/acceuil.twig", {
                     template: {
-                        title: "Acceuil",
+                        title: "Accueil",
                         active: "Acceuil",
                         image: "/ressources/acceuil.jpg"
                     },
