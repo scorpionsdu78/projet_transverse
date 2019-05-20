@@ -116,4 +116,4 @@ CREATE TABLE `oani`.`Tag Couleur` (
 
 CREATE VIEW `oani`.`Compte view` AS
 	SELECT u.ID, u.`Nom d'utilisateur`, PASSWORD(u.`Mot de passe`) AS `Mot de passe`, u.Avatar, a.ID AS "Artiste_ID" FROM `oani`.`Utilisateur` u
-		LEFT JOIN artiste a ON a.Utilisateur = u.ID;
+		LEFT JOIN `oani`.artiste a ON a.Utilisateur = u.ID;

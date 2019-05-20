@@ -146,7 +146,7 @@ INSERT INTO `photo` (`ID`, `URL`, `Œuvre`, `ordre`) VALUES
 (105, 'La Grande Vague de Kanagawa.jpeg', 10, 1),
 (106, 'La nuit étoilée.jpg', 11, 1),
 (107, 'Le baiser (Klimt).jpg', 12, 1),
-(111, "Le Déjeuner sur l\'herbe.jpg", 14, 1),
+(111, 'Le Déjeuner sur l\'herbe.jpg', 14, 1),
 (112, 'Le Radeau de La Méduse.jpeg', 15, 1);
 
 -- --------------------------------------------------------
