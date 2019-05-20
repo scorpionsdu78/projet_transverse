@@ -35,7 +35,6 @@ class Site_router extends express.Router {
             .get((req, res) => {
 
                 apiCall("/oeuvre", "GET", {}, res, (result) => {
-                    console.log(req.session.connexion)
                     
                     res.render("webapp/oeuvres.twig", {
                         template: {

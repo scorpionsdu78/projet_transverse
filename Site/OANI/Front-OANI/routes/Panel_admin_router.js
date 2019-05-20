@@ -9,7 +9,19 @@ class Panel_admin_router extends express.Router {
     constructor(){
         super()
 
-               
+		
+		//middlewares
+		this.use( (req, res, next) => {
+			if(req.session.connexion == undefined){
+				console.log((req.session.connexion == undefined))
+				res.redirect("/")
+			}
+			else if(req.session.connexion.nom_utilisateur != "Admin")
+				res.redirect("/")
+			else
+				next()
+		})
+		
         //Default
         this.route("/")
 

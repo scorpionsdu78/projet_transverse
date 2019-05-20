@@ -44,24 +44,24 @@ INSERT INTO `adresse` (`ID`, `Pays`, `Code Postal`, `Rue`, `Numéro de rue`, `In
 --
 
 INSERT INTO `utilisateur` (`ID`, `Nom d'utilisateur`, `Mot de passe`, `Adresse mail`, `Instagram`, `Avatar`, `Description`) VALUES
-(1, 'topcasedu99', 'dsqdxc7', 'topcasedu99@gmail.com', 'topcasedu_99', '7d4ce918810525a5c8c097c8cf2be9c7.jpg', 'non'),
-(3, 'Lurggar', 'dsqdxc7', 'Lurggar@gmail.com', 'Lurggar_79', '499496.jpg', 'Artiste de grand envergure'),
-(4, 'Trulith', 'dsqdxc7', 'Trulith@gmail.com', 'Trulith_34', '16730488_1168378756593975_7162810654086681616_n.jpg', 'Artiste de grand envergure'),
-(5, 'Moatdon', 'dsqdxc7', 'Moatdon@gmail.com', 'Moatdon_21', '17265085_10155224871087941_2719979986532961305_n.jpg', 'Artiste de grand envergure'),
-(6, 'Urukrod', 'dsqdxc7', 'Urukrod@gmail.com', 'Urukrod_76', '18157191_10158693240550193_146876833177479490_n.jpg', 'Artiste de grand envergure'),
-(7, 'Arariss', 'dsqdxc7', 'Arariss@gmail.com', 'Arariss_3', '18698349_286289208447628_6171174935325848801_n.jpg', 'Artiste de grand envergure'),
-(8, 'Goadfrid', 'dsqdxc7', 'Goadfrid@gmail.com', 'Goadfrid_75', '19105741_1747984218838282_8635148997344850310_n.jpg', 'Artiste de grand envergure'),
-(9, 'Losdir', 'dsqdxc7', 'Losdir@gmail.com', 'Losdir_63', '19225892_10155436352837840_1254540457562038641_n.jpg', 'Artiste de grand envergure'),
-(10, 'Honhae', 'dsqdxc7', 'Honhae@gmail.com', 'Honhae_48', '19366266_1894693200780589_8360078089074888263_n.jpg', 'Artiste de grand envergure'),
-(11, 'Tegrhî', 'dsqdxc7', 'Tegrhî@gmail.com', 'Tegrhî_97', '19732221_452107195173234_396841025370562985_n.jpg', 'Artiste de grand envergure'),
-(12, 'Pydien', 'dsqdxc7', 'Pydien@gmail.com', 'Pydien_80', '20840904_1890152374334432_3416921083395940340_n.jpg', 'Artiste de grand envergure'),
-(13, 'Lhîbar', 'dsqdxc7', 'Lhîbar@gmail.com', 'Lhîbar_11', '24312711_1000542300085974_201450037980878655_n.jpg', 'Artiste de grand envergure'),
-(14, 'Bartei', 'dsqdxc7', 'Bartei@gmail.com', 'Bartei_2', '29789880_446127632487076_6267720144196162384_n.jpg', 'Artiste de grand envergure'),
-(15, 'Caethronrag', 'dsqdxc7', 'Caethronrag@gmail.com', 'Caethronrag_76', '44611183_579903162442855_2431212529058316288_n.jpg', 'Artiste de grand envergure'),
-(16, 'Rhunfron', 'dsqdxc7', 'Rhunfron@gmail.com', 'Rhunfron_81', '45467614_2175527415804051_3754367978724917248_n.jpg', 'Artiste de grand envergure'),
-(17, 'Dronvon', 'dsqdxc7', 'Dronvon@gmail.com', 'Dronvon_35', '52574074_2023630637734072_689954120638922752_n.jpg', 'Artiste de grand envergure'),
-(18, 'Toldam', 'dsqdxc7', 'Toldam@gmail.com', 'Toldam_56', 'avatar.jpg', 'Artiste de grand envergure'),
-(19, 'Admin', 'secret', 'Admin@gmail.com', 'OANI', null, 'Administrateur du site');
+(1, 'topcasedu99', 'dsqdxc7', 'topcasedu99@gmail.com', 'topcasedu_99', '16730488_1168378756593975_7162810654086681616_n.jpg', 'non'),
+(3, 'Lurggar', 'dsqdxc7', 'Lurggar@gmail.com', 'Lurggar_79', 'avatar1.png', 'Artiste de grand envergure'),
+(4, 'Trulith', 'dsqdxc7', 'Trulith@gmail.com', 'Trulith_34', '1.jpg', 'Artiste de grand envergure'),
+(5, 'Moatdon', 'dsqdxc7', 'Moatdon@gmail.com', 'Moatdon_21', 'avatar3.png', 'Artiste de grand envergure'),
+(6, 'Urukrod', 'dsqdxc7', 'Urukrod@gmail.com', 'Urukrod_76', null, 'Artiste de grand envergure'),
+(7, 'Arariss', 'dsqdxc7', 'Arariss@gmail.com', 'Arariss_3', 'avatar.JPG', 'Artiste de grand envergure'),
+(8, 'Goadfrid', 'dsqdxc7', 'Goadfrid@gmail.com', 'Goadfrid_75', 'avatar2.png', 'Artiste de grand envergure'),
+(9, 'Losdir', 'dsqdxc7', 'Losdir@gmail.com', 'Losdir_63', 'avatar4.jpg', 'Artiste de grand envergure'),
+(10, 'Honhae', 'dsqdxc7', 'Honhae@gmail.com', 'Honhae_48', 'avatar5.jpg', 'Artiste de grand envergure'),
+(11, 'Tegrhî', 'dsqdxc7', 'Tegrhî@gmail.com', 'Tegrhî_97', 'avatar6.jpg', 'Artiste de grand envergure'),
+(12, 'Pydien', 'dsqdxc7', 'Pydien@gmail.com', 'Pydien_80', null, 'Artiste de grand envergure'),
+(13, 'Lhîbar', 'dsqdxc7', 'Lhîbar@gmail.com', 'Lhîbar_11', 'avatar7.jpg', 'Artiste de grand envergure'),
+(14, 'Bartei', 'dsqdxc7', 'Bartei@gmail.com', 'Bartei_2', 'avatar8.jpg', 'Artiste de grand envergure'),
+(15, 'Caethronrag', 'dsqdxc7', 'Caethronrag@gmail.com', 'Caethronrag_76', 'avatar9.png', 'Artiste de grand envergure'),
+(16, 'Rhunfron', 'dsqdxc7', 'Rhunfron@gmail.com', 'Rhunfron_81', 'avatar10.jpg', 'Artiste de grand envergure'),
+(17, 'CapsOP', 'dsqdxc7', 'Dronvon@gmail.com', 'Dronvon_35', 'caps.png', 'Artiste de grand envergure'),
+(18, 'Toldam', 'dsqdxc7', 'Toldam@gmail.com', 'Toldam_56', null, 'Artiste de grand envergure'),
+(19, 'Admin', 'secret', 'Admin@gmail.com', 'OANI', '45467614_2175527415804051_3754367978724917248_n.jpg', 'Administrateur du site');
 
 -- --------------------------------------------------------
 
@@ -146,7 +146,7 @@ INSERT INTO `photo` (`ID`, `URL`, `Œuvre`, `ordre`) VALUES
 (105, 'La Grande Vague de Kanagawa.jpeg', 10, 1),
 (106, 'La nuit étoilée.jpg', 11, 1),
 (107, 'Le baiser (Klimt).jpg', 12, 1),
-(111, 'Le Déjeuner sur l\'herbe.jpg', 14, 1),
+(111, "Le Déjeuner sur lherbe.jpg", 14, 1),
 (112, 'Le Radeau de La Méduse.jpeg', 15, 1);
 
 -- --------------------------------------------------------
