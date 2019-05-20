@@ -110,7 +110,7 @@ class Site_router extends express.Router {
                         template: {
                             title: "Artiste",
                             active: "Artiste",
-                            image: "http://www.pvdial.fr/blog/wp-content/uploads/2018/04/artiste.jpg"
+                            image: "ressources/artiste.jpg"
                         },
                         session: req.session,
                         artistes: result

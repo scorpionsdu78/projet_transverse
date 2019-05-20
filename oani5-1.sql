@@ -110,16 +110,16 @@ INSERT INTO `œuvre` (`ID`, `Titre`, `Auteur`, `Description`, `Prix de location`
 (3, 'La joconde', 2, 'L histoire du TERTER', 1806.00, 19),
 (4, 'Girl with a Pearl Earring', 1, 'Il etait une fois chez TC', 5566.00, 20),
 (5, 'Wailing man', 1, 'En 2005, mise en vente à la Nouvelle-Orléans, la version Cook est acquise par un consortium de marchands d\'art dont Robert Simon, spécialiste des maîtres anciens, pour 10 000 dollars. Le tableau a été gravement endommagé par des tentatives de restauration précédentes, fortement repeint et reverni, de sorte qu\'il ressemble à une copie. Une barbe et des moustaches ont été ajoutées', 1800.00, 21),
-(6, 'Redécouverte de la version', 1, 'En 2005, mise en vente à la Nouvelle-Orléans, la version Cook est acquise par un consortium de marchands d\'art dont Robert Simon, spécialiste des maîtres anciens, pour 10 000 dollars. Le tableau a été gravement endommagé par des tentatives de restauration précédentes, fortement repeint et reverni, de sorte qu\'il ressemble à une copie. Une barbe et des moustaches ont été ajoutées, probablement après la Contre-Réforme, pour adapter l\'image du Christ à la physionomie officielle. Il est alors décrit comme « une épave, sombre et lugubre »25. ', 9898.00, 23),
-(7, 'Expertise', 2, 'Le site britannique the ArtWatch.org.uk de Michel Daley, démontre photographies à l\'appui qu\'entre 2011 et 2017, de nombreux détails de la peinture ont changé, parmi eux le drapé de l\'épaule droite dont le nombre de plis est passé de 9 à 4 ! et qu\'aucune de ces versions ne correspond à la gravure de Hollar49. ', 9587.00, 24),
-(8, 'Interrogations et doutes persistants', 1, 'En août 2018, plusieurs experts, dont Matthew Landrus, du Wolfson College d\'Oxford, font part de leurs doutes et attribuent le tableau à Bernardino Luini et aux suiveurs de Léonard de Vinci2. Matthew Landrus démontre, en superposant les radiographies du Salvator Mundi (1500), de la version Ganay (1512) et du Christ parmi les docteurs (1510), l\'existence de trois dessins poncifs préalables, un pour la tête de Christ, un pour le vêtement, un pour la main droite. Chaque partie se superpose parfaitement51. Il attribue les poncifs à Léonard de Vinci pour la fresque perdue du Salvator Mundi peinte en 1495-1498 et détruite en 1603, dans l\'église Santa Maria delle Grazie à Milan, suivant l\'opinion de Ludwig Heydenreich en 196452', 2500.00, 25),
-(9, 'Attribution ', 2, 'Certains, à l\'inverse, considèrent certaines parties comme médiocres', 2689.00, 26),
-(10, 'technique', 2, 'L\'analyse technique des pigments est réputée « globalement »59 compatible avec la technique de Vinci60. Selon Dianne Modestini, la restauratrice le support en bois de noyer est en très mauvais état et réagit à tout changement d\'humidité et doit être conservé dans un taux d\'humidité de 45 % minimum6', 1256.00, 27),
-(11, 'Iconographie', 2, 'ianne Modestini, affirme que le support comportait deux nœuds de boi', 6965.00, 28),
-(12, 'Nafea faa ipoipo', 2, ' francs à la mort de l\'artiste, il a été acheté, en 2015, par le Qatar ermites pour 300 millions de dollars,', 325.00, 29),
+(6, 'Bal du Moulin de la Galette', 1, 'En 2005, mise en vente à la Nouvelle-Orléans, la version Cook est acquise par un consortium de marchands d\'art dont Robert Simon, spécialiste des maîtres anciens, pour 10 000 dollars. Le tableau a été gravement endommagé par des tentatives de restauration précédentes, fortement repeint et reverni, de sorte qu\'il ressemble à une copie. Une barbe et des moustaches ont été ajoutées, probablement après la Contre-Réforme, pour adapter l\'image du Christ à la physionomie officielle. Il est alors décrit comme « une épave, sombre et lugubre »25. ', 9898.00, 23),
+(7, 'Fontaine Duchamp', 2, 'Le site britannique the ArtWatch.org.uk de Michel Daley, démontre photographies à l\'appui qu\'entre 2011 et 2017, de nombreux détails de la peinture ont changé, parmi eux le drapé de l\'épaule droite dont le nombre de plis est passé de 9 à 4 ! et qu\'aucune de ces versions ne correspond à la gravure de Hollar49. ', 9587.00, 24),
+(8, 'Guernica', 1, 'En août 2018, plusieurs experts, dont Matthew Landrus, du Wolfson College d\'Oxford, font part de leurs doutes et attribuent le tableau à Bernardino Luini et aux suiveurs de Léonard de Vinci2. Matthew Landrus démontre, en superposant les radiographies du Salvator Mundi (1500), de la version Ganay (1512) et du Christ parmi les docteurs (1510), l\'existence de trois dessins poncifs préalables, un pour la tête de Christ, un pour le vêtement, un pour la main droite. Chaque partie se superpose parfaitement51. Il attribue les poncifs à Léonard de Vinci pour la fresque perdue du Salvator Mundi peinte en 1495-1498 et détruite en 1603, dans l\'église Santa Maria delle Grazie à Milan, suivant l\'opinion de Ludwig Heydenreich en 196452', 2500.00, 25),
+(9, 'La Cène', 2, 'Certains, à l\'inverse, considèrent certaines parties comme médiocres', 2689.00, 26),
+(10, 'La Grande Vague', 2, 'L\'analyse technique des pigments est réputée « globalement »59 compatible avec la technique de Vinci60. Selon Dianne Modestini, la restauratrice le support en bois de noyer est en très mauvais état et réagit à tout changement d\'humidité et doit être conservé dans un taux d\'humidité de 45 % minimum6', 1256.00, 27),
+(11, 'La nuit étoilée', 2, 'ianne Modestini, affirme que le support comportait deux nœuds de boi', 6965.00, 28),
+(12, 'Le baiser', 2, ' francs à la mort de l\'artiste, il a été acheté, en 2015, par le Qatar ermites pour 300 millions de dollars,', 325.00, 29),
 (13, 'arco Ottoboni', 2, 'Fils de famille, il fut fait cardinal à la demande de la République de Venise par Innocent X le 19 février 1652, puis reçut l\'évêché de Brescia, en territoire vénitien, où il vécut tranquillement. Il devint cardinal dataire sous Clément IX. Presque octogénaire il fut élu pape mais ne régna que quinze mois pendant lesquels il se passa peu de choses. Louis XIV qui se trouvait alors en difficulté voulut profiter des dispositions conciliantes du nouveau pontife, qu\'il avait contribué à faire élire', 569.00, 30),
-(14, 'à la reine', 1, 'Christine de Suède Presque octogénaire il fut élu pape mais ne régna que quinze mois pendant lesquels il se passa peu de choses. Louis XIV qui se trouvait alors en difficulté voulut profiter des dispositions conciliantes du nouveau pontife, qu\'il avait contribué à faire élire, et pour se le rendre favorable lui restitua Avignon qu\'il avait fait occupe', 265.00, 31),
-(15, 'Canonisations', 1, 'Il canonisa saint Jean de Capistran (1690) et saint Jean de Dieu (16 octobre 1690). ', 899.00, 32);
+(14, 'Le Déjeuner sur l\'herbe', 1, 'Christine de Suède Presque octogénaire il fut élu pape mais ne régna que quinze mois pendant lesquels il se passa peu de choses. Louis XIV qui se trouvait alors en difficulté voulut profiter des dispositions conciliantes du nouveau pontife, qu\'il avait contribué à faire élire, et pour se le rendre favorable lui restitua Avignon qu\'il avait fait occupe', 265.00, 31),
+(15, 'Le Radeau de La Méduse', 1, 'Il canonisa saint Jean de Capistran (1690) et saint Jean de Dieu (16 octobre 1690). ', 899.00, 32);
 
 -- --------------------------------------------------------
 
@@ -139,16 +139,15 @@ INSERT INTO `photo` (`ID`, `URL`, `Œuvre`, `ordre`) VALUES
 (95, '5.0.jpg', 5, 1),
 (96, '5.1.jpg', 5, 2),
 (97, '5.2.jpg', 5, 3),
-(98, '7.0.jpg', 7, 1),
-(99, '7.1.jpg', 7, 2),
-(100, '7.2.jpg', 7, 3),
-(101, '8.0.png', 8, 1),
-(104, '9.0.jpg', 9, 1),
-(105, '10.0.jpg', 10, 1),
-(106, '11.0.jpg', 11, 1),
-(107, '12.0.jpg', 12, 1),
-(111, '14.0.jpg', 14, 1),
-(112, '15.0.jpg', 15, 1);
+(113, 'Bal du Moulin de la Galette.jpg', 6, 1),
+(98, 'Fontaine_Duchamp.jpg', 7, 1),
+(101, 'Guernica de Picasso.jpeg', 8, 1),
+(104, 'La Cène de Léonard de Vinci.jpeg', 9, 1),
+(105, 'La Grande Vague de Kanagawa.jpeg', 10, 1),
+(106, 'La nuit étoilée.jpg', 11, 1),
+(107, 'Le baiser (Klimt).jpg', 12, 1),
+(111, 'Le Déjeuner sur l\'herbe.jpg', 14, 1),
+(112, 'Le Radeau de La Méduse.jpeg', 15, 1);
 
 -- --------------------------------------------------------
 
